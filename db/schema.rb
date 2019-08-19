@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_090740) do
+ActiveRecord::Schema.define(version: 2019_08_19_091957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(version: 2019_08_19_090740) do
     t.string "ticker"
   end
 
-  create_table "companies_doses", force: :cascade do |t|
+  create_table "companies_pointers", force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "company_id"
     t.float "portion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_companies_doses_on_company_id"
-    t.index ["group_id"], name: "index_companies_doses_on_group_id"
+    t.index ["company_id"], name: "index_companies_pointers_on_company_id"
+    t.index ["group_id"], name: "index_companies_pointers_on_group_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_19_090740) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "companies_doses", "companies"
-  add_foreign_key "companies_doses", "groups"
+  add_foreign_key "companies_pointers", "companies"
+  add_foreign_key "companies_pointers", "groups"
   add_foreign_key "groups", "users"
 end

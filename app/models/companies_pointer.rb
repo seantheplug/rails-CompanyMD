@@ -1,4 +1,4 @@
-class CompaniesDose < ApplicationRecord
+class CompaniesPointer < ApplicationRecord
   belongs_to :group
   belongs_to :company
 end
