@@ -1,5 +1,4 @@
-<h1>This is the company index page</h1>
-
-<%@companies.each do |company|%>
+<%@companies.each_with_index do |company, index|%>
 <P><%=company.ticker%></p>
+<%= line_chart @companies_chart_array[index], width: "800px", height: "500px", points: false %>
 <%end%>

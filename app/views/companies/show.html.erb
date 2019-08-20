@@ -1,5 +1,5 @@
 <h1><%=@company.ticker%></h1>
 <div class="container">
-  <%= line_chart @price_data_array, min: 1000, width: "800px", height: "500px", points: false %>
+  <%= line_chart @price_data_array, width: "800px", height: "500px", points: false %>
   <%= line_chart @indicator_data_array, width: "800px", height: "500px", points: false %>
 </div>
