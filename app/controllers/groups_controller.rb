@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new("#strongparams")
+    @group = Group.new(group_params)
 
   end
 
@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update("#strongparams")
+    if @group.update(group_params)
 
     else
 
