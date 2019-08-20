@@ -1,16 +1,22 @@
 class CompaniesController < ApplicationController
+  before_action :set_company, only: [:show, :destroy]
   def index
-    @companies = Company.all
+    @companies = policy_scope(Company).order
   end
 
   def show
-    @company = Company.find(params[:id])
+    authorize @company
   end
 
   def destroy
+    authorize @company
+    @company.destroy
+    redirect_to companies_path
+  end
+
+  private
+
+  def set_company
     @company = Company.find(params[:id])
-    if @company.destroy
-      redirect_to companies_path
-    end
   end
 end
