@@ -2,11 +2,11 @@
   <div class="row card-company">
     <div class="col-6 card-company-content">
       <h3>Apple Inc.</h3>
-      <p><a href="#"><i class="fas fa-plus-circle mr-1"></i></a>AAPL</p>
+      <p><a href="#"><i class="fas fa-plus-circle mr-1"></i></a><%=company.ticker%></p>
       <h3><i class="fas fa-arrow-up mr-2 arrow"></i><span class="stock-price">208.43</span></h3>
     </div>
     <div class="col-6 card-company-graph">
-      <p>GRAPH HERE</p>
+      <%= line_chart @companies_chart_array[index], defer: true, colors: ["#75E6DA"], points: false, legend: false %>
     </div>
   </div>
 </div>
