@@ -1,0 +1,30 @@
+.sidebar {
+  position: sticky;
+  top: $nav-height;
+  padding: 80px 40px;
+  height: calc(100vh - #{$nav-height});
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: $navy;
+  color: white;
+  border-top-right-radius: 100px;
+
+  .secondary-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 15px 0;
+      font-family: $headers-font;
+      font-size: 1.4rem;
+      a {
+        color: darken($navy, 8%);
+        transition: $transition-in;
+        &.active { color: white }
+        &:hover { color: white; text-decoration: none; }
+      }
+    }
+  }
+}
