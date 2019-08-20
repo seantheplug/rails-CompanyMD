@@ -29,13 +29,12 @@ class GroupsController < ApplicationController
 
   def destroy
     if @group.destroy
-
-    else
-
+      redirect_to companies_path
     end
   end
 
   private
+  
   def set_group
     @group = Group.find(params[:id])
   end
