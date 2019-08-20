@@ -10,16 +10,17 @@ $body-bg:                 $light-gray;
 $font-size-base: 1rem;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
+$body-color: $light-gray;
+$primary:    $navy;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
 
 // Buttons & inputs' radius
-$border-radius:    2px;
-$border-radius-lg: 2px;
+$border-radius:    8px;
+$border-radius-lg: 25px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
+$letter-spacing: -0.1rem;
