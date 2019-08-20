@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to companies_path
     else
-      render :new
+      render :index
     end
   end
 
@@ -25,9 +25,9 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-
+      redirect_to companies_path
     else
-
+      render :index
     end
   end
 
