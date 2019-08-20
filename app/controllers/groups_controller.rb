@@ -1,18 +1,21 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   def index
-    @groups = Group.all
+    @groups = policy_scope(Group).order
   end
 
   def show
+    authorize @group
   end
 
   def new
     @group = Group.new
+    authorize @group
   end
 
   def create
     @group = Group.new(group_params)
+    authorize @group
     if @group.save
       redirect_to companies_path
     else
@@ -21,9 +24,11 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    authorize @group
   end
 
   def update
+    authorize @group
     if @group.update(group_params)
       redirect_to companies_path
     else
@@ -32,13 +37,13 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    if @group.destroy
-      redirect_to companies_path
-    end
+    authorize @group
+    @group.destroy
+    redirect_to companies_path
   end
 
   private
-  
+
   def set_group
     @group = Group.find(params[:id])
   end
