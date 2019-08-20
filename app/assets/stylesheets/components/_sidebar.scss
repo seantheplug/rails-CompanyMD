@@ -1,4 +1,6 @@
 .sidebar {
+  position: sticky;
+  top: $nav-height;
   padding: 80px 40px;
   height: calc(100vh - #{$nav-height});
   display: flex;

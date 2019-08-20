@@ -6,3 +6,9 @@ h1, h2, h3 {
 p {
   color: $gray;
 }
+
+.content-container {
+  padding: 0 50px;
+  margin: 0 auto;
+  max-width: 1250px;
+}

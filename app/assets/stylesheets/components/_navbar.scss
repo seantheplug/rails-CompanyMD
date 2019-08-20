@@ -1,6 +1,10 @@
 $nav-height: 80px;
 
 .navbar-lewagon {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
   height: $nav-height;
   justify-content: space-between;
   background: white;
