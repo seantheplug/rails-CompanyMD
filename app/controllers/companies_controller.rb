@@ -1,8 +1,10 @@
 require 'open-uri'
 require 'JSON'
 class CompaniesController < ApplicationController
+  before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @companies = Company.all.first(5)
     @companies_chart_array = []
@@ -12,6 +14,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    authorize @company
     @company = Company.find(params[:id])
     @price_data_array = create_stock_price_chart("DAILY", @company.ticker)
     puts @price_data_array
@@ -19,10 +22,15 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
+    authorize @company
+    @company.destroy
+    redirect_to companies_path
+  end
+
+  private
+
+  def set_company
     @company = Company.find(params[:id])
-    if @company.destroy
-      redirect_to companies_path
-    end
   end
 end
 
