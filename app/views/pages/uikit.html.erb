@@ -25,7 +25,7 @@
     <div class="box" style="background: #D4F1F4; color: black">SECONDARY</div>
     <div class="box" style="background: #3D484D">BODY</div>
     <div class="box" style="background: #E86C5B">UTILITY</div>
-    <div class="box" style="background: #96E458">UTILITY</div>
+    <div class="box" style="background: #80d63e">UTILITY</div>
   </div>
 
   <h3 class="my-5 pb-3 border-bottom">Typography</h3>
@@ -36,8 +36,40 @@
   Est lorem ipsum dolor sit amet consectetur adipiscing. Ipsum faucibus vitae aliquet nec ullamcorper sit. Et leo duis ut diam quam nulla porttitor massa id. Et egestas quis ipsum suspendisse ultrices gravida dictum fusce. Mauris in aliquam sem fringilla ut morbi tincidunt augue. Consequat interdum varius sit amet mattis. Amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus. Scelerisque purus semper eget duis at tellus at. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. A iaculis at erat pellentesque.</p>
 
   <h3 class="my-5 pb-3 border-bottom">UI Components</h3>
-  <h3>Company card</h3>
-  <div class="col-4">
 
+  <div class="mb-5">
+    <h3 class="my-3">Avatar</h3>
+    <%= image_tag "https://randomuser.me/api/portraits/men/18.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+  </div>
+
+  <div class="mb-5">
+    <h3 class="my-3">Company card</h3>
+    <%= render 'shared/company_card' %>
+  </div>
+
+  <div class="mb-5">
+    <h3 class="my-3">Basket card</h3>
+    <a href='#'>
+      <div class="basket-card" style="width: 250px">
+        <p>Technology</p>
+        <i class="fas fa-eye"></i>
+      </div>
+    </a>
+  </div>
+
+  <div class="mb-5">
+    <h3 class="my-3">Market card</h3>
+    <div class="col-6">
+      <div class="card-market">
+        <div>
+          <p>S&P 500 Index</p>
+          <p>2,888.68</p>
+        </div>
+        <div class="card-market-subtext">
+          <p>INDEXSP</p>
+          <p class="movement">+41.08 (1.44%)</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

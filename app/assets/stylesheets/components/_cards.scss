@@ -1,0 +1,88 @@
+.card-company {
+  padding: 25px;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius-lg;
+
+  .card-company-content {
+    h3 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    h3 .stock-price {
+      font-size: 2rem;
+    }
+    .arrow {
+      color: $green;
+      transition: $transition-in;
+    }
+    .arrow.down {
+      color: $red;
+      transform: rotate(180deg);
+    }
+  }
+
+  .card-company-graph {
+    padding-left: 0;
+
+    p {
+      background: rgba($sky, .3);
+      height: 100%;
+    }
+  }
+}
+
+.basket-card {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  color: white;
+  background: darken($navy, 3%);
+  padding: 10px 15px;
+  font-weight: bold;
+  justify-content: space-between;
+  border-radius: $border-radius;
+  transition: $transition-in;
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+  p {
+    color: white;
+    margin: 0;
+    &:hover { text-decoration: none; }
+  }
+}
+
+.card-market {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba($gray, 0.25);
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    &.card-market-subtext p {
+      font-size: 1rem;
+      opacity: 0.5;
+      &.movement {
+        color: $green;
+        opacity: 1;
+        &.down {
+          color: $red;
+        }
+      }
+    }
+  }
+}
