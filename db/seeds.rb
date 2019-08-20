@@ -5,3 +5,46 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.destroy_all if Rails.env.development?
+Company.destroy_all if Rails.env.development?
+Group.destroy_all if Rails.env.development?
+CompaniesPointer.destroy_all if Rails.env.development?
+
+puts "creating sample..."
+
+alexander = User.create!(name: "Alexander", email: "test@gmail.com", password: "123123")
+helen = User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
+user_array = [alexander, helen]
+
+#bigger companies
+APPL = Company.create!(ticker: "AAPL")
+GOOG = Company.create!(ticker: "GOOG")
+AMZN = Company.create!(ticker: "AMZN")
+TSLA = Company.create!(ticker: "TSLA")
+UBER = Company.create!(ticker: "UBER")
+MSFT = Company.create!(ticker: "MSFT")
+NFLX = Company.create!(ticker: "NFLX")
+
+#smaller companies
+LL = Company.create!(ticker: "LL")
+SWI = Company.create!(ticker: "SWI")
+BWLD = Company.create!(ticker: "BWLD")
+
+#indexes
+DJI = Company.create!(ticker: ".DJI")
+INX = Company.create!(ticker: ".INX")
+NYA = Company.create!(ticker: "NYA")
+
+company = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX, LL, SWI, BWLD, DJI, INX, NYA]
+
+group = []
+4.times do
+  group << Group.create!(user: user_array.sample)
+end
+
+13.times do
+  CompaniesPointer.create!(group: group.sample, company: company.sample)
+end
+
+puts "created sample"
