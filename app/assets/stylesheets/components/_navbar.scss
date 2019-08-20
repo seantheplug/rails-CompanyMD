@@ -1,4 +1,7 @@
+$nav-height: 80px;
+
 .navbar-lewagon {
+  height: $nav-height;
   justify-content: space-between;
   background: white;
 }
