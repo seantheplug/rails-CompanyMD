@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_012445) do
+ActiveRecord::Schema.define(version: 2019_08_20_030756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ticker"
+  end
+
+  create_table "companies_pointers", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "company_id"
+    t.float "portion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_companies_pointers_on_company_id"
+    t.index ["group_id"], name: "index_companies_pointers_on_group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "user_setting"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["user_id"], name: "index_groups_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +48,12 @@ ActiveRecord::Schema.define(version: 2019_08_19_012445) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "companies_pointers", "companies"
+  add_foreign_key "companies_pointers", "groups"
+  add_foreign_key "groups", "users"
 end
