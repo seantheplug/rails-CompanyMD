@@ -1,5 +1,4 @@
 require 'open-uri'
-require 'JSON'
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
