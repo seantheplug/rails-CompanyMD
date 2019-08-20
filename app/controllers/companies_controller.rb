@@ -1,13 +1,16 @@
 require 'open-uri'
 require 'JSON'
 class CompaniesController < ApplicationController
+  before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
-    @companies = Company.all
+    @companies = policy_scope(Company).order
   end
 
   def show
+    authorize @company
     @company = Company.find(params[:id])
     # url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=#{@company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     # json = open(url).read
@@ -23,10 +26,15 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
+    authorize @company
+    @company.destroy
+    redirect_to companies_path
+  end
+
+  private
+
+  def set_company
     @company = Company.find(params[:id])
-    if @company.destroy
-      redirect_to companies_path
-    end
   end
 end
 
