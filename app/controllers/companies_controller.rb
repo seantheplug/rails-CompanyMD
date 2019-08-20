@@ -10,9 +10,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company = Company.find(params[:id])
     if @company.destroy
-
-    else
-    
+      redirect_to companies_path
     end
   end
 end
