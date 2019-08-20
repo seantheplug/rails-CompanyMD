@@ -49,26 +49,29 @@
 
   <div class="mb-5">
     <h3 class="my-3">Basket card</h3>
-    <a href='#'>
-      <div class="basket-card" style="width: 250px">
-        <p>Technology</p>
-        <i class="fas fa-eye"></i>
-      </div>
-    </a>
+    <div class="col-4">
+      <%= render 'shared/basket_card' %>
+    </div>
   </div>
 
   <div class="mb-5">
     <h3 class="my-3">Market card</h3>
-    <div class="col-6">
-      <div class="card-market">
-        <div>
-          <p>S&P 500 Index</p>
-          <p>2,888.68</p>
-        </div>
-        <div class="card-market-subtext">
-          <p>INDEXSP</p>
-          <p class="movement">+41.08 (1.44%)</p>
-        </div>
+    <%= render 'shared/market_card' %>
+  </div>
+
+  <div class="mb-5">
+    <h3 class="my-3">Sidebar</h3>
+    <div class="sidebar col-3">
+      <ul class="secondary-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">News</a></li>
+      </ul>
+      <div class="basket-container">
+        <h3 class="mb-3">Basket</h3>
+        <%= render 'shared/basket_card' %>
+        <%= render 'shared/basket_card' %>
+        <%= render 'shared/basket_card' %>
       </div>
     </div>
   </div>
