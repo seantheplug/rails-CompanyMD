@@ -9,38 +9,42 @@
 User.destroy_all if Rails.env.development?
 Company.destroy_all if Rails.env.development?
 Group.destroy_all if Rails.env.development?
-Companies_Pointer.destroy_all if Rails.env.development?
+CompaniesPointer.destroy_all if Rails.env.development?
 
 puts "creating sample..."
 
-User.create!(name: "Alexander", email: "test@gmail.com", password: "123123")
-User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
+alexander = User.create!(name: "Alexander", email: "test@gmail.com", password: "123123")
+helen = User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
+user_array = [alexander, helen]
 
 #bigger companies
-Company.create!(ticker: "AAPL")
-Company.create!(ticker: "GOOG")
-Company.create!(ticker: "AMZN")
-Company.create!(ticker: "TSLA")
-Company.create!(ticker: "UBER")
-Company.create!(ticker: "MSFT")
-Company.create!(ticker: "NFLX")
+APPL = Company.create!(ticker: "AAPL")
+GOOG = Company.create!(ticker: "GOOG")
+AMZN = Company.create!(ticker: "AMZN")
+TSLA = Company.create!(ticker: "TSLA")
+UBER = Company.create!(ticker: "UBER")
+MSFT = Company.create!(ticker: "MSFT")
+NFLX = Company.create!(ticker: "NFLX")
 
 #smaller companies
-Company.create!(ticker: "LL")
-Company.create!(ticker: "SWI")
-Company.create!(ticker: "BWLD")
+LL = Company.create!(ticker: "LL")
+SWI = Company.create!(ticker: "SWI")
+BWLD = Company.create!(ticker: "BWLD")
 
 #indexes
-Company.create!(ticker: ".DJI")
-Company.create!(ticker: ".INX")
-Company.create!(ticker: "NYA")
+DJI = Company.create!(ticker: ".DJI")
+INX = Company.create!(ticker: ".INX")
+NYA = Company.create!(ticker: "NYA")
 
+company = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX, LL, SWI, BWLD, DJI, INX, NYA]
+
+group = []
 4.times do
-  Group.create!(user: rand.(1..2))
+  group << Group.create!(user: user_array.sample)
 end
 
 13.times do
-  Companies_Pointer.create!(group_id: rand(1..4), company_id: rand(1..13))
+  CompaniesPointer.create!(group: group.sample, company: company.sample)
 end
 
-puts. "created sample"
+puts "created sample"
