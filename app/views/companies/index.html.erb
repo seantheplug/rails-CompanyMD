@@ -1,4 +1,4 @@
 <%@companies.each_with_index do |company, index|%>
 <P><%=company.ticker%></p>
-<%= line_chart @companies_chart_array[index], width: "800px", height: "500px", points: false %>
+<%= line_chart @companies_chart_array[index], min: @min_price[index]*0.9 , width: "800px", height: "500px", points: false %>
 <%end%>
