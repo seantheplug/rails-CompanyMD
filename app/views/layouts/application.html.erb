@@ -15,7 +15,11 @@
     <%= render 'shared/flashes' %>
     <%= javascript_pack_tag 'chart'%>
     <div class="wrapper">
-      <%= yield %>
+      <div class="container-fluid">
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
     </div>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>

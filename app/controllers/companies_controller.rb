@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
     @companies = Company.all.first(2)
     @companies_chart_array = []
     @companies.each do |company|
-      @companies_chart_array << create_stock_price_chart("DAILY", company.ticker)
+      @companies_chart_array << create_stock_price_chart("DAILY", company.ticker, 'compact')
     end
   end
 

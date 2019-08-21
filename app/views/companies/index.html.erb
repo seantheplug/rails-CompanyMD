@@ -1,5 +1,9 @@
-<div class="row">
-  <%@companies.each_with_index do |company, index|%>
-    <%= render 'shared/company_card', company: company, index: index %>
-  <%end%>
+<%= render 'shared/sidebar' %>
+
+<div class="content-container col-10">
+  <div class="row">
+    <%@companies.each_with_index do |company, index|%>
+      <%= render 'shared/company_card', company: company, index: index %>
+    <%end%>
+  </div>
 </div>
