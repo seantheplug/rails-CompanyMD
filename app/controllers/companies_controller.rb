@@ -17,7 +17,6 @@ class CompaniesController < ApplicationController
     authorize @company
     @company = Company.find(params[:id])
     @price_data_array = create_stock_price_chart("DAILY", @company.ticker)
-    puts @price_data_array
     roc_chart(@company.ticker, "daily", 10, "close")
   end
 
