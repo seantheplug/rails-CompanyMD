@@ -1,0 +1,5 @@
+<div class="row">
+  <%@companies.each_with_index do |company, index|%>
+    <%= render 'shared/company_card', company: company, index: index %>
+  <%end%>
+</div>

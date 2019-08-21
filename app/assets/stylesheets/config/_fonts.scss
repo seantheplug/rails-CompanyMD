@@ -1,9 +1,10 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+@import url("https://cdn.jsdelivr.net/npm/inter-ui@3.8.0/inter.min.css");
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+$body-font: "Inter", "Helvetica", "sans-serif";
+$headers-font: "Lexend Deca", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
