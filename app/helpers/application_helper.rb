@@ -12,6 +12,7 @@ module ApplicationHelper
     price_info = JSON.parse(json)
     time = []
     close_price = []
+
     price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
       time << key
       close_price << value["4. close"].to_f
@@ -49,6 +50,7 @@ module ApplicationHelper
     url = "https://www.alphavantage.co/query?function=ROC&symbol=MSFT&interval=weekly&time_period=10&series_type=close&apikey=demo"
     json = open(url).read
     price_info = JSON.parse(json)
+
     time = []
     tech_indicator = []
     price_info["Technical Analysis: ROC"].each do |key, value|
@@ -67,6 +69,13 @@ module ApplicationHelper
     json = open(url).read
     search_result = JSON.parse(json)
     search_result["bestMatches"]
+  end
+
+  def get_company_name(query)
+    url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=#{query}&region=1&lang=en"
+    json = open(url).read
+    company = JSON.parse(json)
+    name = company["ResultSet"]["Result"][0]["name"]
   end
 end
 
