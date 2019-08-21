@@ -28,9 +28,8 @@
   .card-company-graph {
     padding-left: 0;
 
-    p {
-      background: rgba($sky, .3);
-      height: 100%;
+    .chartjs-render-monitor {
+      background: rgba($sky, 0.2);
     }
   }
 }
