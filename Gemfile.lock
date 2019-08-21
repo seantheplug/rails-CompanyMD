@@ -94,6 +94,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.3.1)
+    news-api (0.1.0)
     nio4r (2.4.0)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
@@ -206,6 +207,7 @@ DEPENDENCIES
   groupdate
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
+  news-api
   pg (~> 0.21)
   pry-byebug
   pry-rails
