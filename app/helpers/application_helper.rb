@@ -1,10 +1,13 @@
 module ApplicationHelper
-  def create_stock_price_chart(time_series, ticker, outputsize = nil)
+  
+  def create_stock_price_chart(company, time_series, outputsize=nil)
     if outputsize.nil?
-      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
-      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     end
+    
+    demo_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
     json = open(url).read
     price_info = JSON.parse(json)
     time = []
@@ -13,13 +16,13 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    puts time
-    puts close_price
+    @min_price << close_price.min
+    company.update!(times: time, prices: close_price)
     price_data_array = []
-    close_price.each_with_index do |price, index|
+    close_price.each_with_index do |price, index| 
       price_data_array << [time[index], price]
     end
-    return price_data_array
+    return price_data_array.reverse!
   end
 
   def quote_endpoint(ticker)
@@ -42,26 +45,26 @@ module ApplicationHelper
   end
 
   def roc_chart(ticker, interval, time_period, series_type)
-    url = "https://www.alphavantage.co/query?function=ROC&symbol=#{ticker}&interval=#{interval}&time_period=#{time_period}&series_type=#{series_type}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    # url = "https://www.alphavantage.co/query?function=ROC&symbol=#{ticker}&interval=#{interval}&time_period=#{time_period}&series_type=#{series_type}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    url = "https://www.alphavantage.co/query?function=ROC&symbol=MSFT&interval=weekly&time_period=10&series_type=close&apikey=demo"
     json = open(url).read
     price_info = JSON.parse(json)
-    @time = []
-    @tech_indicator = []
+    time = []
+    tech_indicator = []
     price_info["Technical Analysis: ROC"].each do |key, value|
-      @time << key
-      @tech_indicator << value["ROC"].to_f
+      time << key
+      tech_indicator << value["ROC"].to_f
     end
-    @indicator_data_array = []
-    @tech_indicator.each_with_index do |indicator, index|
-      @indicator_data_array << [@time[index], indicator]
+    indicator_data_array = [] 
+    tech_indicator.each_with_index do |indicator, index| 
+      indicator_data_array << [time[index], indicator]
     end
-  end
+    return indicator_data_array
 
   def search_company(keyword)
     url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=#{keyword}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     json = open(url).read
     search_result = JSON.parse(json)
-
     search_result["bestMatches"]
   end
 end

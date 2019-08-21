@@ -5,19 +5,47 @@ class CompaniesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @companies = policy_scope(Company)
-    @companies = Company.all.first(2)
+    @companies = policy_scope(Company).first(5)
     @companies_chart_array = []
+    @min_price = []
     @companies.each do |company|
-      @companies_chart_array << create_stock_price_chart("DAILY", company.ticker)
+      if company.prices.empty? || company.times.empty? || (DateTime.now.hour - Company.all.first.updated_at.hour) > 12
+        puts "one api call"
+        @companies_chart_array << create_stock_price_chart(company, "DAILY")
+      else
+        puts "no api call"
+        prices = company.prices
+        @min_price << prices.min
+        times = company.times
+        array = times.zip(prices)
+        array.reverse!
+        @companies_chart_array << array
+      end
     end
   end
 
   def show
-    @company = Company.find(params[:id])
     authorize @company
-    @price_data_array = create_stock_price_chart("DAILY", @company.ticker)
-    roc_chart(@company.ticker, "daily", 10, "close")
+    @company = Company.find(params[:id])
+
+    # if session["#{@Company.ticker}"].nil?
+    #   session["#{@Company.ticker}"] = create_stock_price_chart("DAILY", @company.ticker)
+    # end
+    # @price_data_array = session["#{@Company.ticker}"]
+    # puts @price_data_array
+    if @company.prices.empty? || @company.times.empty? || (DateTime.now.hour - @company.updated_at.hour) > 12
+      puts "one api call"
+      @price_data_array = create_stock_price_chart(@company, "DAILY", "full")
+    else
+      puts "no api call"
+      prices = @company.prices
+      @min_price = prices.min
+      times = @company.times
+      array = times.zip(prices)
+      array.reverse!
+      @price_data_array = array
+    end
+    @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
   end
 
   def destroy
