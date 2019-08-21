@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Search Results (US Only)</h1>
+  <ul>
+    <% @array.each do |element| %>
+      <% if element["4. region"] == "United States"%>
+        <li>SYMBOL: <%= element["1. symbol"] %> NAME:<%= element["2. name"] %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
