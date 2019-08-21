@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   def index
-    @groups = policy_scope(Group).order
+    @groups = policy_scope(Group)
   end
 
   def show
