@@ -43,19 +43,21 @@ module ApplicationHelper
   end
 
   def roc_chart(ticker, interval, time_period, series_type)
-    url = "https://www.alphavantage.co/query?function=ROC&symbol=#{ticker}&interval=#{interval}&time_period=#{time_period}&series_type=#{series_type}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    # url = "https://www.alphavantage.co/query?function=ROC&symbol=#{ticker}&interval=#{interval}&time_period=#{time_period}&series_type=#{series_type}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    url = "https://www.alphavantage.co/query?function=ROC&symbol=MSFT&interval=weekly&time_period=10&series_type=close&apikey=demo"
     json = open(url).read
     price_info= JSON.parse(json)
-    @time = []
-    @tech_indicator = []
+    time = []
+    tech_indicator = []
     price_info["Technical Analysis: ROC"].each do |key, value|
-    @time << key
-    @tech_indicator << value["ROC"].to_f
+      time << key
+      tech_indicator << value["ROC"].to_f
     end
-    @indicator_data_array = [] 
-    @tech_indicator.each_with_index do |indicator, index| 
-    @indicator_data_array << [@time[index], indicator]
-    end 
+    indicator_data_array = [] 
+    tech_indicator.each_with_index do |indicator, index| 
+      indicator_data_array << [time[index], indicator]
+    end
+    return indicator_data_array
   end
 end
 

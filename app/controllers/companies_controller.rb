@@ -26,7 +26,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    # authorize @company
+    authorize @company
     @company = Company.find(params[:id])
     # if session["#{@Company.ticker}"].nil?
     #   session["#{@Company.ticker}"] = create_stock_price_chart("DAILY", @company.ticker)
@@ -43,7 +43,7 @@ class CompaniesController < ApplicationController
       print array
       @price_data_array = array
     end
-    # roc_chart(@company.ticker, "daily", 10, "close")
+    @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
   end
 
   def destroy
