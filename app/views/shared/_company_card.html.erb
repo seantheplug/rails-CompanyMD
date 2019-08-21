@@ -7,7 +7,7 @@
     </div>
     <div class="col-6 card-company-graph">
       <%= line_chart @companies_chart_array[index],
-        {
+          min: @min_price[index]*0.9,
           defer: true,
           colors: ["#75E6DA"],
           points: false,
@@ -19,7 +19,6 @@
                 yAxes: [{ display: false }]
             }
           }
-        }
       %>
     </div>
   </div>
