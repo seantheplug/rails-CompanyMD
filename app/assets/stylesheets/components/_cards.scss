@@ -2,11 +2,21 @@
   padding: 25px 15px;
   box-shadow: $box-shadow;
   border-radius: $border-radius-lg;
-  margin: 0;
+  margin: 10px 0;
 
   .card-company-content {
     h3 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      display: flex;
+      max-width: 200px;
+      align-items: center;
+      a {
+        -webkit-box-flex: 1;
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
     p {
       font-size: 0.9rem;
@@ -28,9 +38,8 @@
   .card-company-graph {
     padding-left: 0;
 
-    p {
-      background: rgba($sky, .3);
-      height: 100%;
+    .chartjs-render-monitor {
+      background: rgba($sky, 0.2);
     }
   }
 }

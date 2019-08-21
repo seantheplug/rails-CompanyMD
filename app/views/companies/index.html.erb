@@ -1,10 +1,18 @@
-<%@companies.each_with_index do |company, index|%>
-<P><%=company.ticker%></p>
-<%= line_chart @companies_chart_array[index], min: @min_price[index]*0.9 , width: "800px", height: "500px", points: false %>
-<%end%>
-<div class="row">
-  <%@companies.each_with_index do |company, index|%>
-    <%= render 'shared/company_card', company: company, index: index %>
-  <%end%>
+<%= render 'shared/sidebar' %>
+
+<div class="content-container col-10">
+  <h2>My Stocks</h2>
+  <div class="row mb-5">
+    <%@companies.each_with_index do |company, index|%>
+      <%= render 'shared/company_card', company: company, index: index %>
+    <%end%>
+  </div>
+  <h2>Market Index</h2>
+  <div class="row">
+    <%= render 'shared/market_card' %>
+    <%= render 'shared/market_card' %>
+    <%= render 'shared/market_card' %>
+    <%= render 'shared/market_card' %>
+  </div>
 </div>
 
