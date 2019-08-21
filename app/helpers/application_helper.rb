@@ -1,13 +1,15 @@
 module ApplicationHelper
+  
   def create_stock_price_chart(company, time_series, outputsize=nil)
     if outputsize.nil?
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
-        url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     end
+    
     demo_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
     json = open(url).read
-    price_info= JSON.parse(json)
+    price_info = JSON.parse(json)
     time = []
     close_price = []
     price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
@@ -26,7 +28,7 @@ module ApplicationHelper
   def quote_endpoint(ticker)
     url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=#{ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     json = open(url).read
-    price_info= JSON.parse(json)
+    price_info = JSON.parse(json)["Global Quote"]
     info_hash = Hash.new
     info_hash[:ticker] = ticker
     info_hash[:symbol] = price_info["01. symbol"]
@@ -38,7 +40,7 @@ module ApplicationHelper
     info_hash[:latest] = price_info["07. trading day"]
     info_hash[:previous] = price_info["08. close"]
     info_hash[:change] = price_info["09. change"]
-    info_hash[:change_percent] = price_info["10. change precent"]
+    info_hash[:change_percent] = price_info["10. change percent"]
     return info_hash
   end
 
@@ -46,7 +48,7 @@ module ApplicationHelper
     # url = "https://www.alphavantage.co/query?function=ROC&symbol=#{ticker}&interval=#{interval}&time_period=#{time_period}&series_type=#{series_type}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     url = "https://www.alphavantage.co/query?function=ROC&symbol=MSFT&interval=weekly&time_period=10&series_type=close&apikey=demo"
     json = open(url).read
-    price_info= JSON.parse(json)
+    price_info = JSON.parse(json)
     time = []
     tech_indicator = []
     price_info["Technical Analysis: ROC"].each do |key, value|
@@ -58,15 +60,21 @@ module ApplicationHelper
       indicator_data_array << [time[index], indicator]
     end
     return indicator_data_array
+
+  def search_company(keyword)
+    url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=#{keyword}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    json = open(url).read
+    search_result = JSON.parse(json)
+    search_result["bestMatches"]
   end
 end
 
 # https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo -> daily
 # https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=MSFT&apikey=demo -> weekly
-# https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&outputsize=full&apikey=demo -> output 
+# https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&outputsize=full&apikey=demo -> output
 # https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo -> quote_endpoint
 # https://www.alphavantage.co/query?function=SECTOR&apikey=demo -> SECTOR
-# https://www.alphavantage.co/query?function=ROC&symbol=MSFT&interval=weekly&time_period=10&series_type=close&apikey=demo -> roc 
+# https://www.alphavantage.co/query?function=ROC&symbol=MSFT&interval=weekly&time_period=10&series_type=close&apikey=demo -> roc
 
 
 

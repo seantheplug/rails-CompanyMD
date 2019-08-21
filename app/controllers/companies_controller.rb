@@ -27,6 +27,7 @@ class CompaniesController < ApplicationController
   def show
     authorize @company
     @company = Company.find(params[:id])
+
     # if session["#{@Company.ticker}"].nil?
     #   session["#{@Company.ticker}"] = create_stock_price_chart("DAILY", @company.ticker)
     # end
@@ -59,4 +60,3 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 end
-
