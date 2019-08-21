@@ -45,6 +45,15 @@ module ApplicationHelper
     return info_hash
   end
 
+  def market_index_quote_endpoint(market_index)
+    url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=#{market_index.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    json = open(url).read
+    price_info = JSON.parse(json)["Global Quote"]
+    market_index.update!(price: price_info["05. price"].to_f.round(2),
+    high: price_info["03. high"].to_f.round(2), low: price_info["04. low"].to_f.round(2),
+    change: price_info["09. change"].to_f.round(2), change_percent: price_info["10. change percent"].to_f.round(2))
+  end
+
   def roc_chart(ticker, interval, time_period, series_type)
     # url = "https://www.alphavantage.co/query?function=ROC&symbol=#{ticker}&interval=#{interval}&time_period=#{time_period}&series_type=#{series_type}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     url = "https://www.alphavantage.co/query?function=ROC&symbol=MSFT&interval=weekly&time_period=10&series_type=close&apikey=demo"
