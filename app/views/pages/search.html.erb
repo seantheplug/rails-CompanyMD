@@ -1,0 +1,9 @@
+<div class="container">
+  <ul>
+    <% @array.each do |element| %>
+      <% if element["4. region"] == "United States"%>
+        <li><%= element["1. symbol"] %> <%= element["2. name"] %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

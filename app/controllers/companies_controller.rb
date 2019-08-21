@@ -33,4 +33,3 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 end
-
