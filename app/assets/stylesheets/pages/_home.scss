@@ -12,3 +12,12 @@ p {
   margin: 0 auto;
   max-width: 1250px;
 }
+
+.arrow {
+  color: $green;
+  transition: $transition-in;
+}
+.arrow.down {
+  color: $red;
+  transform: rotate(180deg);
+}
