@@ -3,3 +3,11 @@
   <%= line_chart @price_data_array, width: "800px", height: "500px", points: false %>
   <%= line_chart @indicator_data_array, width: "800px", height: "500px", points: false %>
 </div>
+
+<% n = 0 %>
+<% @array.length.times do %>
+    <% @array[n].each do |article| %>
+      TITLE: <%= article[0] %> DESCRIPTION:<%= article[1] %> URL:<%= article[2] %>
+      <% end %>
+    <% n += 1 %>
+<% end %>

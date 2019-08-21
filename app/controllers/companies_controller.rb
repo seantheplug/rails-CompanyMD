@@ -1,4 +1,6 @@
 require 'open-uri'
+require 'news-api'
+
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
@@ -9,7 +11,6 @@ class CompaniesController < ApplicationController
     @companies_chart_array = []
     @min_price = []
     @companies.each do |company|
-
       if company.prices.empty? || company.times.empty? || (DateTime.now.hour - Company.all.first.updated_at.hour) > 12
         puts "one api call"
         @companies_chart_array << create_stock_price_chart(company, "DAILY")
@@ -47,6 +48,8 @@ class CompaniesController < ApplicationController
       @price_data_array = array
     end
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
+
+    @array = company_news("trump")
   end
 
   def destroy

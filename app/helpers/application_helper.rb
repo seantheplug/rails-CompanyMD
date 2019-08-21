@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def create_stock_price_chart(company, time_series, outputsize=nil)
+  def create_stock_price_chart(company, time_series, outputsize = nil)
     if outputsize.nil?
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
@@ -12,11 +12,11 @@ module ApplicationHelper
     price_info = JSON.parse(json)
     time = []
     close_price = []
-
     price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
       time << key
       close_price << value["4. close"].to_f
     end
+    @min_price = []
     @min_price << close_price.min
     company.update!(times: time, prices: close_price)
     price_data_array = []
@@ -76,6 +76,42 @@ module ApplicationHelper
     json = open(url).read
     company = JSON.parse(json)
     name = company["ResultSet"]["Result"][0]["name"]
+  end
+
+  def company_news(query)
+    sources = ["bloomberg", "fortune", "reuters", "cnn"]
+    array = []
+    sources.each do |source|
+      url = "https://newsapi.org/v2/top-headlines?q=#{query}&sources=#{source}&apiKey=#{ENV['NEWS_API_KEY']}"
+      json = open(url).read
+      news_result = JSON.parse(json)
+      array << news_result["articles"]
+    end
+
+    bloomberg = []
+    fortune = []
+    reuters = []
+    cnn = []
+
+    array[0].each do |article|
+      bloomberg << [article["title"], article["description"], article["url"]]
+    end
+
+    array[1].each do |article|
+      fortune << [article["title"], article["description"], article["url"]]
+    end
+
+    array[2].each do |article|
+      reuters << [article["title"], article["description"], article["url"]]
+    end
+
+    array[3].each do |article|
+      cnn << [article["title"], article["description"], article["url"]]
+    end
+
+    sources_list = [bloomberg, fortune, reuters, cnn]
+
+    sources_list
   end
 end
 
