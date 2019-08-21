@@ -1,11 +1,11 @@
 module ApplicationHelper
-  def create_stock_price_chart(time_series, ticker, outputsize=nil)
-    if outputsize.nil?
-      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
-    else
-        url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
-    end
-    json = open(url).read
+  def create_stock_price_chart(company, time_series, outputsize=nil)
+    # if outputsize.nil?
+    #   url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    # else
+    #     url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    # end
+    json = open("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo").read
     price_info= JSON.parse(json)
     time = []
     close_price = []
@@ -15,11 +15,12 @@ module ApplicationHelper
     end
     puts time
     puts close_price
-    price_data_array = [] 
+    company.update!(times: time, prices: close_price)
+    price_data_array = []
     close_price.each_with_index do |price, index| 
       price_data_array << [time[index], price]
     end
-    return price_data_array
+    return price_data_array.reverse!
   end
 
   def quote_endpoint(ticker)
