@@ -1,0 +1,2 @@
+class MarketIndex < ApplicationRecord
+end
