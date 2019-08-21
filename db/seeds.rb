@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+MarketIndex.destroy_all if Rails.env.development?
 User.destroy_all if Rails.env.development?
 Company.destroy_all if Rails.env.development?
 Group.destroy_all if Rails.env.development?
