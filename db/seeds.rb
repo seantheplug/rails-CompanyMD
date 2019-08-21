@@ -47,4 +47,8 @@ end
   CompaniesPointer.create!(group: group.sample, company: company.sample)
 end
 
+MarketIndex.create!(name: "S&P 500 Index", ticker: ".INX")
+MarketIndex.create!(name: "NASDAQ", ticker: "IXIC")
+MarketIndex.create!(name: "DOW JONES", ticker: ".DJI")
+MarketIndex.create!(name: "Russell 2000", ticker: "^RUT")
 puts "created sample"
