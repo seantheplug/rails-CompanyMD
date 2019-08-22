@@ -99,3 +99,26 @@
     font-weight: normal;
   }
 }
+
+.company-description {
+  text-align: center;
+  padding: 15px 30px;
+  margin: 10px;
+  background: white;
+
+  .company-logo {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    padding: 15px;
+  }
+
+  .company-ticker {
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+
+  & > p {
+    text-align: left;
+  }
+}

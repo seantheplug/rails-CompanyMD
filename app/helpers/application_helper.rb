@@ -36,7 +36,7 @@ module ApplicationHelper
     info_hash[:open] = price_info["02. open"]
     info_hash[:high] = price_info["03. high"]
     info_hash[:low] = price_info["04. low"]
-    info_hash[:price] = price_info["05. price"]
+    info_hash[:price] = (price_info["05. price"]).to_f.round(2)
     info_hash[:volume] = price_info["06. volume"]
     info_hash[:latest] = price_info["07. trading day"]
     info_hash[:previous] = price_info["08. close"]
@@ -85,6 +85,18 @@ module ApplicationHelper
     json = open(url).read
     company = JSON.parse(json)
     name = company["ResultSet"]["Result"][0]["name"]
+  end
+
+  def google_search(query)
+    url = "https://kgsearch.googleapis.com/v1/entities:search?query=#{query}&key=#{ENV['GOOGLE_SEARCH_KEY']}&limit=1&indent=True"
+    json = open(url).read
+    company = JSON.parse(json)
+    company_info = company["itemListElement"][0]["result"]
+
+    info_hash = Hash.new
+    info_hash[:description] = company_info["detailedDescription"]["articleBody"]
+    info_hash[:img] = company_info["image"]["contentUrl"]
+    return info_hash
   end
 end
 
