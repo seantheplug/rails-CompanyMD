@@ -29,7 +29,12 @@ class CompaniesController < ApplicationController
         market_index_quote_endpoint(market_index)
       end
     end
-
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'file_name'
+      end
+    end
   end
 
   def show
