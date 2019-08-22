@@ -33,10 +33,10 @@ module ApplicationHelper
     info_hash = Hash.new
     info_hash[:ticker] = ticker
     info_hash[:symbol] = price_info["01. symbol"]
-    info_hash[:open] = price_info["02. open"]
-    info_hash[:high] = price_info["03. high"]
-    info_hash[:low] = price_info["04. low"]
-    info_hash[:price] = (price_info["05. price"]).to_f.round(2)
+    info_hash[:open] = price_info["02. open"].to_f.round(2)
+    info_hash[:high] = price_info["03. high"].to_f.round(2)
+    info_hash[:low] = price_info["04. low"].to_f.round(2)
+    info_hash[:price] = price_info["05. price"].to_f.round(2)
     info_hash[:volume] = price_info["06. volume"]
     info_hash[:latest] = price_info["07. trading day"]
     info_hash[:previous] = price_info["08. close"]

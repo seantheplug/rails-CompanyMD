@@ -103,8 +103,19 @@
 .company-description {
   text-align: center;
   padding: 15px 30px;
-  margin: 10px;
+  margin: 10px 0;
   background: white;
+  position: relative;
+
+  .add {
+    color: #ddd;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    transition: $transition-in;
+    &:hover { color: #444; }
+  }
 
   .company-logo {
     width: 100px;

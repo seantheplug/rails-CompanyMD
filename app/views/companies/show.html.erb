@@ -2,11 +2,26 @@
 
 <div class="content-container col-10">
   <div class="row">
-    <%= render 'shared/company_description' %>
+    <div class="col-6">
+      <%= render 'shared/company_description' %>
+    </div>
+    <div class="col-6">
+      <div class="company-data">
+        <ul>
+          <li><span class="data-title">Open:</span> <%= quote_endpoint(@company.ticker)[:open] %></li>
+          <li><span class="data-title">High:</span> <%= quote_endpoint(@company.ticker)[:high] %></li>
+          <li><span class="data-title">Low:</span> <%= quote_endpoint(@company.ticker)[:low] %></li>
+          <li><span class="data-title">Volume:</span> <%= quote_endpoint(@company.ticker)[:volume] %></li>
+          <li><span class="data-title">Change:</span> <%= quote_endpoint(@company.ticker)[:change_percent] %></li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="row">
-    <div class="col-12 show-graph">
+    <div class="col-12">
+      <div class="show-graph">
       <%= line_chart @price_data_array, min: (@min_price[0]*0.9).round, width: "100%", height: "500px", points: false %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
-<div class="col-6 company-description">
+<div class="company-description">
+  <a href="#"><i class="fas fa-plus-circle add"></i></a>
   <%= image_tag google_search(get_company_name(@company.ticker))[:img], class: "company-logo" %>
   <h1><%= get_company_name(@company.ticker) %></h1>
   <h2 class="company-ticker"><%= @company.ticker %></h2>
