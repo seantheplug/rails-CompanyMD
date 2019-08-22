@@ -18,10 +18,8 @@
     </h3>
     <% if signed_in? %>
       <div class="basket-cards">
-        <% if signed_in? %>
-          <%@groups.each do |group|%>
-            <%= render 'shared/basket_card', group: group%>
-          <%end%>
+        <%@groups.each do |group|%>
+          <%= render 'shared/basket_card', group: group%>
         <% end %>
       </div>
     <% end %>
