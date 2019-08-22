@@ -1,9 +1,11 @@
 require 'open-uri'
+require 'net/http'
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
+  # TenkHelper - helper tha generates [{link: "www", date: "xxxx-xx-xx"}]
+  include TenkHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
-
   def index
     @companies = policy_scope(Company).first(5)
     @market_index_array = MarketIndex.all
@@ -54,6 +56,7 @@ class CompaniesController < ApplicationController
       @price_data_array = array
     end
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
+    @sec_data = set_10k(@company.ticker)
   end
 
   def destroy
