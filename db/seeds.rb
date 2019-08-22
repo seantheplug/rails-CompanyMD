@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+MarketIndex.destroy_all if Rails.env.development?
 User.destroy_all if Rails.env.development?
 Company.destroy_all if Rails.env.development?
 Group.destroy_all if Rails.env.development?
@@ -47,4 +47,8 @@ end
   CompaniesPointer.create!(group: group.sample, company: company.sample)
 end
 
+MarketIndex.create!(name: "S&P 500 Index", ticker: ".INX")
+# MarketIndex.create!(name: "NASDAQ", ticker: ".IXIC") --> the ticker is not working #Sean
+MarketIndex.create!(name: "DOW JONES", ticker: ".DJI")
+MarketIndex.create!(name: "Russell 2000", ticker: "^RUT")
 puts "created sample"
