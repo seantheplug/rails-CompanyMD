@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] 
   
   resources :groups do
-    resources :companies_pointers, only: [:new, :create, :destroy]
+    resources :companies_pointers, only: [:destroy]
   end
 
-  resources :companies, only: [:index, :show, :destroy]
+  # resources :companies_pointers, only: [:new, :create]
+
+  resources :companies, only: [:index, :show, :destroy] do
+    resources :companies_pointers, only: [:new, :create]
+  end
 end
