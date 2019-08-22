@@ -7,7 +7,7 @@ class CompaniesController < ApplicationController
   include TenkHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
-    @groups = current_user.groups
+    @groups = current_user.groups if signed_in?
     @companies = policy_scope(Company).first(5)
     @market_index_array = MarketIndex.all
     @companies_chart_array = []

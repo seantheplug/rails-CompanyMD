@@ -11,9 +11,11 @@
       <%end%>
     </h3>
     <div class="basket-cards">
-      <%@groups.each do |group|%>
-        <%= render 'shared/basket_card', group: group%>
-      <%end%>
+      <% if signed_in? %>
+        <%@groups.each do |group|%>
+          <%= render 'shared/basket_card', group: group%>
+        <%end%>
+      <% end %>
     </div>
   </div>
 </div>
