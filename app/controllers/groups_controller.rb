@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.user = current_user
     authorize @group
     if @group.save
       redirect_to companies_path
@@ -49,6 +50,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:user_setting, :name)
+    params.require(:group).permit(:name)
   end
 end
