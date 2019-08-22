@@ -8,7 +8,16 @@ p {
 }
 
 .content-container {
-  padding: 50px 30px;
+  padding: 50px;
   margin: 0 auto;
   max-width: 1250px;
+}
+
+.arrow {
+  color: $green;
+  transition: $transition-in;
+}
+.arrow.down {
+  color: $red;
+  transform: rotate(180deg);
 }

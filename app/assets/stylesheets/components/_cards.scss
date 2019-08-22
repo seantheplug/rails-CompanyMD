@@ -25,14 +25,6 @@
     h3 .stock-price {
       font-size: 2rem;
     }
-    .arrow {
-      color: $green;
-      transition: $transition-in;
-    }
-    .arrow.down {
-      color: $red;
-      transform: rotate(180deg);
-    }
   }
 
   .card-company-graph {
@@ -92,6 +84,82 @@
         &.down {
           color: $red;
         }
+      }
+    }
+  }
+}
+
+.company-info-card {
+  background: white;
+  border-radius: $border-radius-lg;
+  padding: 30px;
+
+  .ticker {
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+}
+
+.company-description {
+  text-align: center;
+  border-radius: $border-radius;
+  padding: 15px 30px;
+  margin: 10px 0;
+  background: white;
+  position: relative;
+
+  .add {
+    color: #ddd;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    transition: $transition-in;
+    &:hover { color: #444; }
+  }
+
+  .company-logo {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    object-fit: contain;
+  }
+
+  .company-ticker {
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+
+  & > p {
+    text-align: left;
+  }
+}
+
+.company-data {
+  width: 100%;
+  font-size: 1.2rem;
+  background: white;
+  padding: 30px;
+  margin: 10px auto;
+  border-radius: $border-radius;
+  ul {
+    height: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+
+      .data-title {
+        font-weight: bold;
       }
     }
   }

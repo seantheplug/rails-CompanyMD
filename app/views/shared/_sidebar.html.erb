@@ -6,16 +6,22 @@
   </ul>
   <div class="basket-container">
     <h3 class="mb-3 d-flex justify-content-between">Basket
-      <%= link_to new_group_path do %>
-        <i class="fas fa-plus-circle add-group"></i>
-      <%end%>
-    </h3>
-    <div class="basket-cards">
       <% if signed_in? %>
+        <%= link_to new_group_path do %>
+          <i class="fas fa-plus-circle add-group"></i>
+        <%end%>
+      <% else %>
+        <%= link_to data: {toggle: "modal", target: "#modalLRForm"} do %>
+          <i class="fas fa-plus-circle add-group"></i>
+        <% end %>
+      <% end %>
+    </h3>
+    <% if signed_in? %>
+      <div class="basket-cards">
         <%@groups.each do |group|%>
           <%= render 'shared/basket_card', group: group%>
-        <%end%>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

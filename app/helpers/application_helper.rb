@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
 
-  def create_stock_price_chart(company, time_series, outputsize=nil)
+  def create_stock_price_chart(company, time_series, outputsize = nil)
     if outputsize.nil?
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
@@ -24,11 +24,11 @@ module ApplicationHelper
     price_info = JSON.parse(json)
     time = []
     close_price = []
-
     price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
       time << key
       close_price << value["4. close"].to_f
     end
+    @min_price = []
     @min_price << close_price.min
     company.update!(times: time, prices: close_price)
     price_data_array = []
@@ -45,15 +45,15 @@ module ApplicationHelper
     info_hash = Hash.new
     info_hash[:ticker] = ticker
     info_hash[:symbol] = price_info["01. symbol"]
-    info_hash[:open] = price_info["02. open"]
-    info_hash[:high] = price_info["03. high"]
-    info_hash[:low] = price_info["04. low"]
-    info_hash[:price] = price_info["05. price"]
+    info_hash[:open] = price_info["02. open"].to_f.round(2)
+    info_hash[:high] = price_info["03. high"].to_f.round(2)
+    info_hash[:low] = price_info["04. low"].to_f.round(2)
+    info_hash[:price] = price_info["05. price"].to_f.round(2)
     info_hash[:volume] = price_info["06. volume"]
     info_hash[:latest] = price_info["07. trading day"]
     info_hash[:previous] = price_info["08. close"]
     info_hash[:change] = price_info["09. change"]
-    info_hash[:change_percent] = price_info["10. change percent"]
+    info_hash[:change_percent] = price_info["10. change percent"].to_f.round(2)
     return info_hash
   end
 
@@ -98,7 +98,63 @@ module ApplicationHelper
     company = JSON.parse(json)
     name = company["ResultSet"]["Result"][0]["name"]
   end
+
+  def google_search(query)
+    url = "https://kgsearch.googleapis.com/v1/entities:search?query=#{query}&key=#{ENV['GOOGLE_SEARCH_KEY']}&limit=1&indent=True"
+    json = open(url).read
+    company = JSON.parse(json)
+    company_info = company["itemListElement"][0]["result"]
+
+    info_hash = Hash.new
+    info_hash[:description] = company_info["detailedDescription"]["articleBody"]
+    info_hash[:img] = company_info["image"]["contentUrl"]
+    return info_hash
+    
+  def company_news(query)
+    sources = ["bloomberg", "reuters", "fortune", "cnn"]
+    array = []
+
+    sources.each do |source|
+      url = "https://newsapi.org/v2/everything?q=#{query}&sources=#{source}&apiKey=#{ENV['NEWS_API_KEY']}"
+      json = open(url).read
+      news_result = JSON.parse(json)
+      array << news_result["articles"]
+    end
+
+    news_array = []
+
+    array.each do |source|
+      source.each do |article|
+        news_array << [article["source"]["name"], article["title"], article["description"], article["url"]]
+      end
+    end
+    news_array
+  end
 end
+
+    # bloomberg = []
+    # reuters = []
+    # fortune = []
+    # cnn = []
+
+    # array[0].each do |article|
+    #   bloomberg << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[1].each do |article|
+    #   reuters << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[2].each do |article|
+    #   fortune << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[3].each do |article|
+    #   cnn << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # sources_list = [bloomberg, reuters, fortune, cnn]
+    # sources_list = [source_array[0], source_array[1], source_array[2], source_array[3]]
 
 # https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo -> daily
 # https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=MSFT&apikey=demo -> weekly
