@@ -16,8 +16,8 @@
       </div>
     </div>
   </div>
-  <p>PE = @pe_ratio</p>
-  <p>Dividend Yield = @dividend_yield</p>
+  <p>PE = <%= @pe_ratio %></p>
+  <p>Dividend Yield = <%= @dividend_yield %>%</p>
   <ul>
 <% @news_array.each do |article| %>
   <h3><%= link_to article[1], article[3] %>
