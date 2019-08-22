@@ -4,71 +4,65 @@
       <div class="modal-c-tabs">
         <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
-              Sign-Up</a>
+            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user-plus mr-1"></i>
+              Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
-              Login</a>
+            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user mr-1"></i>
+              Sign Up</a>
           </li>
         </ul>
 
         <div class="tab-content">
           <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
-            <div class="modal-body">
-              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-              <%= f.error_notification %>
-              <div class="form-inputs">
-                <%= f.input :name,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "name" }%>
-                <%= f.input :email,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "email" }%>
-                <%= f.input :password,
-                            required: true,
-                            hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                            input_html: { autocomplete: "new-password" } %>
-                <%= f.input :password_confirmation,
-                            required: true,
-                            input_html: { autocomplete: "new-password" } %>
-              </div>
-              <div class="form-actions justify-content-between">
-                      <%= f.button :submit, "Submit", class: "btn btn-primary mb-3" %>
-                      <% end %>
+              <div class="modal-body">
+              <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-inputs">
+                    <%= f.input :email,
+                                required: false,
+                                autofocus: true,
+                                input_html: { autocomplete: "email" } %>
+                    <%= f.input :password,
+                                required: false,
+                              input_html: { autocomplete: "current-password" } %>
+                    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                  <div class="form-actions justify-content-between">
+                    <%= f.button :submit, "Log in", class: "btn btn-primary mb-3" %>
+                    <% end %>
+                  </div>
               </div>
             </div>
           </div>
 
         <div class="tab-pane fade" id="panel8" role="tabpanel">
           <div class="modal-body">
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <div class="form-inputs">
-                <%= f.input :email,
-                            required: false,
-                            autofocus: true,
-                            input_html: { autocomplete: "email" } %>
-                <%= f.input :password,
-                            required: false,
-                          input_html: { autocomplete: "current-password" } %>
-                <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-              <div class="form-actions justify-content-between">
-                <%= f.button :submit, "Log in", class: "btn btn-primary mb-3" %>
-                <% end %>
-              </div>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :name,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "name" }%>
+              <%= f.input :email,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "email" }%>
+              <%= f.input :password,
+                          required: true,
+                          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                          input_html: { autocomplete: "new-password" } %>
+              <%= f.input :password_confirmation,
+                          required: true,
+                          input_html: { autocomplete: "new-password" } %>
+            </div>
+            <div class="form-actions justify-content-between">
+                    <%= f.button :submit, "Submit", class: "btn btn-primary mb-3" %>
+                    <% end %>
+            </div>
           </div>
-        </div>
       </div>
-
       </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="text-center">
-  <a href="" class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm">Launch
-    Modal SignUp/LogIn</a>
-</div> -->
