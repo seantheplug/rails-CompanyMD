@@ -4,7 +4,9 @@
     <div class="col-xs-12 col-sm-8 col-md-6 offset-sm-2 offset-md-3">
       <h1 class="text-center">Log in</h1>
 
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
           <%= f.input :email,
                       required: false,
@@ -14,12 +16,14 @@
                       required: false,
                       input_html: { autocomplete: "current-password" } %>
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+
+        </div>
+        <div class="form-actions justify-content-between">
+          <%= f.button :submit, "Log in", class: "btn btn-primary mb-3" %>
+        <% end %>
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Log in", class: "btn btn-primary mb-3" %>
-        </div>
-      <% end %>
+      </div>
 
       <%= render "devise/shared/links" %>
     </div>

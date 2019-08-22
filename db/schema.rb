@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_030756) do
+ActiveRecord::Schema.define(version: 2019_08_21_075855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_08_20_030756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ticker"
+    t.string "times", default: [], array: true
+    t.float "prices", default: [], array: true
   end
 
   create_table "companies_pointers", force: :cascade do |t|
@@ -38,6 +40,18 @@ ActiveRecord::Schema.define(version: 2019_08_20_030756) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
+  create_table "market_indices", force: :cascade do |t|
+    t.string "name"
+    t.string "ticker"
+    t.float "price"
+    t.float "high"
+    t.float "low"
+    t.float "change"
+    t.float "change_percent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

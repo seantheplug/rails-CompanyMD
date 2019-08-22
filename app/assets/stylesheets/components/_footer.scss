@@ -1,0 +1,11 @@
+footer {
+  text-align: center;
+  padding: 15px 10px 10px 10px;
+  background: darken($navy, 5%);
+  box-shadow: inset 0px 6px 6px rgba(0,0,0,0.2);
+  p {
+    font-size: 0.75rem;
+    margin: 0;
+    color: rgba(white, 0.25);
+  }
+}

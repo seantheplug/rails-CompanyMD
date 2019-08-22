@@ -28,9 +28,18 @@
     }
   }
 
-  .basket-cards {
-    max-height: 200px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+  .basket-container {
+    .add-group {
+      color: white;
+      font-size: 0.9;
+      opacity: 0.8;
+      transition: $transition-in;
+      &:hover { opacity: 1; }
+    }
+    .basket-cards {
+      max-height: 200px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
   }
 }

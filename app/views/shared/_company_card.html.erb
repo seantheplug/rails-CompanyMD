@@ -1,12 +1,29 @@
 <div class="col-4">
   <div class="row card-company">
     <div class="col-6 card-company-content">
-      <h3>Apple Inc.</h3>
+      <h3>
+        <%= link_to company_path(company) do %>
+          <%= get_company_name(company.ticker) %>
+        <% end %>
+      </h3>
       <p><a href="#"><i class="fas fa-plus-circle mr-1"></i></a><%= company.ticker %></p>
       <h3><i class="fas fa-arrow-up mr-2 arrow"></i><span class="stock-price"><%= (quote_endpoint(company.ticker)[:price]).to_f.round(2) %></span></h3>
     </div>
     <div class="col-6 card-company-graph">
-      <%= line_chart @companies_chart_array[index], defer: true, colors: ["#75E6DA"], points: false, discrete: true, library: {vAxis: {gridlines: {color: "transparent"}}} %>
+      <%= line_chart @companies_chart_array[index],
+          min: @min_price[index]*0.9,
+          defer: true,
+          colors: ["#75E6DA"],
+          points: false,
+          width: '100%',
+          height: '100px',
+          library: {
+            scales: {
+                xAxes: [{ display: false }],
+                yAxes: [{ display: false }]
+            }
+          }
+      %>
     </div>
   </div>
 </div>
