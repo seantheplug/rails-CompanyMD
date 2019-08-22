@@ -57,8 +57,7 @@ class CompaniesController < ApplicationController
       @price_data_array = array
     end
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
-
-    @array = company_news("Apple Inc.")
+    @news_array = company_news(get_company_name(@company.ticker))
   end
 
   def destroy
