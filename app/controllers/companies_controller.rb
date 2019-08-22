@@ -44,13 +44,14 @@ class CompaniesController < ApplicationController
     # end
     # @price_data_array = session["#{@Company.ticker}"]
     # puts @price_data_array
+    @min_price = []
     if @company.prices.empty? || @company.times.empty? || (@company.updated_at + 12.hours) < Time.now.utc
       puts "one api call"
       @price_data_array = create_stock_price_chart(@company, "DAILY", "full")
     else
       puts "no api call"
       prices = @company.prices
-      @min_price = prices.min
+      @min_price << prices.min
       times = @company.times
       array = times.zip(prices)
       array.reverse!
