@@ -109,7 +109,8 @@ module ApplicationHelper
     info_hash[:description] = company_info["detailedDescription"]["articleBody"]
     info_hash[:img] = company_info["image"]["contentUrl"]
     return info_hash
-    
+  end
+
   def company_news(query)
     sources = ["bloomberg", "reuters", "fortune", "cnn"]
     array = []
