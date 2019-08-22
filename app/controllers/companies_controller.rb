@@ -33,7 +33,6 @@ class CompaniesController < ApplicationController
         market_index_quote_endpoint(market_index)
       end
     end
-
   end
 
   def show
@@ -59,7 +58,7 @@ class CompaniesController < ApplicationController
     end
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
 
-    @array = company_news("trump")
+    @array = company_news("Apple Inc.")
   end
 
   def destroy

@@ -88,41 +88,50 @@ module ApplicationHelper
   end
 
   def company_news(query)
-    sources = ["bloomberg", "fortune", "reuters", "cnn"]
+    sources = ["bloomberg", "reuters", "fortune", "cnn"]
     array = []
+
     sources.each do |source|
-      url = "https://newsapi.org/v2/top-headlines?q=#{query}&sources=#{source}&apiKey=#{ENV['NEWS_API_KEY']}"
+      url = "https://newsapi.org/v2/everything?q=#{query}&sources=#{source}&apiKey=#{ENV['NEWS_API_KEY']}"
       json = open(url).read
       news_result = JSON.parse(json)
       array << news_result["articles"]
     end
 
-    bloomberg = []
-    fortune = []
-    reuters = []
-    cnn = []
+    news_array = []
 
-    array[0].each do |article|
-      bloomberg << [article["title"], article["description"], article["url"]]
+    array.each do |source|
+      source.each do |article|
+        news_array << [article["source"]["name"], article["title"], article["description"], article["url"]]
+      end
     end
-
-    array[1].each do |article|
-      fortune << [article["title"], article["description"], article["url"]]
-    end
-
-    array[2].each do |article|
-      reuters << [article["title"], article["description"], article["url"]]
-    end
-
-    array[3].each do |article|
-      cnn << [article["title"], article["description"], article["url"]]
-    end
-
-    sources_list = [bloomberg, fortune, reuters, cnn]
-
-    sources_list
+    news_array
   end
 end
+
+    # bloomberg = []
+    # reuters = []
+    # fortune = []
+    # cnn = []
+
+    # array[0].each do |article|
+    #   bloomberg << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[1].each do |article|
+    #   reuters << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[2].each do |article|
+    #   fortune << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[3].each do |article|
+    #   cnn << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # sources_list = [bloomberg, reuters, fortune, cnn]
+    # sources_list = [source_array[0], source_array[1], source_array[2], source_array[3]]
 
 # https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo -> daily
 # https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=MSFT&apikey=demo -> weekly

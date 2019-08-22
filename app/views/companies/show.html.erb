@@ -4,10 +4,23 @@
   <%= line_chart @indicator_data_array, width: "800px", height: "500px", points: false %>
 </div>
 
-<% n = 0 %>
-<% @array.length.times do %>
-    <% @array[n].each do |article| %>
-      TITLE: <%= article[0] %> DESCRIPTION:<%= article[1] %> URL:<%= article[2] %>
-      <% end %>
-    <% n += 1 %>
+  <ul>
+<% @array.each do |article| %>
+  <h3><%= link_to article[1], article[3] %>
+  </h3>
+  <li><%= article[0] %>-(source)</li>
+  <li><%= article[2] %>-(description)</li>
+  <li><%= link_to "link", article[3] %>-(url)</li>
 <% end %>
+  </ul>
+
+<!-- Probably don't need - delete by end of week -->
+<%# n = 0 %>
+<%# @array.length.times do %>
+    <%# @array[n].each do |article| %>
+      <%#= article %>
+    <%# end %>
+    <%# n += 1 %>
+<%# end %>
+
+<!-- SOURCE: <%#= article[0] %> TITLE: <%#= article[1] %> DESCRIPTION:<%#= article[2] %> URL:<%#= article[3] %> -->
