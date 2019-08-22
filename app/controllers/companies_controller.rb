@@ -6,11 +6,11 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = policy_scope(Company).first(5)
+    @market_index_array = MarketIndex.all
     @companies_chart_array = []
     @min_price = []
     @companies.each do |company|
-
-      if company.prices.empty? || company.times.empty? || (DateTime.now.hour - Company.all.first.updated_at.hour) > 12
+      if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
         puts "one api call"
         @companies_chart_array << create_stock_price_chart(company, "DAILY")
       else
@@ -23,24 +23,31 @@ class CompaniesController < ApplicationController
         @companies_chart_array << array
       end
     end
+    @market_index_array.each do |market_index|
+      if market_index.price.nil? || (market_index.updated_at + 30.minutes) < Time.now.utc
+        puts "one api call get market_index"
+        market_index_quote_endpoint(market_index)
+      end
+    end
+
   end
 
   def show
     authorize @company
     @company = Company.find(params[:id])
-
     # if session["#{@Company.ticker}"].nil?
     #   session["#{@Company.ticker}"] = create_stock_price_chart("DAILY", @company.ticker)
     # end
     # @price_data_array = session["#{@Company.ticker}"]
     # puts @price_data_array
-    if @company.prices.empty? || @company.times.empty? || (DateTime.now.hour - @company.updated_at.hour) > 12
+    @min_price = []
+    if @company.prices.empty? || @company.times.empty? || (@company.updated_at + 12.hours) < Time.now.utc
       puts "one api call"
       @price_data_array = create_stock_price_chart(@company, "DAILY", "full")
     else
       puts "no api call"
       prices = @company.prices
-      @min_price = prices.min
+      @min_price << prices.min
       times = @company.times
       array = times.zip(prices)
       array.reverse!

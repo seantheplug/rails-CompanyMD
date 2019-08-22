@@ -8,5 +8,5 @@
       <h2><%= quote_endpoint(@company.ticker)[:price] %></h2>
     </div>
   </div>
-  <%= line_chart @price_data_array, width: "100%", height: "500px", points: false %>
+  <%= line_chart @price_data_array, min: @min_price[0]*0.9, width: "100%", height: "500px", points: false %>
 </div>
