@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track':
+  'reload' %>
+  <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  <%= wicked_pdf_stylesheet_link_tag "application" %>
+  <%= wicked_pdf_javascript_include_tag "number_pages" %>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

@@ -7,6 +7,11 @@
       <%= render 'shared/company_card', company: company, index: index %>
     <%end%>
   </div>
+
+<%= link_to "DownloadDD", companies_path(format: :pdf)%>
+
+
+
   <h2>Market Index</h2>
   <div class="row">
     <%@market_index_array.each_with_index do |market_index, index|%>
@@ -14,4 +19,3 @@
     <%end%>
   </div>
 </div>
-
