@@ -34,3 +34,8 @@ end
 #for displaying stock
 gem "chartkick"
 gem 'groupdate'
+
+# for webscrapping
+gem 'nokogiri'
+gem 'httparty'
+gem 'rest-client'
