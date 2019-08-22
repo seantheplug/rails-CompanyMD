@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
 
-  def create_stock_price_chart(company, time_series, outputsize=nil)
+  def create_stock_price_chart(company, time_series, outputsize = nil)
     if outputsize.nil?
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
@@ -24,11 +24,11 @@ module ApplicationHelper
     price_info = JSON.parse(json)
     time = []
     close_price = []
-
     price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
       time << key
       close_price << value["4. close"].to_f
     end
+    @min_price = []
     @min_price << close_price.min
     company.update!(times: time, prices: close_price)
     price_data_array = []
@@ -98,7 +98,52 @@ module ApplicationHelper
     company = JSON.parse(json)
     name = company["ResultSet"]["Result"][0]["name"]
   end
+
+  def company_news(query)
+    sources = ["bloomberg", "reuters", "fortune", "cnn"]
+    array = []
+
+    sources.each do |source|
+      url = "https://newsapi.org/v2/everything?q=#{query}&sources=#{source}&apiKey=#{ENV['NEWS_API_KEY']}"
+      json = open(url).read
+      news_result = JSON.parse(json)
+      array << news_result["articles"]
+    end
+
+    news_array = []
+
+    array.each do |source|
+      source.each do |article|
+        news_array << [article["source"]["name"], article["title"], article["description"], article["url"]]
+      end
+    end
+    news_array
+  end
 end
+
+    # bloomberg = []
+    # reuters = []
+    # fortune = []
+    # cnn = []
+
+    # array[0].each do |article|
+    #   bloomberg << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[1].each do |article|
+    #   reuters << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[2].each do |article|
+    #   fortune << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # array[3].each do |article|
+    #   cnn << [article["source"]["name"], article["title"], article["description"], article["url"]]
+    # end
+
+    # sources_list = [bloomberg, reuters, fortune, cnn]
+    # sources_list = [source_array[0], source_array[1], source_array[2], source_array[3]]
 
 # https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo -> daily
 # https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=MSFT&apikey=demo -> weekly
