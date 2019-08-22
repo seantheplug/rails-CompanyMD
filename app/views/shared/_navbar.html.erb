@@ -21,14 +21,11 @@
     <% end %>
   </div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
-        <li class="nav-item dropdown">
-          <%= image_tag "https://media.licdn.com/dms/image/C5103AQFhZ7rBA317CQ/profile-displayphoto-shrink_800_800/0?e=1571875200&v=beta&t=82oRHA6_ECn_vheR3up9WjAZllQOwfEN2oC92v-HmPc", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
+        <li class="nav-item">
+          Signed in as <strong><%= current_user.name %></strong>&emsp;|&emsp;<%= link_to "Log out", destroy_user_session_path, method: :delete %>
         </li>
       <% else %>
         <li class="nav-item">
