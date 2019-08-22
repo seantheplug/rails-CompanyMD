@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   include ApplicationHelper
 
   def home
+    resource = User.new
   end
 
   def uikit
