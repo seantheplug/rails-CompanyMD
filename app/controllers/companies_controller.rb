@@ -3,6 +3,7 @@ require 'net/http'
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
+  # TenkHelper - helper tha generates [{link: "www", date: "xxxx-xx-xx"}]
   include TenkHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
@@ -18,7 +19,6 @@ class CompaniesController < ApplicationController
     authorize @company
     @company = Company.find(params[:id])
     @sec_data = set_10k(@company.ticker)
-    raise
     @price_data_array = create_stock_price_chart("DAILY", @company.ticker)
     puts @price_data_array
     roc_chart(@company.ticker, "daily", 10, "close")

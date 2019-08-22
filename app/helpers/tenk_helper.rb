@@ -1,5 +1,7 @@
 module TenkHelper
 require 'rest-client'
+require 'nokogiri'
+require 'open-uri'
 
 def set_10k(ticker)
   tenk = []
@@ -17,7 +19,35 @@ def set_10k(ticker)
   data["filings"].each do |package|
     tenk << { link: package["linkToHtml"], date: package["filedAt"] }
     end
+  scrape_to_file(tenk)
+  end
 
-  raise
-end
+  private
+
+  def scrape_to_file(links)
+    links.map do |link|
+      new_link = "https://www.sec.gov"
+      doc = Nokogiri::HTML(open(link[:link]).read)
+      items = doc.css('#contentDiv')
+      subitem = items.css('div[id="contentDiv"] div[id="formDiv"] a')
+      if subitem.css('a[href*="10k.h"]').length > 0
+        new_link += subitem[0].attributes['href'].value
+      elsif subitem.css('a[href*="10-k.h"]').length > 0
+        new_link += subitem[0].attributes['href'].value
+      end
+      link[:link] = new_link
+    end
+    clean_up(links)
+  end
+
+  def clean_up(to_clean)
+    cleaned = []
+    to_clean.each do |link_set|
+      if link_set[:link].length > 20
+        cleaned << link_set
+      end
+    end
+    cleaned
+  end
+
 end
