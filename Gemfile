@@ -17,6 +17,7 @@ gem 'uglifier'
 gem 'webpacker'
 
 gem 'pundit'
+gem "news-api"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -31,6 +32,10 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
-#for displaying stock
+# for displaying stock
 gem "chartkick"
 gem 'groupdate'
+
+# for webscrapping
+gem 'nokogiri' # May need version update
+gem 'rest-client'

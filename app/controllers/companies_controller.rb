@@ -1,16 +1,22 @@
 require 'open-uri'
+require 'news-api'
+
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
+  # TenkHelper - helper tha generates [{link: "www", date: "xxxx-xx-xx"}]
+  include TenkHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
-
   def index
+    @groups = current_user.groups if signed_in?
     @companies = policy_scope(Company).first(5)
     @market_index_array = MarketIndex.all
     @companies_chart_array = []
     @min_price = []
     @companies.each do |company|
+
       if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
+
         puts "one api call"
         @companies_chart_array << create_stock_price_chart(company, "DAILY")
       else
@@ -29,7 +35,6 @@ class CompaniesController < ApplicationController
         market_index_quote_endpoint(market_index)
       end
     end
-
   end
 
   def show
@@ -54,6 +59,8 @@ class CompaniesController < ApplicationController
       @price_data_array = array
     end
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
+    @news_array = company_news(get_company_name(@company.ticker))
+    @sec_data = set_10k(@company.ticker)
   end
 
   def destroy

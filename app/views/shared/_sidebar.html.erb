@@ -5,15 +5,23 @@
     <li><a href="#">News</a></li>
   </ul>
   <div class="basket-container">
-    <h3 class="mb-3">Basket</h3>
-    <div class="basket-cards">
-      <%= render 'shared/basket_card' %>
-      <%= render 'shared/basket_card' %>
-      <%= render 'shared/basket_card' %>
-      <%= render 'shared/basket_card' %>
-      <%= render 'shared/basket_card' %>
-      <%= render 'shared/basket_card' %>
-      <%= render 'shared/basket_card' %>
-    </div>
+    <h3 class="mb-3 d-flex justify-content-between">Basket
+      <% if signed_in? %>
+        <%= link_to new_group_path do %>
+          <i class="fas fa-plus-circle add-group"></i>
+        <%end%>
+      <% else %>
+        <%= link_to data: {toggle: "modal", target: "#modalLRForm"} do %>
+          <i class="fas fa-plus-circle add-group"></i>
+        <% end %>
+      <% end %>
+    </h3>
+    <% if signed_in? %>
+      <div class="basket-cards">
+        <%@groups.each do |group|%>
+          <%= render 'shared/basket_card', group: group%>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

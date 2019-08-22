@@ -16,7 +16,7 @@ puts "creating sample..."
 alexander = User.create!(name: "Alexander", email: "test@gmail.com", password: "123123")
 helen = User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
 user_array = [alexander, helen]
-
+name_array = ["tech", "s&p500", "it", "my personal shit"]
 #bigger companies
 APPL = Company.create!(ticker: "AAPL")
 GOOG = Company.create!(ticker: "GOOG")
@@ -40,7 +40,7 @@ company = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX, LL, SWI, BWLD, DJI, INX, NY
 
 group = []
 4.times do
-  group << Group.create!(user: user_array.sample)
+  group << Group.create!(user: user_array.sample, name: name_array.sample)
 end
 
 13.times do
