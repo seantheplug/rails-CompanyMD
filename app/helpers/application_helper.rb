@@ -45,15 +45,15 @@ module ApplicationHelper
     info_hash = Hash.new
     info_hash[:ticker] = ticker
     info_hash[:symbol] = price_info["01. symbol"]
-    info_hash[:open] = price_info["02. open"]
-    info_hash[:high] = price_info["03. high"]
-    info_hash[:low] = price_info["04. low"]
-    info_hash[:price] = price_info["05. price"]
+    info_hash[:open] = price_info["02. open"].to_f.round(2)
+    info_hash[:high] = price_info["03. high"].to_f.round(2)
+    info_hash[:low] = price_info["04. low"].to_f.round(2)
+    info_hash[:price] = price_info["05. price"].to_f.round(2)
     info_hash[:volume] = price_info["06. volume"]
     info_hash[:latest] = price_info["07. trading day"]
     info_hash[:previous] = price_info["08. close"]
     info_hash[:change] = price_info["09. change"]
-    info_hash[:change_percent] = price_info["10. change percent"]
+    info_hash[:change_percent] = price_info["10. change percent"].to_f.round(2)
     return info_hash
   end
 
@@ -99,6 +99,17 @@ module ApplicationHelper
     name = company["ResultSet"]["Result"][0]["name"]
   end
 
+  def google_search(query)
+    url = "https://kgsearch.googleapis.com/v1/entities:search?query=#{query}&key=#{ENV['GOOGLE_SEARCH_KEY']}&limit=1&indent=True"
+    json = open(url).read
+    company = JSON.parse(json)
+    company_info = company["itemListElement"][0]["result"]
+
+    info_hash = Hash.new
+    info_hash[:description] = company_info["detailedDescription"]["articleBody"]
+    info_hash[:img] = company_info["image"]["contentUrl"]
+    return info_hash
+    
   def company_news(query)
     sources = ["bloomberg", "reuters", "fortune", "cnn"]
     array = []
