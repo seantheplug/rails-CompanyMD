@@ -32,6 +32,10 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
-#for displaying stock
+# for displaying stock
 gem "chartkick"
 gem 'groupdate'
+
+# for webscrapping
+gem 'nokogiri' # May need version update
+gem 'rest-client'
