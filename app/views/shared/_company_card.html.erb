@@ -7,8 +7,14 @@
         <% end %>
       </h3>
       <p>
-        <%= link_to new_company_companies_pointer_path(company) do %>
+        <% if signed_in? %>
+          <%= link_to new_company_companies_pointer_path(company) do %>
+            <i class="fas fa-plus-circle mr-1"></i>
+          <% end %>
+        <% else %>
+          <%= link_to 'Sign In', data: {toggle: "modal", target: "#modalLRForm"} do %>
           <i class="fas fa-plus-circle mr-1"></i>
+          <% end %>
         <% end %>
         <%= company.ticker %>
       </p>
