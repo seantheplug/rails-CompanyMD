@@ -4,11 +4,7 @@ class CompaniesPointerPolicy < ApplicationPolicy
       scope.all
     end
   end
-  
-  def new? 
-    true
-  end
-  
+ 
   def create?
     record.group.user == user
   end
