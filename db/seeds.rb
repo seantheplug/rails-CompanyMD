@@ -39,12 +39,11 @@ NYA = Company.create!(ticker: "NYA")
 company = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX, LL, SWI, BWLD, DJI, INX, NYA]
 
 group = []
+i = 0
 4.times do
-  group << Group.create!(user: user_array.sample, name: name_array.sample)
-end
-
-13.times do
-  CompaniesPointer.create!(group: group.sample, company: company.sample)
+  group << Group.create!(user: user_array.sample, name: name_array[i])
+  CompaniesPointer.create!(group: group[i], company: company.sample)
+  i += 1
 end
 
 MarketIndex.create!(name: "S&P 500 Index", ticker: ".INX")
