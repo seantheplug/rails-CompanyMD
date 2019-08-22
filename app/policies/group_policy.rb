@@ -8,7 +8,11 @@ class GroupPolicy < ApplicationPolicy
   def show?
     record.user == user
   end
-
+  
+  def new? 
+    true
+  end
+  
   def create?
     record.user == user
   end

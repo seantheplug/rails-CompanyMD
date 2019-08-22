@@ -1,1 +1,9 @@
 <h1>This is the group new page</h1>
+
+<%= simple_form_for @group do |f| %>
+  <%= f.input :name, placeholder: "What is the group name?"%>
+  <div class="d-flex justify-content-between m-2 mt-4">
+    <%= link_to "Return Home", root_path, class:"btn" %>
+    <%= f.button :submit, class:"btn btn-primary"%>
+  </div>
+<% end %>
