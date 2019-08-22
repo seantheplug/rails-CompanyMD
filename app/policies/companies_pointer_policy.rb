@@ -4,6 +4,7 @@ class CompaniesPointerPolicy < ApplicationPolicy
       scope.all
     end
   end
+  
   def new? 
     true
   end

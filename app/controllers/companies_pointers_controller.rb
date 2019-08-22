@@ -1,17 +1,20 @@
 class CompaniesPointersController < ApplicationController
   def new
-    @company_pointer = CompaniesPointer.new
+    @company = Company.find(params[:company_id])
+    @groups = current_user.groups.includes(:companies_pointers).where(companies_pointers: {company_id:nil})
+    @companiespointer = CompaniesPointer.new
+    authorize @companiespointer
   end
 
   def create
-    raise
     @companiespointer = CompaniesPointer.new(companiespointer_params)
-    @companiespointer.company_id = params[:companies_id]
+    @company = Company.find(params[:company_id])
+    @companiespointer.company = @company
     authorize @companiespointer
     if @companiespointer.save
-      redirect_to companies_path
+      redirect_to group_path(params["companies_pointer"]["group_id"])
     else
-      render :index
+      render :new
     end
   end
 
@@ -20,7 +23,6 @@ class CompaniesPointersController < ApplicationController
 
   private
   def companiespointer_params
-    raise
-    params.require(:companiespointer).permit(:groups_id)
+    params.require(:companies_pointer).permit(:group_id)
   end
 end
