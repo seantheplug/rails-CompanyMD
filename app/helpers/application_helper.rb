@@ -41,7 +41,7 @@ module ApplicationHelper
     info_hash[:latest] = price_info["07. trading day"]
     info_hash[:previous] = price_info["08. close"]
     info_hash[:change] = price_info["09. change"]
-    info_hash[:change_percent] = price_info["10. change percent"]
+    info_hash[:change_percent] = price_info["10. change percent"].to_f.round(2)
     return info_hash
   end
 

@@ -1,0 +1,9 @@
+<div class="company-data">
+  <ul>
+    <li><span class="data-title">Open:</span> <%= quote_endpoint(@company.ticker)[:open] %></li>
+    <li><span class="data-title">High:</span> <%= quote_endpoint(@company.ticker)[:high] %></li>
+    <li><span class="data-title">Low:</span> <%= quote_endpoint(@company.ticker)[:low] %></li>
+    <li><span class="data-title">Volume:</span> <%= quote_endpoint(@company.ticker)[:volume] %></li>
+    <li><span class="data-title">Change:</span> <%= quote_endpoint(@company.ticker)[:change_percent] %></li>
+  </ul>
+</div>

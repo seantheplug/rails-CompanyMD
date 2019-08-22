@@ -2,25 +2,5 @@
   background: white;
   padding: 30px;
   margin: 10px 0;
-}
-
-.company-data {
-  height: 100%;
-  background: white;
-  padding: 30px;
-  margin: 10px 0;
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      display: flex;
-      align-items: space-between;
-
-      .data-title {
-        font-weight: bold;
-      }
-    }
-  }
+  border-radius: $border-radius;
 }
