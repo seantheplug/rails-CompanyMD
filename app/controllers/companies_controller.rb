@@ -12,6 +12,7 @@ class CompaniesController < ApplicationController
     @market_index_array = MarketIndex.all
     @companies_chart_array = []
     @min_price = []
+    @hidden_group = current_user.groups.first.companies if signed_in?
     @companies.each do |company|
 
       if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
