@@ -134,8 +134,14 @@ module ApplicationHelper
   def key_stat(ticker, stat)
     # stat examples: marketcap, peRatio, employees, dividendYield
     url = "https://cloud.iexapis.com/stable/stock/#{ticker}/stats/#{stat}?token=#{ENV['IEX_API_KEY']}"
-    json = open(url).read
-    JSON.parse(json)
+    begin
+      json = open(url)
+    rescue
+      return nil
+    else
+      json = open(url).read
+      JSON.parse(json)
+    end
   end
 end
 
