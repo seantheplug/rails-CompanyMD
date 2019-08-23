@@ -12,7 +12,17 @@ class PagesController < ApplicationController
 
   def search
     if params[:query].present?
-      @array = search_company(params[:query])
+      @search_array = search_company(params[:query])
     end
+
+    # @company = Company.new(ticker: "msft")
+    # if @company.save
+    #   redirect_to company_path(@company)
+    # else
+    #   render :search
+    # end
+
+    #need to add ticker logic
+    #need to add check duplicate logic
   end
 end

@@ -1,10 +1,12 @@
 <div class="container">
   <h1>Search Results (US Only)</h1>
   <ul>
-    <% @array.each do |element| %>
+    <% @search_array.each do |element| %>
       <% if element["4. region"] == "United States"%>
-        <li>SYMBOL: <%= element["1. symbol"] %> NAME:<%= element["2. name"] %></li>
+        <li><%= link_to element["1. symbol"], companies_path %> -- <%= link_to element["2. name"], companies_path %></li>
       <% end %>
     <% end %>
   </ul>
 </div>
+
+<!-- need to use simple_form to create new instance of company -->
