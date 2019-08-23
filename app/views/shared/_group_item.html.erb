@@ -2,7 +2,7 @@
 <%= render 'shared/company_data', '@company': company %>
 <div class="show-graph">
   <%= line_chart @companies_chart_array[index],
-      min: @min_price[index]*0.9,
+      min: (@min_price[index]*0.9).round,
       defer: true,
       colors: ["#75E6DA"],
       points: false,

@@ -1,16 +1,16 @@
 <%= render 'shared/sidebar' %>
 
-<div class="content-container scrollable col-10">
+<div class="content-container col-10">
   <div class="row">
     <div class="col-12">
       <h1 class="mb-3"><%= @group.name.capitalize %></h1>
     </div>
   </div>
-  <div class="row scrollable">
-    <div class="col-6">
-      <%@group.companies.each_with_index do |company, index|%>
+  <div class="scrollable">
+    <%@group.companies.each_with_index do |company, index|%>
+      <div class="group-item">
         <%= render 'shared/group_item', company: company, index: index %>
-      <%end%>
-    </div>
+      </div>
+    <%end%>
   </div>
 </div>
