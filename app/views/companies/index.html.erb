@@ -1,7 +1,7 @@
 <%= render 'shared/sidebar' %>
 
 <div class="content-container col-10">
-  <h2>My Stocks</h2>
+  <h2>Top Stocks</h2>
   <div class="row mb-5">
     <%@companies.each_with_index do |company, index|%>
       <%= render 'shared/company_card', company: company, index: index %>
