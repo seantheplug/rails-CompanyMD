@@ -16,15 +16,19 @@
       </div>
     </div>
   </div>
-  <ul>
-<% @news_array.each do |article| %>
-  <h3><%= link_to article[1], article[3] %>
-  </h3>
-  <li><%= article[0] %>-(source)</li>
-  <li><%= article[2] %>-(description)</li>
-  <li><%= link_to "link", article[3] %>-(url)</li>
-<% end %>
-  </ul>
+
+  <div class="row">
+    <div class="col-12">
+      <% @news_array.each do |article| %>
+        <p>
+          <%= link_to article[1], article[3] %>
+        </p>
+        <p><%= article[0] %>-(source)</p>
+        <p><%= article[2] %>-(description)</p>
+        <p><%= link_to "link", article[3] %>-(url)</p>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 
