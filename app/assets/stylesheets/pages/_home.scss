@@ -13,6 +13,13 @@ p {
   max-width: 1250px;
 }
 
+.scrollable {
+  max-width: 1250px;
+  display: flex;
+  flex-flow: row;
+  overflow: scroll;
+}
+
 .arrow {
   color: $green;
   transition: $transition-in;
