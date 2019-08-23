@@ -13,10 +13,10 @@ CompaniesPointer.destroy_all if Rails.env.development?
 
 puts "creating sample..."
 
-alexander = User.create!(name: "Alexander", email: "test@gmail.com", password: "123123")
-helen = User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
-user_array = [alexander, helen]
-name_array = ["tech", "s&p500", "it", "my personal shit"]
+# alexander = User.create!(name: "Alexander", email: "test@gmail.com", password: "123123")
+# helen = User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
+# user_array = [alexander, helen]
+# name_array = ["tech", "s&p500", "it", "my personal shit"]
 #bigger companies
 APPL = Company.create!(ticker: "AAPL")
 GOOG = Company.create!(ticker: "GOOG")
@@ -38,13 +38,13 @@ NYA = Company.create!(ticker: "NYA")
 
 company = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX, LL, SWI, BWLD, DJI, INX, NYA]
 
-group = []
-i = 0
-4.times do
-  group << Group.create!(user: user_array.sample, name: name_array[i])
-  CompaniesPointer.create!(group: group[i], company: company.sample)
-  i += 1
-end
+# group = []
+# i = 0
+# 4.times do
+#   group << Group.create!(user: user_array.sample, name: name_array[i])
+#   CompaniesPointer.create!(group: group[i], company: company.sample)
+#   i += 1
+# end
 
 MarketIndex.create!(name: "S&P 500 Index", ticker: ".INX")
 # MarketIndex.create!(name: "NASDAQ", ticker: ".IXIC") --> the ticker is not working #Sean

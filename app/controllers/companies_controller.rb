@@ -13,20 +13,36 @@ class CompaniesController < ApplicationController
     @market_index_array = MarketIndex.all
     @companies_chart_array = []
     @min_price = []
-    @hidden_group = current_user.groups.first.companies if signed_in?
-    @companies.each do |company|
-      if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
-
-        puts "one api call"
-        @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
-      else
-        puts "no api call"
-        prices = company.prices
-        @min_price << prices.min
-        times = company.times
-        array = times.zip(prices)
-        array.reverse!
-        @companies_chart_array << array
+    if signed_in?
+      @hidden_group = current_user.groups.first.companies 
+      @hidden_group.each do |company|
+        if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
+          puts "one api call"
+          @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
+        else
+          puts "no api call"
+          prices = company.prices
+          @min_price << prices.min
+          times = company.times
+          array = times.zip(prices)
+          array.reverse!
+          @companies_chart_array << array
+        end
+      end
+    else
+      @companies.each do |company|
+        if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
+          puts "one api call"
+          @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
+        else
+          puts "no api call"
+          prices = company.prices
+          @min_price << prices.min
+          times = company.times
+          array = times.zip(prices)
+          array.reverse!
+          @companies_chart_array << array
+        end
       end
     end
     @market_index_array.each do |market_index|
