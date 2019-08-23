@@ -18,13 +18,13 @@ helen = User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
 user_array = [alexander, helen]
 name_array = ["tech", "s&p500", "it", "my personal shit"]
 #bigger companies
-APPL = Company.create!(ticker: "AAPL")
-GOOG = Company.create!(ticker: "GOOG")
-AMZN = Company.create!(ticker: "AMZN")
-TSLA = Company.create!(ticker: "TSLA")
-UBER = Company.create!(ticker: "UBER")
-MSFT = Company.create!(ticker: "MSFT")
-NFLX = Company.create!(ticker: "NFLX")
+APPL = Company.create!(ticker: "AAPL" name: "Apple Inc.")
+GOOG = Company.create!(ticker: "GOOG" name: "Alphabet Inc.")
+AMZN = Company.create!(ticker: "AMZN" name: "Amazon.com Inc.")
+TSLA = Company.create!(ticker: "TSLA" name: "Tesla Inc.")
+UBER = Company.create!(ticker: "UBER" name: "Uber Technologies Inc.")
+MSFT = Company.create!(ticker: "MSFT" name: "Microsoft Corporation")
+NFLX = Company.create!(ticker: "NFLX" name: "Netflix Inc.")
 
 #smaller companies
 LL = Company.create!(ticker: "LL")

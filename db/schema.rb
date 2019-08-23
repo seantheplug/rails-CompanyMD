@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_21_075855) do
+ActiveRecord::Schema.define(version: 2019_08_23_045113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2019_08_21_075855) do
     t.string "ticker"
     t.string "times", default: [], array: true
     t.float "prices", default: [], array: true
+    t.string "name"
   end
 
   create_table "companies_pointers", force: :cascade do |t|
