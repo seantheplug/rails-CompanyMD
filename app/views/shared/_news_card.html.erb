@@ -1,0 +1,12 @@
+<div class="news-card">
+  <% if article[:img].nil? %>
+    <%= image_tag 'news-placeholder.png' %>
+  <% else %>
+    <%= image_tag article[:img] %>
+  <% end %>
+  <div class="news-card-infos">
+    <p class="news-title"><%= link_to article[:title], article[:url], target: '_blank' %> <small>(<%= article[:source] %>) - <%= Time.parse(article[:date]).strftime("%m/%d/%Y %H:%M ") %></small></p>
+    <p><%= article[:description] %></p>
+  </div>
+  <p>
+</div>

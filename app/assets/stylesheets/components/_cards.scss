@@ -165,3 +165,34 @@
     }
   }
 }
+
+.news-card {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  display: flex;
+  align-items: center;
+  margin: 5px 0 15px;
+  img {
+    min-width: 120px;
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+  }
+  .news-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    opacity: .8;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+  .news-card-infos {
+    padding: 0 24px;
+  }
+}
+

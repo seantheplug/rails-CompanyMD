@@ -27,7 +27,6 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price = []
     @min_price << close_price.min
     company.update!(times: time, prices: close_price)
     price_data_array = []
@@ -53,7 +52,6 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price = []
     @min_price << close_price.min
     # company.update!(times: time, prices: close_price)
     price_data_array = []
@@ -152,7 +150,14 @@ module ApplicationHelper
 
     array.each do |source|
       source.each do |article|
-        news_array << [article["source"]["name"], article["title"], article["description"], article["url"]]
+        article_hash = Hash.new
+        article_hash[:source] = article["source"]["name"]
+        article_hash[:title] = article["title"]
+        article_hash[:description] = article["description"]
+        article_hash[:url] = article["url"]
+        article_hash[:img] = article["urlToImage"]
+        article_hash[:date] = article["publishedAt"]
+        news_array << article_hash
       end
     end
     news_array
