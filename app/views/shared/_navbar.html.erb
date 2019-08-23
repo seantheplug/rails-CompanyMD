@@ -1,37 +1,43 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "logo.png" %>
-    <% end %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="search-bar">
-    <%= form_tag search_path, method: :get do %>
-      <div class="search">
-        <i class="fas fa-search search-icon"></i>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control search-input",
-          placeholder: "Search for a company..."
-        %>
-        <%= submit_tag "Search", class: "btn btn-sm mr-1" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item">
-          Signed in as <strong><%= current_user.name %></strong>&emsp;|&emsp;<%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Sign In', "#", data: {toggle: "modal", target: "#modalLRForm"}  %>
-        </li>
+    <div class="col-3">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "logo.png" %>
       <% end %>
-    </ul>
-  </div>
+    </div>
+
+    <div class="col-6">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="search-bar">
+        <%= form_tag search_path, method: :get do %>
+          <div class="search">
+            <i class="fas fa-search search-icon"></i>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control search-input",
+              placeholder: "Search for a company..."
+            %>
+            <%= submit_tag "Search", class: "btn btn-sm mr-1" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+        <% if user_signed_in? %>
+          <div class="nav-item w-100">
+            Signed in as <strong><%= current_user.name %></strong>&emsp;|&emsp;<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+          </div>
+        <% else %>
+        <div class="nav-item w-100">
+          <%= link_to 'Sign In', "#", data: {toggle: "modal", target: "#modalLRForm"}  %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
 </div>
