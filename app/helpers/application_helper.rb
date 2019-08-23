@@ -11,7 +11,6 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
-
   def create_stock_price_chart(company, time_series, outputsize = nil)
     if outputsize.nil?
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
@@ -131,31 +130,14 @@ module ApplicationHelper
     end
     news_array
   end
+
+  def key_stat(ticker, stat)
+    # stat examples: marketcap, peRatio, employees, dividendYield
+    url = "https://cloud.iexapis.com/stable/stock/#{ticker}/stats/#{stat}?token=#{ENV['IEX_API_KEY']}"
+    json = open(url).read
+    JSON.parse(json)
+  end
 end
-
-    # bloomberg = []
-    # reuters = []
-    # fortune = []
-    # cnn = []
-
-    # array[0].each do |article|
-    #   bloomberg << [article["source"]["name"], article["title"], article["description"], article["url"]]
-    # end
-
-    # array[1].each do |article|
-    #   reuters << [article["source"]["name"], article["title"], article["description"], article["url"]]
-    # end
-
-    # array[2].each do |article|
-    #   fortune << [article["source"]["name"], article["title"], article["description"], article["url"]]
-    # end
-
-    # array[3].each do |article|
-    #   cnn << [article["source"]["name"], article["title"], article["description"], article["url"]]
-    # end
-
-    # sources_list = [bloomberg, reuters, fortune, cnn]
-    # sources_list = [source_array[0], source_array[1], source_array[2], source_array[3]]
 
 # https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo -> daily
 # https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=MSFT&apikey=demo -> weekly

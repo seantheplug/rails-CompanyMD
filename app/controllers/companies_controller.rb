@@ -60,6 +60,8 @@ class CompaniesController < ApplicationController
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker))
     @sec_data = set_10k(@company.ticker)
+    @pe_ratio = key_stat(@company.ticker, "peRatio")
+    @dividend_yield = (key_stat(@company.ticker, "dividendYield") * 100).round(2)
   end
 
   def destroy
