@@ -7,7 +7,7 @@ class User < ApplicationRecord
   after_create :hidden_basket_group
 
   def hidden_basket_group
-    self.groups.build(name: "hidden")
+    self.groups.build(name: "Index Page")
     self.save
     hidden_basket_group_companies(self.groups.first)
   end
