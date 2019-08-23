@@ -1,9 +1,15 @@
-<h1>This is the page for adding company to group</h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h1 class="mb-3">Add <%= get_company_name(@company.ticker) %> to a group</h1>
 
-<%= simple_form_for [@company, @companiespointer] do |f| %>
-  <%= f.association :group, collection: @groups ,class:'genForm_dropBox',placeholder: "What group do you want to want?"%>
-  <div class="d-flex justify-content-between m-2 mt-4">
-    <%= link_to "Cancel", root_path, class:"btn" %>
-    <%= f.button :submit, class:"btn btn-primary"%>
+      <%= simple_form_for [@company, @companiespointer] do |f| %>
+        <%= f.association :group, collection: @groups ,class:'genForm_dropBox',placeholder: "What group do you want to want?"%>
+        <div class="d-flex justify-content-between m-2 mt-4">
+          <%= link_to "Cancel", root_path, class:"btn" %>
+          <%= f.button :submit, "Add to group", class:"btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
