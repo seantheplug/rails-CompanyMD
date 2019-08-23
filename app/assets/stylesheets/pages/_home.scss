@@ -11,6 +11,15 @@ p {
   padding: 50px;
   margin: 0 auto;
   max-width: 1250px;
+
+  &.scrollable {
+    max-width: none;
+  }
+}
+
+.row.scrollable {
+  flex-wrap: nowrap;
+  overflow: scroll;
 }
 
 .arrow {

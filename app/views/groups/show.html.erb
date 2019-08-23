@@ -1,4 +1,16 @@
-<h1>This is the group show page</h1>
-<%@group.companies.each do |company|%>
-  <p><%=company.ticker%></p>
-<%end%>
+<%= render 'shared/sidebar' %>
+
+<div class="content-container scrollable col-10">
+  <div class="row">
+    <div class="col-12">
+      <h1><%= @group.name.capitalize %></h1>
+    </div>
+  </div>
+  <div class="row scrollable">
+    <div class="col-6">
+      <%@group.companies.each do |company|%>
+        <%= render 'shared/group_item', company: company %>
+      <%end%>
+    </div>
+  </div>
+</div>
