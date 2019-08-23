@@ -1,7 +1,8 @@
 class CompaniesPointersController < ApplicationController
   def new
     @company = Company.find(params[:company_id])
-    @groups = current_user.groups.includes(:companies_pointers).where(companies_pointers: {company_id:nil})
+    @groups = current_user.groups.includes(:companies_pointers)
+    @groups_wanted = @groups.where.not(companies_pointers: {company_id: @company.id}).or(@groups.where(companies_pointers: {company_id: nil}))
     @companiespointer = CompaniesPointer.new
     authorize @companiespointer
   end
