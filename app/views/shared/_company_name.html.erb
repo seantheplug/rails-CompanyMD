@@ -1,5 +1,7 @@
 <div class="company-description">
-  <h2><%= get_company_name(@company.ticker) %></h2>
+  <h2>
+    <%= link_to get_company_name(@company.ticker), company_path(@company) %>
+  </h2>
   <h2 class="company-ticker"><%= @company.ticker %></h2>
   <h2><i class="fas fa-arrow-up mr-2 arrow"></i><span class="stock-price"><%= quote_endpoint(@company.ticker)[:price] %></span></h2>
 </div>
