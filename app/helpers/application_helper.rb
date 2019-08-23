@@ -152,14 +152,14 @@ module ApplicationHelper
 
     array.each do |source|
       source.each do |article|
-
-        news_array << [
-          article[:source] = article["source"]["name"]
-          article[:title] = article["title"]
-          article[:description] = article["description"]
-          article[:url] = article["url"]
-          article[:img] = article["urlToImage"]
-        ]
+        article_hash = Hash.new
+        article_hash[:source] = article["source"]["name"]
+        article_hash[:title] = article["title"]
+        article_hash[:description] = article["description"]
+        article_hash[:url] = article["url"]
+        article_hash[:img] = article["urlToImage"]
+        article_hash[:date] = article["publishedAt"]
+        news_array << article_hash
       end
     end
     news_array

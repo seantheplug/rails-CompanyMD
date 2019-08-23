@@ -9,7 +9,8 @@
       <%= render 'shared/company_data' %>
     </div>
   </div>
-  <div class="row">
+
+  <div class="row mb-3">
     <div class="col-12">
       <div class="show-graph">
       <%= line_chart @price_data_array, min: (@min_price[0]*0.9).round, width: "100%", height: "500px", points: false, colors: ["#75E6DA"] %>
@@ -19,13 +20,9 @@
 
   <div class="row">
     <div class="col-12">
-      <% @news_array.each do |article| %>
-        <p>
-          <%= link_to article[1], article[3], target: '_blank' %>
-        </p>
-        <p><%= article[0] %>-(source)</p>
-        <p><%= article[2] %>-(description)</p>
-        <p><%= link_to "link", article[3] %>-(url)</p>
+      <h3 class="mb-3">News Feed</h3>
+      <% @news_array.first(5).each do |article| %>
+        <%= render 'shared/news_card', article: article %>
       <% end %>
     </div>
   </div>
