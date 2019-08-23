@@ -15,6 +15,15 @@ class PagesController < ApplicationController
       @search_array = search_company(params[:query])
     end
 
+    @search_array.each do |company|
+      if Company.exists?(ticker: company["1. symbol"])
+        next
+      else
+        Company.create(ticker: company["1. symbol"], name: company["2. name"])
+      end
+      raise
+    end
+
     # @company = Company.new(ticker: "msft")
     # if @company.save
     #   redirect_to company_path(@company)

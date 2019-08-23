@@ -18,23 +18,23 @@ helen = User.create!(name: "Helen", email: "troy@gmail.com", password: "123123")
 user_array = [alexander, helen]
 name_array = ["tech", "s&p500", "it", "my personal shit"]
 #bigger companies
-APPL = Company.create!(ticker: "AAPL" name: "Apple Inc.")
-GOOG = Company.create!(ticker: "GOOG" name: "Alphabet Inc.")
-AMZN = Company.create!(ticker: "AMZN" name: "Amazon.com Inc.")
-TSLA = Company.create!(ticker: "TSLA" name: "Tesla Inc.")
-UBER = Company.create!(ticker: "UBER" name: "Uber Technologies Inc.")
-MSFT = Company.create!(ticker: "MSFT" name: "Microsoft Corporation")
-NFLX = Company.create!(ticker: "NFLX" name: "Netflix Inc.")
+APPL = Company.create!(ticker: "AAPL", name: "Apple Inc.")
+GOOG = Company.create!(ticker: "GOOG", name: "Alphabet Inc.")
+AMZN = Company.create!(ticker: "AMZN", name: "Amazon.com Inc.")
+TSLA = Company.create!(ticker: "TSLA", name: "Tesla Inc.")
+UBER = Company.create!(ticker: "UBER", name: "Uber Technologies Inc.")
+MSFT = Company.create!(ticker: "MSFT", name: "Microsoft Corporation")
+NFLX = Company.create!(ticker: "NFLX", name: "Netflix Inc.")
 
 #smaller companies
-LL = Company.create!(ticker: "LL")
-SWI = Company.create!(ticker: "SWI")
-BWLD = Company.create!(ticker: "BWLD")
+LL = Company.create!(ticker: "LL", name: "Lumber Liquidators Holdings Inc.")
+SWI = Company.create!(ticker: "SWI", name: "SolarWinds Corporation")
+BWLD = Company.create!(ticker: "BWLD", name: "147565")
 
 #indexes
-DJI = Company.create!(ticker: ".DJI")
-INX = Company.create!(ticker: ".INX")
-NYA = Company.create!(ticker: "NYA")
+DJI = Company.create!(ticker: ".DJI", name: "Dow Jones Industrial Average")
+INX = Company.create!(ticker: ".INX", name: "S&P 500 Index")
+NYA = Company.create!(ticker: "NYA", name: "NYSE Composite")
 
 company = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX, LL, SWI, BWLD, DJI, INX, NYA]
 
