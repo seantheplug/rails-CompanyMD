@@ -11,7 +11,7 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
-  def create_stock_price_chart(company, time_series, outputsize = nil)
+  def create_stock_price_chart_index(company, time_series, outputsize = nil)
     if outputsize.nil?
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
@@ -36,6 +36,33 @@ module ApplicationHelper
     end
     return price_data_array.reverse!
   end
+
+  def create_stock_price_chart_show(company, time_series, outputsize = nil)
+    if outputsize.nil?
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    else
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    end
+
+    demo_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
+    json = open(url).read
+    price_info = JSON.parse(json)
+    time = []
+    close_price = []
+    price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
+      time << key
+      close_price << value["4. close"].to_f
+    end
+    @min_price = []
+    @min_price << close_price.min
+    # company.update!(times: time, prices: close_price)
+    price_data_array = []
+    close_price.each_with_index do |price, index|
+      price_data_array << [time[index], price]
+    end
+    return price_data_array.reverse!
+  end
+
 
   def quote_endpoint(ticker)
     url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=#{ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
