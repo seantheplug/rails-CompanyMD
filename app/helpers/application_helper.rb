@@ -27,7 +27,6 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price = []
     @min_price << close_price.min
     company.update!(times: time, prices: close_price)
     price_data_array = []
@@ -53,7 +52,6 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price = []
     @min_price << close_price.min
     # company.update!(times: time, prices: close_price)
     price_data_array = []
