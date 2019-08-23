@@ -18,8 +18,10 @@
     </h3>
     <% if signed_in? %>
       <div class="basket-cards">
-        <%@basket.each do |group|%>
+        <% @basket.each_with_index do |group, index| %>
+          <% if index > 0 %>
           <%= render 'shared/basket_card', group: group%>
+          <% end %>
         <% end %>
       </div>
     <% end %>
