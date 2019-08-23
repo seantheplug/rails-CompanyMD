@@ -152,7 +152,14 @@ module ApplicationHelper
 
     array.each do |source|
       source.each do |article|
-        news_array << [article["source"]["name"], article["title"], article["description"], article["url"]]
+
+        news_array << [
+          article[:source] = article["source"]["name"]
+          article[:title] = article["title"]
+          article[:description] = article["description"]
+          article[:url] = article["url"]
+          article[:img] = article["urlToImage"]
+        ]
       end
     end
     news_array

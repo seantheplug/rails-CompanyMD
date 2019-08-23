@@ -21,7 +21,7 @@
     <div class="col-12">
       <% @news_array.each do |article| %>
         <p>
-          <%= link_to article[1], article[3] %>
+          <%= link_to article[1], article[3], target: '_blank' %>
         </p>
         <p><%= article[0] %>-(source)</p>
         <p><%= article[2] %>-(description)</p>
