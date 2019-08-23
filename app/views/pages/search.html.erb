@@ -1,10 +1,15 @@
 <div class="container">
   <h1>Search Results (US Only)</h1>
   <ul>
-    <% @array.each do |element| %>
-      <% if element["4. region"] == "United States"%>
-        <li>SYMBOL: <%= element["1. symbol"] %> NAME:<%= element["2. name"] %></li>
+    <% @search_company_result_array.each do |company| %>
+        <li>
+          <%= link_to company_path(company) do %>
+            <p>SYMBOL: <%= company.ticker %></p>
+          <% end %>
+          <%= link_to new_company_companies_pointer_path(company) do %>
+            <i class="fas fa-plus-circle mr-1"></i>
+          <% end %>
+        </li>
       <% end %>
-    <% end %>
   </ul>
 </div>
