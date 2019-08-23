@@ -1,5 +1,13 @@
 <div class="company-description">
-  <a href="#"><i class="fas fa-plus-circle add"></i></a>
+  <% if signed_in? %>
+    <%= link_to new_company_companies_pointer_path(@company) do %>
+      <i class="fas fa-plus-circle add"></i>
+    <% end %>
+  <% else %>
+    <%= link_to 'Sign In', data: {toggle: "modal", target: "#modalLRForm"} do %>
+      <i class="fas fa-plus-circle add"></i>
+    <% end %>
+  <% end %>
   <%= image_tag google_search(get_company_name(@company.ticker))[:img], class: "company-logo" %>
   <h1><%= get_company_name(@company.ticker) %></h1>
   <h2 class="company-ticker"><%= @company.ticker %></h2>
