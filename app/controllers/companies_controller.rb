@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
       if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
 
         puts "one api call"
-        @companies_chart_array << create_stock_price_chart(company, "DAILY")
+        @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
       else
         puts "no api call"
         prices = company.prices
@@ -39,24 +39,9 @@ class CompaniesController < ApplicationController
   def show
     authorize @company
     @company = Company.find(params[:id])
-    # if session["#{@Company.ticker}"].nil?
-    #   session["#{@Company.ticker}"] = create_stock_price_chart("DAILY", @company.ticker)
-    # end
-    # @price_data_array = session["#{@Company.ticker}"]
-    # puts @price_data_array
     @min_price = []
-    if @company.prices.empty? || @company.times.empty? || (@company.updated_at + 12.hours) < Time.now.utc
-      puts "one api call"
-      @price_data_array = create_stock_price_chart(@company, "DAILY", "full")
-    else
-      puts "no api call"
-      prices = @company.prices
-      @min_price << prices.min
-      times = @company.times
-      array = times.zip(prices)
-      array.reverse!
-      @price_data_array = array
-    end
+    puts "one api call"
+    @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker))
     @sec_data = set_10k(@company.ticker)
