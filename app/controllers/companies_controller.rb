@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'news-api'
+require "net/http"
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
@@ -13,7 +14,6 @@ class CompaniesController < ApplicationController
     @companies_chart_array = []
     @min_price = []
     @companies.each do |company|
-
       if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
 
         puts "one api call"
@@ -56,8 +56,18 @@ class CompaniesController < ApplicationController
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker))
     @sec_data = set_10k(@company.ticker)
-    # @pe_ratio = key_stat(@company.ticker, "peRatio")
-    # @dividend_yield = (key_stat(@company.ticker, "dividendYield") * 100).round(2)
+
+    if key_stat(@company.ticker, "dividendYield").nil?
+      @dividend_yield = "-"
+    else
+      @dividend_yield = (key_stat(@company.ticker, "dividendYield") * 100).round(2)
+    end
+
+    if key_stat(@company.ticker, "peRatio").nil?
+      @pe_ratio = "-"
+    else
+      @pe_ratio = key_stat(@company.ticker, "peRatio")
+    end
   end
 
   def destroy
