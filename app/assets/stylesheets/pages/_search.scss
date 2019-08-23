@@ -1,0 +1,25 @@
+.search-result {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    position: relative;
+    font-size: 1.2rem;
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .add-search-item {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
