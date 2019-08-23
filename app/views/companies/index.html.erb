@@ -1,12 +1,21 @@
 <%= render 'shared/sidebar' %>
 
 <div class="content-container col-10">
-  <h2>Top Stocks</h2>
-  <div class="row mb-5">
-    <%@companies.each_with_index do |company, index|%>
-      <%= render 'shared/company_card', company: company, index: index %>
-    <%end%>
-  </div>
+  <% if !signed_in? %>
+    <h2>Top Stocks</h2>
+    <div class="row mb-5">
+      <%@companies.each_with_index do |company, index|%>
+        <%= render 'shared/company_card', company: company, index: index %>
+      <%end%>
+    </div>
+    <% else %>
+      <h2>My Stocks</h2>
+      <div class="row mb-5">
+        <%@hidden_group.each_with_index do |company, index|%>
+          <%= render 'shared/company_card', company: company, index: index %>
+        <%end%>
+      </div>
+    <% end %>
   <h2>Market Index</h2>
   <div class="row">
     <%@market_index_array.each_with_index do |market_index, index|%>
