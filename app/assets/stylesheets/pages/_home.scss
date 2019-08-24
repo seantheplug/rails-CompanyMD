@@ -10,11 +10,10 @@ p {
 .content-container {
   padding: 50px;
   margin: 0 auto;
-  max-width: 1250px;
+  max-width: 83.3333333333%;
 }
 
 .scrollable {
-  max-width: 1250px;
   display: flex;
   flex-flow: row;
   overflow: scroll;
