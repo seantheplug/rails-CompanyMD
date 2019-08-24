@@ -3,10 +3,9 @@
     <div class="col-8 offset-2">
       <h1 class="mb-3">Edit your group</h1>
 
-      <%= simple_form_for [@group, @company, @companiespointers] do |f| %>
+      <%= simple_form_for @group do |f| %>
         <%= f.input :name, placeholder: @group.name%>
         <div class="d-flex justify-content-between m-2 mt-4">
-          <%= f.association :group, collection: @groups_wanted ,class:'genForm_dropBox',placeholder: "What group do you want to want?"%>
           <%= link_to "Cancel", root_path, class:"btn" %>
           <%= f.button :submit, class:"btn btn-primary"%>
         </div>
