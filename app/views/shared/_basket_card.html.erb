@@ -1,8 +1,10 @@
-
 <%= link_to group_path(group) do %>
   <div class="basket-card">
     <p><%=group.name%></p>
     <i class="fas fa-eye"></i>
-  </div>
 <% end %>
 
+<%= link_to edit_group_path(group) do %>
+    <i class="fas fa-pen"></i>
+  </div>
+<% end %>
