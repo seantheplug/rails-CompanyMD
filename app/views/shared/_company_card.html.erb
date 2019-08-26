@@ -18,7 +18,14 @@
         <% end %>
         <%= company.ticker %>
       </p>
-      <h3><i class="fas fa-arrow-up mr-2 arrow"></i><span class="stock-price"><%= (quote_endpoint(company.ticker)[:price]).to_f.round(2) %></span></h3>
+      <h3>
+        <% if (@companies_chart_array[index][-1][1] - @companies_chart_array[index][-2][1]) >= 0 %>
+          <i class="fas fa-arrow-up mr-2 arrow"></i>
+        <% else %>
+          <i class="fas fa-arrow-up mr-2 arrow down"></i>
+        <% end %>
+        <span class="stock-price"><%= (quote_endpoint(company.ticker)[:price]).to_f.round(2) %></span>
+      </h3>
     </div>
     <div class="col-6 card-company-graph">
       <%= line_chart @companies_chart_array[index],
