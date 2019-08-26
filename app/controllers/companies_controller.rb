@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
     @companies_chart_array = []
     @min_price = []
     if signed_in?
-      @hidden_group = current_user.groups.first.companies 
+      @hidden_group = current_user.groups.first.companies
       @hidden_group.each do |company|
         if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
           puts "one api call"
@@ -56,8 +56,8 @@ class CompaniesController < ApplicationController
   def create_and_show
     authorize @company
     @company = Company.find(params[:id])
-    @min_price = [] 
-    puts "one api call" 
+    @min_price = []
+    puts "one api call"
     @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker))
