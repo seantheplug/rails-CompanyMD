@@ -1,0 +1,4 @@
+<h3 class="mb-3">News Feed</h3>
+<% news_array.first(5).each do |article| %>
+  <%= render 'shared/news_card', article: article %>
+<% end %>

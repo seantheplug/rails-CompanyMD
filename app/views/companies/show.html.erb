@@ -33,16 +33,19 @@
     </div>
   </div>
 
+
+
   <div class="row">
     <div class="col-12">
-      <h3 class="mb-3">News Feed</h3>
-      <% @news_array.first(5).each do |article| %>
-        <%= render 'shared/news_card', article: article %>
+      <div id="news-container">
+      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Current News about #{@company.ticker}", class: "btn btn-outline-primary" %>
       <% end %>
+        <!-- API CALL for news will fill this div -->
+      </div>
     </div>
   </div>
 </div>
-
 
 <!-- Probably don't need - delete by end of week -->
 <%# n = 0 %>
