@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index, :show, :destroy] do
     resources :companies_pointers, only: [:new, :create]
+    resources :news, only: [:index]
     get 'charts/show/daily', to: 'charts#completed_company_show_daily_tasks'
     get 'charts/index', to: 'charts#completed_company_index_tasks'
   end

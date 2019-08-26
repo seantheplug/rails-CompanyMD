@@ -19,7 +19,7 @@
         <%= company.ticker %>
       </p>
       <h3>
-        <% if (@companies_chart_array[index][-1][1] - @companies_chart_array[index][-2][1]) >= 0 %>
+        <% if (company.prices[-1] - company.prices[-2]) >= 0 %>
           <i class="fas fa-arrow-up mr-2 arrow"></i>
         <% else %>
           <i class="fas fa-arrow-up mr-2 arrow down"></i>
