@@ -74,7 +74,6 @@ class CompaniesController < ApplicationController
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker)).sort_by { |h| h[:date] }.reverse
     @sec_data = pull_sec_data(@company.ticker)
-    raise
 
     if key_stat(@company.ticker, "dividendYield").nil?
       @dividend_yield = "-"
