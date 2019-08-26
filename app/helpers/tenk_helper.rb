@@ -5,6 +5,7 @@ require 'open-uri'
 
 def set_10k(ticker)
   tenk = []
+  sec_filings = []
   url = 'https://api.sec-api.io'
   body = { "query": {
             "query_string": { "query": "ticker: #{ticker} AND formType:\"10-K\"" } },
@@ -19,10 +20,21 @@ def set_10k(ticker)
   data["filings"].each do |package|
     tenk << { link: package["linkToHtml"], date: package["filedAt"] }
     end
-  scrape_to_file(tenk)
+  sec_filings << scrape_to_file(tenk)
+  sec_filings << pull_10k_index(ticker)
+  sec_filings << pull_10q_index(ticker)
+  sec_filings
+
   end
 
   private
+
+  def pull_10k_index(ticker)
+    {index_10k: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=#{ticker}&type=10-k&dateb=&owner=exclude&count=40"}
+  end
+  def pull_10q_index(ticker)
+    {index_10q: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=#{ticker}&type=10-q&dateb=&owner=exclude&count=40"}
+  end
 
   def scrape_to_file(links)
     links.map do |link|
