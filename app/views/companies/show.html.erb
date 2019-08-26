@@ -22,10 +22,10 @@
 
   <div class="row">
     <div class="col-12">
-      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
-      <%= submit_tag "submit me", class: "btn btn-primary" %>
-      <% end %>
       <div id="news-container">
+      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Current News about #{@company.ticker}", class: "btn btn-outline-primary" %>
+      <% end %>
         <!-- API CALL for news will fill this div -->
       </div>
     </div>
