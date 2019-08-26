@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+include ApplicationHelper
 MarketIndex.destroy_all if Rails.env.development?
 User.destroy_all if Rails.env.development?
 Company.destroy_all if Rails.env.development?
@@ -36,8 +37,13 @@ DJI = Company.create!(ticker: ".DJI")
 INX = Company.create!(ticker: ".INX")
 NYA = Company.create!(ticker: "NYA")
 
-company = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX, LL, SWI, BWLD, DJI, INX, NYA]
+companies = [APPL, GOOG, AMZN, TSLA, UBER, MSFT, NFLX]
 
+companies.each do |company|
+  puts "one"
+  print companies
+  create_stock_price_chart_index(company, "DAILY")
+end
 # group = []
 # i = 0
 # 4.times do
