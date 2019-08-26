@@ -11,7 +11,6 @@ class CompaniesController < ApplicationController
   def index
     @companies = policy_scope(Company).first(5)
     @market_index_array = MarketIndex.all
-    @companies_chart_array = []
     @min_price = []
     if signed_in?
       @hidden_group = current_user.groups.first.companies
@@ -40,7 +39,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @company_data = quote_endpoint(@company.ticker)
     # @min_price = []
-    puts "one api call" 
+    puts "one api call"
     # @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
     # @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker)).sort_by { |h| h[:date] }.reverse
