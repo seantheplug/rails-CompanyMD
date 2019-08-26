@@ -15,35 +15,6 @@ class CompaniesController < ApplicationController
     @min_price = []
     if signed_in?
       @hidden_group = current_user.groups.first.companies
-      # @hidden_group.each do |company|
-      #   if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
-      #     puts "one api call"
-      #     @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
-      #   else
-      #     puts "no api call"
-      #     prices = company.prices
-      #     @min_price << prices.min
-      #     times = company.times
-      #     array = times.zip(prices)
-      #     array.reverse!
-      #     @companies_chart_array << array
-      #   end
-      # end
-    else
-      # @companies.each do |company|
-      #   if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
-      #     puts "one api call"
-      #     @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
-      #   else
-      #     puts "no api call"
-      #     prices = company.prices
-      #     @min_price << prices.min
-      #     times = company.times
-      #     array = times.zip(prices)
-      #     array.reverse!
-      #     @companies_chart_array << array
-      #   end
-      # end
     end
     @market_index_array.each do |market_index|
       if market_index.price.nil? || (market_index.updated_at + 30.minutes) < Time.now.utc
@@ -75,7 +46,7 @@ class CompaniesController < ApplicationController
     @news_array = company_news(get_company_name(@company.ticker)).sort_by { |h| h[:date] }.reverse
     @sec_data = set_10k(@company.ticker)
 
-    if key_stat(@company.ticker, "dividendYield").nil? 
+    if key_stat(@company.ticker, "dividendYield").nil?
       @dividend_yield = "-"
     else
       @dividend_yield = (key_stat(@company.ticker, "dividendYield") * 100).round(2)

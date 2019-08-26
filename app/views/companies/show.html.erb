@@ -17,24 +17,30 @@
       </div>
     </div>
   </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <h3 class="mb-3">Reports</h3>
+      <div class="reports">
+        <% @sec_data.each do |report| %>
+        <div class="report-item">
+          <%= link_to report[:link], target: '_blank' do %>
+            <i class="far fa-file-alt mr-2"></i>Report filed on <%= report[:date] %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-12">
-      <h3 class="mb-3">News Feed</h3>
-      <% @news_array.first(5).each do |article| %>
-        <%= render 'shared/news_card', article: article %>
+      <div id="news-container">
+      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Current News about #{@company.ticker}", class: "btn btn-outline-primary" %>
       <% end %>
+        <!-- API CALL for news will fill this div -->
+      </div>
     </div>
   </div>
 </div>
-
-
-<!-- Probably don't need - delete by end of week -->
-<%# n = 0 %>
-<%# @array.length.times do %>
-    <%# @array[n].each do |article| %>
-      <%#= article %>
-    <%# end %>
-    <%# n += 1 %>
-<%# end %>
-
-<!-- SOURCE: <%#= article[0] %> TITLE: <%#= article[1] %> DESCRIPTION:<%#= article[2] %> URL:<%#= article[3] %> -->

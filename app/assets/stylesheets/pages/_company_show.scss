@@ -4,3 +4,15 @@
   margin: 10px 0;
   border-radius: $border-radius;
 }
+
+.reports {
+  background: white;
+  padding: 0 20px;
+
+  .report-item {
+    padding: 10px 5px;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}
