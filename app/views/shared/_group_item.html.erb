@@ -1,4 +1,4 @@
-<%= render 'shared/company_name', '@company': company %>
+<%= render 'shared/company_name', '@company': company, company_data: @company_data[index] %>
 <%= render 'shared/company_data', company_data: @company_data[index], dividend_yield: @dividend_yield[index], pe_ratio: @pe_ratio[index] %>
 <div class="show-graph">
   <%= line_chart @companies_chart_array[index],

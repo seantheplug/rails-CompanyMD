@@ -4,7 +4,11 @@
   </h2>
   <h2 class="company-ticker"><%= @company.ticker %></h2>
   <h2>
-    <i class="fas fa-arrow-up mr-2 arrow"></i>
+    <% if company_data[:change_percent] >= 0 %>
+      <i class="fas fa-arrow-up mr-2 arrow"></i>
+    <% else %>
+      <i class="fas fa-arrow-up mr-2 arrow down"></i>
+    <% end %>
     <span class="stock-price"><%= quote_endpoint(@company.ticker)[:price] %></span>
   </h2>
 </div>
