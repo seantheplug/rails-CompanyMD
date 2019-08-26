@@ -1,0 +1,39 @@
+@keyframes kenburns {
+  0% {
+    background-size: 100%;
+    background-position: center center;
+  }
+  50% {
+    background-size: 125%;
+    background-position: center right;
+  }
+  100% {
+    background-size: 100%;
+    background-position: center center;
+  }
+}
+
+.banner {
+  background-size: cover;
+  background-position: center 85%;
+  background-repeat: no-repeat;
+  padding: 250px 0;
+  text-align: center;
+  display: block;
+  width: 100%;
+  animation: kenburns 60s infinite;
+
+  h1 {
+    margin: 0;
+    color: $white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    color: $white;
+    margin: 10px auto;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+}

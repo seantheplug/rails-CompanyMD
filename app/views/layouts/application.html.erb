@@ -14,7 +14,7 @@
     <%= render 'shared/navbar' unless @disable_nav %>
     <% if @disable_nav %>
       <nav class="landing-nav">
-        companyMD
+        <%= image_tag 'logo-white.png', width: '40px' %>
       </nav>
     <% end %>
     <%= render 'shared/flashes' %>
