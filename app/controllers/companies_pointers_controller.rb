@@ -19,10 +19,21 @@ class CompaniesPointersController < ApplicationController
     end
   end
 
+  def update
+    @companiespointer = CompaniesPointer.find(params[:id])
+    authorize @companiespointer
+    if @companiespointer.update(companiespointer_params)
+      redirect_to companies_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
   end
 
   private
+
   def companiespointer_params
     params.require(:companies_pointer).permit(:group_id)
   end

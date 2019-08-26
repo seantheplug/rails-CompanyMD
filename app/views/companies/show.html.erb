@@ -18,24 +18,14 @@
     </div>
   </div>
 
+    <%= render 'shared/company_detailed_data' %>
+
   <div class="row">
     <div class="col-12">
       <h3 class="mb-3">News Feed</h3>
-      <% @news_array.first(5).each do |article| %>
-        <%= render 'shared/news_card', article: article %>
-      <% end %>
+      <%# @news_array.first(5).each do |article| %>
+        <%#= render 'shared/news_card', article: article %>
+      <%# end %>
     </div>
   </div>
 </div>
-
-
-<!-- Probably don't need - delete by end of week -->
-<%# n = 0 %>
-<%# @array.length.times do %>
-    <%# @array[n].each do |article| %>
-      <%#= article %>
-    <%# end %>
-    <%# n += 1 %>
-<%# end %>
-
-<!-- SOURCE: <%#= article[0] %> TITLE: <%#= article[1] %> DESCRIPTION:<%#= article[2] %> URL:<%#= article[3] %> -->

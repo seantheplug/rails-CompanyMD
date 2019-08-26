@@ -175,6 +175,23 @@ module ApplicationHelper
       JSON.parse(json)
     end
   end
+
+  def financial(ticker, year)
+    url = "https://financialmodelingprep.com/api/v3/financials/income-statement/#{ticker}"
+    json = open(url).read
+    report_collection = JSON.parse(json)
+
+    annual_reports = report_collection["financials"]
+
+    annual_reports.each_with_index do |item, index|
+      if item["date"][0..3] == year
+        @annual_report = annual_reports[index]
+      else
+        next
+      end
+    end
+    @annual_report
+  end
 end
 
 # https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo -> daily

@@ -3,8 +3,13 @@
     <div class="col-8 offset-2">
       <h1 class="mb-3">Edit your group</h1>
 
-      <%= simple_form_for @group do |f| %>
+        <%= simple_form_for @group do |f| %>
         <%= f.input :name, placeholder: @group.name%>
+        <ul>
+          <% @company_group.each do |company| %>
+            <li><%= company.ticker %> <%= link_to group_path(@group)%></li>
+          <% end %>
+        </ul>
         <div class="d-flex justify-content-between m-2 mt-4">
           <%= link_to "Cancel", root_path, class:"btn" %>
           <%= f.button :submit, class:"btn btn-primary"%>
@@ -13,3 +18,6 @@
     </div>
   </div>
 </div>
+
+
+

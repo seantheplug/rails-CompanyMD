@@ -45,6 +45,11 @@ class GroupsController < ApplicationController
 
   def edit
     authorize @group
+    @group.company_ids
+    @company_group = []
+    @group.company_ids.each do |id|
+      @company_group << Company.find(id)
+    end
   end
 
   def update
