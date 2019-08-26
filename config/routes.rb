@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :companies, only: [:index, :show, :destroy] do
     resources :companies_pointers, only: [:new, :create]
   end
+
+  resources :charts, only: [:completed_company_chart_tasks]
 end
