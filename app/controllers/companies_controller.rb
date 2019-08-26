@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
   # TenkHelper - helper tha generates [{link: "www", date: "xxxx-xx-xx"}]
-  include TenkHelper
+  include SecHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @companies = policy_scope(Company).first(5)
@@ -61,7 +61,7 @@ class CompaniesController < ApplicationController
     @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker))
-    @sec_data = set_10k(@company.ticker)
+    @sec_data = pull_sec_data(@company.ticker)
   end
 
   def show
@@ -72,7 +72,7 @@ class CompaniesController < ApplicationController
     @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker)).sort_by { |h| h[:date] }.reverse
-    @sec_data = set_10k(@company.ticker)
+    @sec_data = pull_sec_data(@company.ticker)
     raise
 
     if key_stat(@company.ticker, "dividendYield").nil?
