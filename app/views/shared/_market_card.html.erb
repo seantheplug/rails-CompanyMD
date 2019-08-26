@@ -6,7 +6,15 @@
     </div>
     <div class="card-market-subtext">
       <p><%=market_index.ticker%></p>
-      <p class="movement"><%=market_index.change%> (<%=market_index.change_percent%>%)</p>
+      <% if market_index.change >= 0 %>
+        <p class="movement">
+          <%=market_index.change%> (<%=market_index.change_percent%>%)
+        </p>
+      <% else %>
+        <p class="movement down">
+          <%=market_index.change%> (<%=market_index.change_percent%>%)
+        </p>
+      <% end %>
     </div>
   </div>
 </div>
