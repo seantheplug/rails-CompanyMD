@@ -67,6 +67,7 @@ class CompaniesController < ApplicationController
   def show
     authorize @company
     @company = Company.find(params[:id])
+    @company_data = quote_endpoint(@company.ticker)
     @min_price = [] 
     puts "one api call" 
     @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
