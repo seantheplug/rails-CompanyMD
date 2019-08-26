@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'companies#index'
   get 'uikit', to: 'pages#uikit'
   get 'search', to: 'pages#search'
+  get 'home', to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update]
 
