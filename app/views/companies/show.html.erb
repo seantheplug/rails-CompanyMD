@@ -13,7 +13,7 @@
   <div class="row mb-3">
     <div class="col-12">
       <div class="show-graph">
-      <%= line_chart @price_data_array , min: (@min_price[0]*0.9).round, width: "100%", height: "500px", points: false, colors: ["#75E6DA"] %>
+      <%= line_chart company_charts_show_daily_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"] %>
       </div>
     </div>
   </div>
@@ -33,8 +33,6 @@
     </div>
   </div>
 
-
-
   <div class="row">
     <div class="col-12">
       <div id="news-container">
@@ -46,14 +44,3 @@
     </div>
   </div>
 </div>
-
-<!-- Probably don't need - delete by end of week -->
-<%# n = 0 %>
-<%# @array.length.times do %>
-    <%# @array[n].each do |article| %>
-      <%#= article %>
-    <%# end %>
-    <%# n += 1 %>
-<%# end %>
-
-<!-- SOURCE: <%#= article[0] %> TITLE: <%#= article[1] %> DESCRIPTION:<%#= article[2] %> URL:<%#= article[3] %> -->

@@ -15,35 +15,6 @@ class CompaniesController < ApplicationController
     @min_price = []
     if signed_in?
       @hidden_group = current_user.groups.first.companies
-      @hidden_group.each do |company|
-        if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
-          puts "one api call"
-          @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
-        else
-          puts "no api call"
-          prices = company.prices
-          @min_price << prices.min
-          times = company.times
-          array = times.zip(prices)
-          array.reverse!
-          @companies_chart_array << array
-        end
-      end
-    else
-      @companies.each do |company|
-        if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
-          puts "one api call"
-          @companies_chart_array << create_stock_price_chart_index(company, "DAILY")
-        else
-          puts "no api call"
-          prices = company.prices
-          @min_price << prices.min
-          times = company.times
-          array = times.zip(prices)
-          array.reverse!
-          @companies_chart_array << array
-        end
-      end
     end
     @market_index_array.each do |market_index|
       if market_index.price.nil? || (market_index.updated_at + 30.minutes) < Time.now.utc
@@ -68,11 +39,11 @@ class CompaniesController < ApplicationController
     authorize @company
     @company = Company.find(params[:id])
     @company_data = quote_endpoint(@company.ticker)
-    @min_price = []
-    puts "one api call"
-    @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
-    @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
-    # @news_array = company_news(get_company_name(@company.ticker)).sort_by { |h| h[:date] }.reverse
+    # @min_price = []
+    puts "one api call" 
+    # @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
+    # @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
+    @news_array = company_news(get_company_name(@company.ticker)).sort_by { |h| h[:date] }.reverse
     @sec_data = set_10k(@company.ticker)
 
     if key_stat(@company.ticker, "dividendYield").nil?
