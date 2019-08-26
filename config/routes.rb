@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get 'uikit', to: 'pages#uikit'
   get 'search', to: 'pages#search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show, :edit, :update] 
-  
+  resources :users, only: [:show, :edit, :update]
+
   resources :groups do
     resources :companies_pointers, only: [:destroy]
   end
@@ -14,5 +14,6 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index, :show, :destroy] do
     resources :companies_pointers, only: [:new, :create]
+    resources :news, only: [:index]
   end
 end

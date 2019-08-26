@@ -20,6 +20,9 @@
 
   <div class="row">
     <div class="col-12">
+      <%= simple_form_for([@company], remote: true ) do |f| %>
+        <%= f.submit %>
+      <% end %>
       <h3 class="mb-3">News Feed</h3>
       <% @news_array.first(5).each do |article| %>
         <%= render 'shared/news_card', article: article %>
@@ -27,7 +30,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- Probably don't need - delete by end of week -->
 <%# n = 0 %>
