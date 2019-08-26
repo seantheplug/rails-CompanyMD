@@ -25,6 +25,10 @@ class GroupsController < ApplicationController
         @companies_chart_array << array
       end
     end
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   def new

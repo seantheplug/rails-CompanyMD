@@ -1,0 +1,5 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Companies") do |sheet|
+    sheet.add_row [@company.ticker, @company.prices]
+end
