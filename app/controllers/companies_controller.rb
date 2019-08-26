@@ -62,6 +62,7 @@ class CompaniesController < ApplicationController
     @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @news_array = company_news(get_company_name(@company.ticker))
     @sec_data = pull_sec_data(@company.ticker)
+      # above returns [{link: 10k-file-url, date: filedAt-string}...{index_10k: sec-10k-index-url}, {index_10k: sec-10q-index-url}]
   end
 
   def show
