@@ -18,15 +18,16 @@
     </div>
   </div>
 
+
+
   <div class="row">
     <div class="col-12">
-      <%= simple_form_for([@company], remote: true ) do |f| %>
-        <%= f.submit %>
+      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "submit me", class: "btn btn-primary" %>
       <% end %>
-      <h3 class="mb-3">News Feed</h3>
-      <% @news_array.first(5).each do |article| %>
-        <%= render 'shared/news_card', article: article %>
-      <% end %>
+      <div id="news-container">
+        <!-- API CALL for news will fill this div -->
+      </div>
     </div>
   </div>
 </div>
