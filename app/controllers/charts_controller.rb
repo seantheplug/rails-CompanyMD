@@ -1,5 +1,6 @@
 class ChartsController < ApplicationController
   include ApplicationHelper
+  skip_before_action :authenticate_user!
   skip_after_action :verify_authorized
   def completed_company_show_daily_tasks
     @company = Company.find(params[:company_id])
