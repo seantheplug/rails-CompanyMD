@@ -6,14 +6,14 @@
       <%= render 'shared/company_description' %>
     </div>
     <div class="col-6 d-flex">
-      <%= render 'shared/company_data' %>
+      <%= render 'shared/company_data', company_data: @company_data, dividend_yield: @dividend_yield, pe_ratio: @pe_ratio %>
     </div>
   </div>
 
   <div class="row mb-3">
     <div class="col-12">
       <div class="show-graph">
-      <%= line_chart @price_data_array, min: (@min_price[0]*0.9).round, width: "100%", height: "500px", points: false, colors: ["#75E6DA"] %>
+      <%= line_chart @price_data_array , min: (@min_price[0]*0.9).round, width: "100%", height: "500px", points: false, colors: ["#75E6DA"] %>
       </div>
     </div>
   </div>

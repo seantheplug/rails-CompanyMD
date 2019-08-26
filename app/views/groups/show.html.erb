@@ -11,6 +11,8 @@
   </div>
   <div class="scrollable">
     <%@group.companies.each_with_index do |company, index|%>
+      <%#= @pe_ratio[index] %>
+
       <div class="group-item">
         <%= render 'shared/group_item', company: company, index: index %>
       </div>
