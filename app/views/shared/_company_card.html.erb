@@ -21,8 +21,8 @@
       <h3><i class="fas fa-arrow-up mr-2 arrow"></i><span class="stock-price"><%= (quote_endpoint(company.ticker)[:price]).to_f.round(2) %></span></h3>
     </div>
     <div class="col-6 card-company-graph">
-      <%= line_chart @companies_chart_array[index],
-          min: @min_price[index]*0.9,
+      <%= line_chart company_charts_index_path(company),
+          min: nil,
           defer: true,
           colors: ["#75E6DA"],
           points: false,

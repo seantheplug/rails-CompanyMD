@@ -27,7 +27,7 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price << close_price.min
+    # @min_price << close_price.min
     company.update!(times: time, prices: close_price)
     price_data_array = []
     close_price.each_with_index do |price, index|
@@ -52,7 +52,7 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price << close_price.min
+    # @min_price << close_price.min
     # company.update!(times: time, prices: close_price)
     price_data_array = []
     close_price.each_with_index do |price, index|
@@ -60,7 +60,6 @@ module ApplicationHelper
     end
     return price_data_array.reverse!
   end
-
 
   def quote_endpoint(ticker)
     url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=#{ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
