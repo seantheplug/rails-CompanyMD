@@ -9,7 +9,7 @@
       <%end%>
     </div>
   <% else %>
-    <h2>My Stocks</h2>
+    <h2>Company Portfolio</h2>
     <div class="row mb-5">
       <%@hidden_group.each_with_index do |company, index|%>
         <%= render 'shared/company_card', company: company, index: index %>

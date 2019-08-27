@@ -25,5 +25,11 @@ class PagesController < ApplicationController
         end
       end
     end
+
+    respond_to do |format|
+      format.html { render 'pages/search' }
+      format.js 
+    end
+
   end
 end

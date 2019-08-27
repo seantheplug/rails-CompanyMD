@@ -1,11 +1,6 @@
 <div class="sidebar col-2">
-  <ul class="secondary-nav">
-    <li><a href="#" class="active">Home</a></li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">News</a></li>
-  </ul>
   <div class="basket-container">
-    <h3 class="mb-3 d-flex justify-content-between">Portfolio
+    <h3 class="mb-3 d-flex justify-content-between">Group Portfolio
       <% if signed_in? %>
         <%= link_to new_group_path, title: 'Create a new group' do %>
           <i class="fas fa-plus-circle add-group"></i>
