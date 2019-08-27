@@ -2,8 +2,13 @@
 
 <div class="content-container col-10">
   <div class="row">
-    <div class="col-12">
-      <h1 class="mb-3"><%= @group.name.capitalize %></h1>
+    <div class="col-12 group-name">
+      <h1 class="mb-3">
+      <%= @group.name.capitalize %>
+      <%= link_to "#" do %>
+        <i class="fas fa-pencil-alt edit"></i>
+      <% end %>
+      </h1>
     </div>
   </div>
   <div class="scrollable">
@@ -11,6 +16,9 @@
       <%#= @pe_ratio[index] %>
 
       <div class="group-item">
+        <%= link_to "#" do %>
+          <i class="fas fa-times-circle delete"></i>
+        <% end %>
         <%= render 'shared/group_item', company: company, index: index %>
       </div>
     <%end%>
