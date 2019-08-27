@@ -2,6 +2,7 @@
 <%= link_to group_path(group) do %>
   <div class="basket-card">
     <p><%=group.name%></p>
+    <p>(<%= group.companies.count %>)</p>
     <i class="fas fa-eye"></i>
   </div>
 <% end %>
