@@ -5,10 +5,11 @@
     <div class="col-12 group-name">
       <h1 class="mb-3">
       <%= @group.name.capitalize %>
-      <%= link_to "#" do %>
+      <%= link_to "#", data: {toggle: "modal", target: "#modalgroupeditForm"} do %>
         <i class="fas fa-pencil-alt edit"></i>
       <% end %>
       </h1>
+      <%= link_to "Download as excel", group_path(@group, format: :xlsx) %>
     </div>
   </div>
   <div class="scrollable">
@@ -16,11 +17,18 @@
       <%#= @pe_ratio[index] %>
 
       <div class="group-item">
-        <%= link_to "#" do %>
+        <%= link_to group_companies_pointer_path(@group, @group.companies_pointers[index]), method: :delete, data:{confirm: "Are you sure you want to delete?"}  do %>
           <i class="fas fa-times-circle delete"></i>
         <% end %>
         <%= render 'shared/group_item', company: company, index: index %>
       </div>
     <%end%>
   </div>
+</div>
+
+<div class="modal fade" id="modalgroupeditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <%= simple_form_for [@group] do |f| %>
+  <%= f.input :name, placeholder: "Type your new group name"%>
+  <%= f.submit "confirm", class: "btn btn-primary" %>
+  <% end %>
 </div>
