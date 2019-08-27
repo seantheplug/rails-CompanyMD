@@ -24,7 +24,7 @@
       </h3>
       <p>
         <% if signed_in? %>
-          <%= link_to new_company_companies_pointer_path(company) do %>
+          <%= link_to new_company_companies_pointer_path(company), title: 'Add to group', class: 'text-decoration-none' do %>
             <i class="fas fa-plus-circle mr-1"></i>
           <% end %>
         <% else %>

@@ -13,13 +13,16 @@
   <div class="row mb-3">
     <div class="col-12">
       <div class="show-graph">
+      <h3 class="graph-label text-center">
+        Last 4 months
+        <%= link_to company_path(@company, format: :xlsx), class: 'text-decoration-none', title: 'Download data as excel' do %>
+          <i class="fas fa-file-excel ml-2 download"></i>
+        <% end %>
+      </h3>
       <%= line_chart company_charts_show_daily_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"] %>
       </div>
     </div>
   </div>
-<!-- generate excel file -->
-<%= link_to "Download as excel", company_path(@company, format: :xlsx) %> <!-- generate excel file -->
-
 
   <div class="row mb-3">
     <div class="col-12">
@@ -35,19 +38,22 @@
       </div>
     </div>
   </div>
-
-<div id="financials">
-  <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
-  <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-outline-primary" %>
-  <% end %>
-</div>
-
+  <h3 class="mb-3">Statement of Operations</h3>
+  <div class="row mb-3 company-data">
+      <%= render 'shared/company_detailed_data' %>
+  </div>
+  
+  <div id="financials">
+    <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
+    <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-outline-primary" %>
+    <% end %>
+  </div>
 
   <div class="row">
     <div class="col-12">
       <div id="news-container">
-      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
-      <%= submit_tag "Current News about #{@company.ticker}", class: "btn btn-outline-primary" %>
+      <%= form_tag company_news_index_path(@company), method: :get, remote: true, class: 'text-center' do %>
+      <%= submit_tag "Fetch news about #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
       <% end %>
         <!-- API CALL for news will fill this div -->
       </div>

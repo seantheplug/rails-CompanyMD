@@ -16,3 +16,10 @@
     }
   }
 }
+
+.graph-label {
+  .download {
+    font-size: 80%;
+    transition: $transition-out;
+  }
+}

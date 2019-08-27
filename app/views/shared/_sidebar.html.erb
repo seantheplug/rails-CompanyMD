@@ -2,7 +2,7 @@
   <div class="basket-container">
     <h3 class="mb-3 d-flex justify-content-between">Group Portfolio
       <% if signed_in? %>
-        <%= link_to new_group_path do %>
+        <%= link_to new_group_path, title: 'Create a new group' do %>
           <i class="fas fa-plus-circle add-group"></i>
         <%end%>
       <% else %>

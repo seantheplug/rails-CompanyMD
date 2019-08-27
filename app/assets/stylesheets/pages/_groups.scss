@@ -1,6 +1,6 @@
 .group-name {
   a:hover { text-decoration: none; }
-  .edit {
+  .edit, .download {
     font-size: 60%;
     opacity: 0.4;
     transition: $transition-in;
