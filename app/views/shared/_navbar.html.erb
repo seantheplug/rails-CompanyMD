@@ -12,7 +12,7 @@
       </button>
 
       <div class="search-bar">
-        <%= form_tag search_path, method: :get do %>
+        <%= form_tag search_path, method: :get, remote: true do %>
           <div class="search">
             <i class="fas fa-search search-icon"></i>
             <%= text_field_tag :query,
@@ -20,7 +20,13 @@
               class: "form-control search-input",
               placeholder: "Search for a company..."
             %>
-            <%= submit_tag "Search", class: "btn btn-sm mr-1" %>
+            <%= submit_tag "Search", class: "btn btn-sm mr-1"%>
+            <div class="dropdown" >
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display:none">
+              </button>
+              <ul class="dropdown-menu search-result" aria-labelledby="dropdownMenuButton" id="searchdropdownmenu">
+              </ul>
+            </div>
           </div>
         <% end %>
       </div>

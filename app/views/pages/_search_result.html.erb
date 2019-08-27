@@ -1,0 +1,10 @@
+<li>
+    <p>
+    <%= link_to company_path(company) do %>
+        <%= get_company_name(company.ticker) %><br><small><%= company.ticker %></small>
+    <% end %>
+    </p>
+    <%= link_to new_company_companies_pointer_path(company) do %>
+    <i class="fas fa-plus-circle mr-1 add-search-item"></i>
+    <% end %>
+</li>

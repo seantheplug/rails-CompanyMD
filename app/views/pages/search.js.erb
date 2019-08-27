@@ -1,0 +1,18 @@
+console.log("I am here inside js")
+
+var search_result_box = document.querySelector(".search-result");
+search_result_box.innerHTML = "";
+document.querySelector("#dropdownMenuButton").click();
+
+
+// clear the box 
+
+function insertSearchResult(company){
+  search_result_box.insertAdjacentHTML("beforeend", company);
+};
+
+<% @search_company_result_array.each do |company| %>
+  insertSearchResult('<%= j render 'search_result', company: company %>')
+<% end %>
+
+
