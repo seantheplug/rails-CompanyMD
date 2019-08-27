@@ -51,7 +51,6 @@ end
     end
   end
 
-
   def destroy
     authorize @company
     @company.destroy
