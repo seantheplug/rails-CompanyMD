@@ -20,6 +20,8 @@ class CompaniesController < ApplicationController
         puts "one api call get market_index"
         market_index_quote_endpoint(market_index)
     end
+  end
+end
 
   # def create_and_show
   #   authorize @company
@@ -54,16 +56,6 @@ class CompaniesController < ApplicationController
       @pe_ratio = key_stat(@company.ticker, "peRatio")
     end
     @financials = financial(@company.ticker, "2018")
-  end
-    # ----- excel generator ------
-    end
-    # respond_to do |format|
-    #   format.xlsx {
-    #     response.headers[
-    #     'Content-Disposition'
-    #   ] = "attachment; filename='companiesx.xlsx'"
-    # }
-    #   format.html { render :show }
     # ----- excel generator -----
     respond_to do |format|
       format.html
