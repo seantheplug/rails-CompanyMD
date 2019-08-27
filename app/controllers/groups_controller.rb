@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
     @group.user = current_user
     authorize @group
     if @group.save
-      redirect_to companies_path
+      redirect_to group_path(@group)
     else
       render :index
     end
@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
   def update
     authorize @group
     if @group.update(group_params)
-      redirect_to companies_path
+      redirect_to group_path(@group)
     else
       render :index
     end
