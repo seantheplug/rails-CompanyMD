@@ -21,11 +21,10 @@ class CompaniesPointersController < ApplicationController
 
 
   def destroy
-    raise
-    @companiespointer = CompaniesPointer.find(params[:companiespointer_id])
+    @companiespointer = CompaniesPointer.find(params[:id])
     authorize @companiespointer
     @companiespointer.destroy
-    redirect_to companies_path
+    redirect_to group_path(@companiespointer.group)
   end
 
   private
