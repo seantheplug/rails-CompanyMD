@@ -1,4 +1,24 @@
+.group-name {
+  a:hover { text-decoration: none; }
+  .edit {
+    font-size: 60%;
+    opacity: 0.4;
+    transition: $transition-in;
+  }
+}
+
 .group-item {
   flex: 0 0 500px;
   margin-right: 15px;
+  position: relative;
+  a:hover { text-decoration: none; }
+  .delete {
+    z-index: 5;
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    opacity: 0.5;
+    font-size: 120%;
+    transition: $transition-in;
+  }
 }
