@@ -2,11 +2,49 @@
   <div class="container">
     <h1>Let financial data lead the way</h1>
     <p>Where intelligence meets integrity</p>
-    <%= link_to 'Get started', "#", data: {toggle: "modal", target: "#modalLRForm"}, class: "btn btn-lg btn-secondary mt-2"  %>
+    <%= link_to 'Get started', "#", data: {toggle: "modal", target: "#modalLRForm"}, class: "btn btn-lg btn-outline-secondary mt-4"  %>
   </div>
 </div>
 
-<div class="container">
-<h1></h1>
-<p></p>
+<div class="container landing-page">
+  <div class="row border-bottom">
+    <div class="col-lg-6 p-2 d-flex align-items-center justify-content-center">
+      <h2 class="subheading">Conduct in-depth company research, comparisons and analysis all on one platform</h2>
+    </div>
+    <div class="col-lg-6 p-2">
+      <div class="home-img-container">
+      <%= image_tag 'home-1.jpg', class: 'home-img' %>
+      </div>
+    </div>
+  </div>
+  <div class="row border-bottom">
+    <div class="col-12 p-2 text-center">
+      <h3 class="mb-5">Receive recent news from trusted sources</h3>
+      <div class="news-logo">
+        <%= image_tag 'Bloomberg.png' %>
+        <%= image_tag 'reuters.png' %>
+        <%= image_tag 'fortune.png' %>
+        <%= image_tag 'cnn.png' %>
+      </div>
+    </div>
+  </div>
+  <div class="row border-bottom">
+    <div class="col-lg-6 p-2">
+      <%= image_tag 'home-2.jpg', class: 'home-img' %>
+    </div>
+    <div class="col-lg-6 p-2 d-flex flex-column justify-content-center">
+      <h3>Make the right decisions</h3>
+      <p>Increase research effectiveness by consolidating important information into a central location</p>
+      <h3>A greater insight into the market opportunities</h3>
+      <p>Get all your data at a glance, including 10K reports and historical price graphs</p>
+      <h3>A streamlined workflow for efficiency</h3>
+      <p>A fully-featured dashboard and grouping system makes comparison easy</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-2 text-center">
+      <h2>Your financial data, simplified</h2>
+      <%= link_to 'Get started', "#", class: "btn btn-lg btn-primary mt-4"  %>
+    </div>
+  </div>
 </div>
