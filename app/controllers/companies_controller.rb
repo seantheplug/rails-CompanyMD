@@ -43,7 +43,6 @@ end
     else
       @pe_ratio = key_stat(@company.ticker, "peRatio")
     end
-    # NOT NEEDED SEAN! @financials = financial(@company.ticker, "2018")
     # ----- excel generator -----
     respond_to do |format|
       format.html
