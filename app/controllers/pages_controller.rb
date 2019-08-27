@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   include TenkHelper
   def home
     resource = User.new
+    @disable_nav = true
   end
 
   def uikit

@@ -11,6 +11,13 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
+    <% if @disable_nav %>
+      <nav class="landing-nav">
+        <%= image_tag 'logo-white.png', width: '40px' %>
+      </nav>
+      <%= yield %>
+      <%= render 'shared/sign_in_modal' %>
+    <% else %>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= javascript_pack_tag 'chart' %>
@@ -22,6 +29,7 @@
         <%= render 'shared/sign_in_modal' %>
       </div>
     </div>
+    <% end %>
     <footer>
       <p>© <%= Date.today.year %> CompanyMD</p>
     </footer>
