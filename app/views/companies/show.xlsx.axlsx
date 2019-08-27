@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Companies") do |sheet|
-  sheet.add_row [@company.ticker, @company.times]
-  sheet.add_row [@company.ticker, @company.prices]
+  sheet.add_row [@company.ticker, "Date", @company.times]
+  sheet.add_row [@company.ticker, "Date", @company.prices]
 
 end
