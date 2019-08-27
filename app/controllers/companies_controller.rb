@@ -54,7 +54,10 @@ end
     else
       @pe_ratio = key_stat(@company.ticker, "peRatio")
     end
+
     @financials = financial(@company.ticker, "2018")
+    if @financials.nil?
+      @financials = ""
     # ----- excel generator -----
     respond_to do |format|
       format.html
