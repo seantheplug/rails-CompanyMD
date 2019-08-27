@@ -2,7 +2,7 @@ module SecHelper
   require 'rest-client'
   require 'nokogiri'
   require 'open-uri'
-
+  # this is a change to be deleted #
   def pull_sec_data(ticker)
     tenk = []
     sec_filings = []
