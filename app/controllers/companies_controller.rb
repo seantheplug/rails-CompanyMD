@@ -58,6 +58,7 @@ end
     @financials = financial(@company.ticker, "2018")
     if @financials.nil?
       @financials = ""
+    end
     # ----- excel generator -----
     respond_to do |format|
       format.html
