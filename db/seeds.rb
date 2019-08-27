@@ -53,7 +53,7 @@ end
 # end
 
 MarketIndex.create!(name: "S&P 500 Index", ticker: ".INX")
-# MarketIndex.create!(name: "NASDAQ", ticker: ".IXIC") --> the ticker is not working #Sean
+MarketIndex.create!(name: "NASDAQ", ticker: "NASDAQ:IXIC")
 MarketIndex.create!(name: "DOW JONES", ticker: ".DJI")
 MarketIndex.create!(name: "Russell 2000", ticker: "^RUT")
 puts "created sample"
