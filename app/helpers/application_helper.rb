@@ -182,18 +182,18 @@ module ApplicationHelper
 
      annual_reports = report_collection["financials"]
 
-     annual_reports.each_with_index do |item, index|
-      if item["date"][0..3] == year
-        @annual_report = annual_reports[index]
-      else
-        next
+     if !annual_reports.nil?
+      annual_reports.each_with_index do |item, index|
+        if item["date"][0..3] == year
+          @annual_report = annual_reports[index]
+        else
+          next
+        end
       end
     end
     @annual_report
   end
 end
-
-
 
 # https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo -> daily
 # https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=MSFT&apikey=demo -> weekly

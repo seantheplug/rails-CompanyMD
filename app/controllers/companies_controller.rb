@@ -56,7 +56,12 @@ class CompaniesController < ApplicationController
     else
       @pe_ratio = key_stat(@company.ticker, "peRatio")
     end
+
     @financials = financial(@company.ticker, "2018")
+
+    if @financials.nil?
+      @financials = ""
+    end
   end
 
   def destroy
