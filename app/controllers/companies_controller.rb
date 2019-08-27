@@ -19,9 +19,9 @@ class CompaniesController < ApplicationController
       if market_index.price.nil? || (market_index.updated_at + 30.minutes) < Time.now.utc
         puts "one api call get market_index"
         market_index_quote_endpoint(market_index)
-      end
     end
   end
+end
 
   # def create_and_show
   #   authorize @company
@@ -36,7 +36,6 @@ class CompaniesController < ApplicationController
 
   def show
     authorize @company
-    @company = Company.find(params[:id])
     @company_data = quote_endpoint(@company.ticker)
     # @min_price = []
     puts "one api call"
@@ -44,7 +43,6 @@ class CompaniesController < ApplicationController
     # @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     # @news_array = company_news(get_company_name(@company.ticker)).sort_by { |h| h[:date] }.reverse
     @sec_data = set_10k(@company.ticker)
-
     if key_stat(@company.ticker, "dividendYield").nil?
       @dividend_yield = "-"
     else
@@ -57,7 +55,14 @@ class CompaniesController < ApplicationController
       @pe_ratio = key_stat(@company.ticker, "peRatio")
     end
     @financials = financial(@company.ticker, "2018")
+    # ----- excel generator -----
+    respond_to do |format|
+      format.html
+      format.xlsx
+    # ----- excel generator -----
+    end
   end
+
 
   def destroy
     authorize @company

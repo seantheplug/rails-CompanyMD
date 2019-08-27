@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/randym/axlsx.git
+  revision: c8ac844572b25fda358cc01d2104720c4c42f450
+  ref: c8ac844
+  specs:
+    axlsx (2.1.0.pre)
+      htmlentities (~> 4.3.4)
+      mimemagic (~> 0.3)
+      nokogiri (>= 1.6.6)
+      rubyzip (>= 1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -45,6 +56,12 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.6.1)
       execjs
+    axlsx_rails (0.5.2)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
+    axlsx_styler (0.2.0)
+      activesupport (>= 3.1)
+      axlsx (>= 2.0, < 4)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.4)
@@ -76,6 +93,7 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (4.1.2)
       activesupport (>= 4.2)
+    htmlentities (4.3.4)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -163,6 +181,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rubyzip (1.2.3)
     sassc (2.1.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -215,6 +234,9 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  axlsx!
+  axlsx_rails
+  axlsx_styler
   bootsnap
   chartkick
   devise
@@ -233,6 +255,7 @@ DEPENDENCIES
   rails (= 5.2.3)
   redis
   rest-client
+  rubyzip (>= 1.2.1)
   sassc-rails
   simple_form
   spring
