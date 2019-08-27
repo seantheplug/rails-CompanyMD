@@ -2,7 +2,7 @@
   <h3>CONSOLIDATED STATEMENT OF OPERATIONS</h3>
   <ul>
     <li><span class="data-title"></span> (in millions of USD)</li>
-    <li><span class="data-title">Net sales</span> $<%= number_with_delimiter(@financials["Revenue"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+    <li><span class="data-title">Net sales</span> $<%= number_with_delimiter(@financials[0]["Revenue"].to_f.round(0)/1000000, :delimiter => ',') %></li>
     <li><span class="data-title">Cost of sales</span> $<%= number_with_delimiter(@financials["Cost of Revenue"].to_f.round(0)/1000000, :delimiter => ',') %></li>
     <li><span class="data-title">Gross Margin</span> $<%= number_with_delimiter(@financials["Gross Profit"].to_f.round(0)/1000000, :delimiter => ',') %></li>
     <br>

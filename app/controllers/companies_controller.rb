@@ -47,10 +47,9 @@ end
     respond_to do |format|
       format.html
       format.xlsx
-    # ----- excel generator -----
+    # # ----- excel generator -----
     end
   end
-
 
   def destroy
     authorize @company
