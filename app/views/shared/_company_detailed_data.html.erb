@@ -1,0 +1,78 @@
+<div class="company-data">
+  <h3>CONSOLIDATED STATEMENT OF OPERATIONS</h3>
+  <ul>
+    <li><span class="data-title">Net sales</span> $<%= @financials["Revenue"] %></li>
+    <li><span class="data-title">Cost of sales</span> $<%= @financials["Cost of Revenue"] %></li>
+    <li><span class="data-title">Gross Margin</span> $<%= @financials["Gross Profit"] %></li>
+    <br>
+    <li><span class="data-title">Research and development</span> $<%= @financials["R&D Expenses"] %></li>
+    <li><span class="data-title">Selling, general and administrative</span> $<%= @financials["SG&A Expense"] %></li>
+    <li><span class="data-title">Total operating expenses</span> $<%= @financials["Operating Expenses"] %></li>
+    <br>
+    <li><span class="data-title">Operating Income</span> $<%= @financials["Operating Income"] %></li>
+    <li><span class="data-title">Other Income(expense), net</span> $<%= @financials["Interest Expense"] %></li>
+    <br>
+    <li><span class="data-title">Income before provision for income taxes</span> $<%= @financials["Earnings before Tax"] %></li>
+    <li><span class="data-title">Net income (non-controlling int)</span> $<%= @financials["Net Income - Non-Controlling int"] %></li>
+    <li><span class="data-title">Net income (discontinued ops)</span> $<%= @financials["Net Income - Discontinued ops"] %></li>
+    <li><span class="data-title">Net income</span> $<%= @financials["Net Income"] %></li>
+    <li><span class="data-title">Preferred dividends</span> $<%= @financials["Preferred Dividends"] %></li>
+    <li><span class="data-title">Net income com</span> $<%= @financials["Net Income Com"] %></li>
+    <li><span class="data-title">Consolidated income</span> $<%= @financials["Consolidated Income"] %></li>
+    <br>
+    <li><span class="data-title">Earnings per share:</span></li>
+    <li><span class="data-title">Basic</span> $<%= @financials["EPS"] %></li>
+    <li><span class="data-title">Diluted</span> $<%= @financials["EPS Diluted"] %></li>
+    <br>
+    <li><span class="data-title">Shares used in computing earnings per share:</span></li>
+    <li><span class="data-title">Basic</span> <%= @financials["Weighted Average Shs Out"] %></li>
+    <li><span class="data-title">Diluted</span> <%= @financials["Weighted Average Shs Out (Dil)"] %></li>
+    <br>
+    <li><span class="data-title">Dividend per share</span> $<%= @financials["Dividend per Share"] %></li>
+    <br>
+    <li><span class="data-title">Metrics</span></li>
+    <li><span class="data-title">Revenue growth</span> <%= @financials["Revenue Growth"] %>%</li>
+    <li><span class="data-title">Gross margin</span> <%= @financials["Gross Margin"] %>%</li>
+    <li><span class="data-title">EBITDA</span> $<%= @financials["EBITDA"] %></li>
+    <li><span class="data-title">EBIT</span> $<%= @financials["EBIT"] %></li>
+    <li><span class="data-title">EBITDA margin</span> <%= @financials["EBITDA Margin"] %>%</li>
+    <li><span class="data-title">EBIT margin</span> <%= @financials["EBIT Margin"] %>%</li>
+    <li><span class="data-title">Profit margin</span> <%= @financials["Profit Margin"] %>%</li>
+    <li><span class="data-title">Free cash flow margin</span> <%= @financials["Free Cash Flow margin"] %>%</li>
+    <li><span class="data-title">Earnings before tax margin</span> <%= @financials["Earnings Before Tax Margin"] %>%</li>
+    <li><span class="data-title">Net profit margin</span> <%= @financials["Net Profit Margin"] %>%</li>
+  </ul>
+</div>
+
+<!-- Revenue
+Cost of Sales
+Gross Profit
+R&D Expenses
+SG&A Expense
+Operating Expenses
+Operating Income
+Interest Expense
+EBITDA
+EBIT
+Earnings before Tax
+Income Tax Expense
+Net Income - Non-Controlling int
+Net Income - Discontinued ops
+Net Income
+Preferred Dividends
+Net Income Com
+Consolidated Income
+EPS
+EPS Diluted
+Weight Average Shs Out
+Weight Average Shs Out (Dil)
+Dividend per Share
+Revenue Growth
+Gross Margin
+EBITDA Margin
+EBIT Margin
+Profit Margin
+Free Cash Flow margin
+Earnings Before Tax Margin
+Net Profit Margin
+ -->
