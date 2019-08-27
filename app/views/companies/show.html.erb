@@ -36,9 +36,11 @@
     </div>
   </div>
 
-  <%= render 'shared/company_detailed_data' %>
-<!-- generate excel file -->
-<%= link_to "Download as excel", company_path(@company, format: :xlsx) %>
+<div id="financials">
+  <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
+  <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-outline-primary" %>
+  <% end %>
+</div>
 
 
   <div class="row">
@@ -52,3 +54,4 @@
     </div>
   </div>
 </div>
+

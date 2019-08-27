@@ -23,17 +23,6 @@ class CompaniesController < ApplicationController
   end
 end
 
-  # def create_and_show
-  #   authorize @company
-  #   @company = Company.find(params[:id])
-  #   @min_price = []
-  #   puts "one api call"
-  #   @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
-  #   @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
-  #   @news_array = company_news(get_company_name(@company.ticker))
-  #   @sec_data = set_10k(@company.ticker)
-  # end
-
   def show
     authorize @company
     @company_data = quote_endpoint(@company.ticker)
@@ -54,7 +43,7 @@ end
     else
       @pe_ratio = key_stat(@company.ticker, "peRatio")
     end
-    @financials = financial(@company.ticker, "2018")
+    # NOT NEEDED SEAN! @financials = financial(@company.ticker, "2018")
     # ----- excel generator -----
     respond_to do |format|
       format.html
