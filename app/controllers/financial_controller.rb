@@ -6,7 +6,9 @@ class FinancialController < ApplicationController
   def show
     @company = Company.find(params[:company_id])
     @financials = financial(@company.ticker, "2018")
-
+    if @financials.nil?
+      @financials = ""
+    end
     puts "I AM
 
 
