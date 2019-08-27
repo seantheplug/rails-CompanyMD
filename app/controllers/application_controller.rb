@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_basket
 
   include Pundit
+  include MetaTagsHelper
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
@@ -25,13 +26,15 @@ class ApplicationController < ActionController::Base
     @basket = current_user.groups if signed_in?
   end
 
-
-
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
   end
 end

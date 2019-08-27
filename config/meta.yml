@@ -1,0 +1,5 @@
+meta_product_name: "CompanyMD"
+meta_title: "CompanyMD - Let financial data lead the way"
+meta_description: "Conduct in-depth company research, comparisons and analysis all on one platform"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@companymd"   # required for Twitter Cards
