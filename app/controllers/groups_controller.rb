@@ -16,12 +16,12 @@ class GroupsController < ApplicationController
     @pe_ratio = []
     @companies.each do |company|
       @company_data << quote_endpoint(company.ticker)
-      if key_stat(company.ticker, "dividendYield").nil? 
+      if key_stat(company.ticker, "dividendYield").nil?
         @dividend_yield << "-"
       else
         @dividend_yield << (key_stat(company.ticker, "dividendYield") * 100).round(2)
       end
-  
+
       if key_stat(company.ticker, "peRatio").nil?
         @pe_ratio << "-"
       else

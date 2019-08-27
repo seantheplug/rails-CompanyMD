@@ -5,7 +5,9 @@
     <div class="col-12">
       <h1 class="mb-3"><%= @group.name.capitalize %></h1>
 
-      <%= link_to "Download as excel", group_path(@companies, format: :xlsx) %> <!-- generate excel file -->
+
+      <!-- generate excel file -->
+      <%= link_to "Download as excel", group_path(@group, format: :xlsx) %>
 
     </div>
   </div>
