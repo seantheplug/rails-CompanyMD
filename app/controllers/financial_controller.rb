@@ -9,12 +9,5 @@ class FinancialController < ApplicationController
     if @financials.nil?
       @financials = ""
     end
-    puts "I AM
-
-
-
-
-
-    HERE"
   end
 end
