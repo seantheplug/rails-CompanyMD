@@ -24,10 +24,16 @@
     </div>
   </div>
 
+  <button id="reports">reports</button>
+  <button id="statement">statement</button>
+  <%= form_tag company_news_index_path(@company), method: :get, remote: true, class: 'text-center', id: "news" do %>
+    <%= submit_tag "Fetch news about #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
+  <% end %>
+
   <div class="row mb-3">
     <div class="col-12">
       <h3 class="mb-3">10-K & Q Reports</h3>
-      <div class="reports">
+      <div class="reports" data-loaded="true">
         <div class="report-item">
           <%= link_to @sec_data.second[:index_10k], target: '_blank' do %>
             <i class="far fa-folder-open mr-2"></i>10-K Reports Index
@@ -49,7 +55,7 @@
     </div>
   </div>
 
-  <div id="financials">
+  <div id="financials" data-loaded="false">
     <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
     <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-outline-primary" %>
     <% end %>
@@ -57,13 +63,9 @@
 
   <div class="row">
     <div class="col-12">
-      <div id="news-container">
-      <%= form_tag company_news_index_path(@company), method: :get, remote: true, class: 'text-center' do %>
-      <%= submit_tag "Fetch news about #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
-      <% end %>
+      <div id="news-container" data-loaded="false">
         <!-- API CALL for news will fill this div -->
       </div>
     </div>
   </div>
 </div>
-
