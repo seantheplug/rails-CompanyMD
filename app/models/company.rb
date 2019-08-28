@@ -3,7 +3,7 @@ class Company < ApplicationRecord
   validates :ticker, presence: true
 
   FINANCIAL_DEFINITION = {
-    "Blank 1": {
+    "INCOME": {
       "Revenue": "Net sales",
       "Cost of Revenue": "Cost of sales",
       "Gross Profit": "Gross Margin",
@@ -22,19 +22,19 @@ class Company < ApplicationRecord
       "Net Income Com": "Net income com",
       "Consolidated Income": "Consolidated income"
     },
-    "Earnings per share": {
+    "EARNINGS PER SHARE": {
       "EPS": "Basic",
       "EPS Diluted": "Diluted",
     },
-    "Shares used in computing earnings per share": {
-      "Weighted Average Shs Out": "Basic",
-      "Weighted Average Shs Out (Dil)": "Diluted",
+    "SHARES USED IN COMPUTING EARNINGS PER SHARE": {
+      "Weighted Average Shs Out": "Basic (in thousands)",
+      "Weighted Average Shs Out (Dil)": "Diluted (in thousands)",
     },
-    "Blank 2": {
+    "DIVIDENDS": {
       "Preferred Dividends": "Preferred dividends",
       "Dividend per Share": "Dividend per share",
     },
-    "Metrics": {
+    "METRICS": {
       "Revenue Growth": "Revenue growth",
       "Gross Margin": "Gross margin",
       "EBITDA Margin": "EBITDA margin",
@@ -47,19 +47,19 @@ class Company < ApplicationRecord
   }
 
   GROUP_NUMBER_FORMAT = {
-    "Blank 1": "format_millions",
-    "Earnings per share": "format_round_two",
-    "Shares used in computing earnings per share": "format_round_zero",
-    "Blank 2": "format_round_two",
-    "Metrics": "format_percentage"
+    "INCOME": "format_millions",
+    "EARNINGS PER SHARE": "format_round_two",
+    "SHARES USED IN COMPUTING EARNINGS PER SHARE": "format_thousands_round_zero",
+    "DIVIDENDS": "format_round_two",
+    "METRICS": "format_percentage"
   }
 
   def self.format_millions(number)
     number.to_f.round(0) / 1_000_000
   end
 
-  def self.format_round_zero(number)
-    number.to_f.round(0)
+  def self.format_thousands_round_zero(number)
+    number.to_f.round(0) / 1_000
   end
 
   def self.format_round_two(number)
