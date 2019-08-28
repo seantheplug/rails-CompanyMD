@@ -4,7 +4,7 @@
       <h1 class="mb-3">Create a new group</h1>
 
       <%= simple_form_for @group do |f| %>
-        <%= f.input :name, placeholder: "Give your new group a name, eg. Technology"%>
+        <%= f.input :name, placeholder: "Give your new portfolio a name, eg. Technology"%>
         <div class="d-flex justify-content-between m-2 mt-4">
           <%= link_to "Cancel", root_path, class:"btn" %>
           <%= f.button :submit, class:"btn btn-primary"%>
