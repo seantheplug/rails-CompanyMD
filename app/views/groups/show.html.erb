@@ -16,15 +16,16 @@
   </div>
   <div class="scrollable">
     <%@group.companies.each_with_index do |company, index|%>
-      <%#= @pe_ratio[index] %>
-
       <div class="group-item">
         <%= link_to group_companies_pointer_path(@group, @group.companies_pointers[index]), method: :delete, data:{confirm: "Are you sure you want to delete?"}, title: 'Delete from group' do %>
           <i class="fas fa-times-circle delete"></i>
         <% end %>
         <%= render 'shared/group_item', company: company, index: index %>
+        <%= render 'shared/company_tab_display', company: company %>
       </div>
     <%end%>
+
+
   </div>
 </div>
 

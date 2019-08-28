@@ -1,6 +1,6 @@
 var content = `<%= render 'index', news_array: @news_array %>`
 var dispalyNewsOnClick = (content) => {
-  const newsDiv = document.querySelector("#news-container")
+  const newsDiv = document.querySelector("#content-space")
   newsDiv.innerHTML = content
 };
 

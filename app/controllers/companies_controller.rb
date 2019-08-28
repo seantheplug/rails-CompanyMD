@@ -11,7 +11,6 @@ class CompaniesController < ApplicationController
   def index
     @companies = policy_scope(Company).first(5)
     @market_index_array = MarketIndex.all
-    @min_price = []
     if signed_in?
       @hidden_group = current_user.groups.first.companies
     end

@@ -1,0 +1,7 @@
+var content = `<%= render 'index', sec_data: @sec_data %>`
+var dispalySECOnClick = (content) => {
+  const linkSpace = document.querySelector("#content-space")
+  linkSpace.innerHTML = content
+};
+
+dispalySECOnClick(content)

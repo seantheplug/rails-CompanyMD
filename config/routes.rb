@@ -18,7 +18,10 @@ Rails.application.routes.draw do
     resources :companies_pointers, only: [:new, :create]
     resources :news, only: [:index]
     resources :financial, only: [:show]
+    resources :sec_data_fetches, only: [:index]
     get 'charts/show/daily', to: 'charts#completed_company_show_daily_tasks'
+    get 'charts/show/weekly', to: 'charts#completed_company_show_weekly_tasks'
+    get 'charts/show/monthly', to: 'charts#completed_company_show_monthly_tasks'
     get 'charts/index', to: 'charts#completed_company_index_tasks'
   end
 
