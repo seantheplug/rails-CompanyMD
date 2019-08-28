@@ -37,20 +37,33 @@ module ApplicationHelper
   end
 
   def create_stock_price_chart_show(company, time_series, outputsize = nil)
-    if outputsize.nil?
+    if outputsize.nil? and time_series != "INTRADAY"
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    elsif time_series == "INTRADAY"
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&interval=5min&outputsize=compact&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     end
-
     demo_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
     json = open(url).read
     price_info = JSON.parse(json)
     time = []
     close_price = []
-    price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
-      time << key
-      close_price << value["4. close"].to_f
+    if time_series == "DAILY"
+      price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
+        time << key
+        close_price << value["4. close"].to_f
+      end
+    elsif time_series == "INTRADAY"
+      price_info["Time Series (5min)"].each do |key, value|
+        time << key
+        close_price << value["4. close"].to_f
+      end
+    else
+      price_info["#{time_series.capitalize} Time Series"].each do |key, value|
+        time << key
+        close_price << value["4. close"].to_f
+      end
     end
     # @min_price << close_price.min
     # company.update!(times: time, prices: close_price)
@@ -175,23 +188,32 @@ module ApplicationHelper
     end
   end
 
-  def financial(ticker, year)
+  def financial(ticker)
     url = "https://financialmodelingprep.com/api/v3/financials/income-statement/#{ticker}"
     json = open(url).read
     report_collection = JSON.parse(json)
 
      annual_reports = report_collection["financials"]
 
-     if !annual_reports.nil?
-      annual_reports.each_with_index do |item, index|
-        if item["date"][0..3] == year
-          @annual_report = annual_reports[index]
-        else
-          next
-        end
-      end
-    end
-    @annual_report
+     @last_three_years = annual_reports[0..2].compact
+
+  #    if !last_three_years.nil?
+  #     last_three_years.compact
+
+  #     last_three_years.each_with_index do |item, index|
+  #       if item.nil?
+  #         last_three_years.drop[index..-1]
+  #         break
+  #       else
+
+  #       if item["date"][0..3] == year
+  #         @annual_report = annual_reports[index]
+  #       else
+  #         next
+  #       end
+  #     end
+  #   end
+  #   @annual_report
   end
 end
 

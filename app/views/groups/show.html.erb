@@ -5,10 +5,10 @@
     <div class="col-12 group-name">
       <h1 class="mb-3">
       <%= @group.name.capitalize %>
-      <%= link_to "#", data: {toggle: "modal", target: "#modalgroupeditForm"}, title: 'Edit group name' do %>
+      <%= link_to "#", data: {toggle: "modal", target: "#modalgroupeditForm"}, title: 'Edit portfolio name' do %>
         <i class="fas fa-pencil-alt edit"></i>
       <% end %>
-      <%= link_to group_path(@group, format: :xlsx), class: 'text-decoration-none float-right', title: 'Download data as excel' do %>
+      <%= link_to group_path(@group, format: :xlsx), class: 'text-decoration-none ml-2', title: 'Download data as excel' do %>
         <i class="fas fa-file-excel ml-2 download"></i>
       <% end %>
       </h1>
@@ -16,21 +16,40 @@
   </div>
   <div class="scrollable">
     <%@group.companies.each_with_index do |company, index|%>
-      <%#= @pe_ratio[index] %>
-
       <div class="group-item">
-        <%= link_to group_companies_pointer_path(@group, @group.companies_pointers[index]), method: :delete, data:{confirm: "Are you sure you want to delete?"}, title: 'Delete from group' do %>
+        <%= link_to group_companies_pointer_path(@group, @group.companies_pointers[index]), method: :delete, data:{confirm: "Are you sure you want to remove from this portfolio?"}, title: 'Remove from portfolio' do %>
           <i class="fas fa-times-circle delete"></i>
         <% end %>
         <%= render 'shared/group_item', company: company, index: index %>
+        <%= render 'shared/company_tab_display', company: company %>
       </div>
     <%end%>
+
+
   </div>
 </div>
 
 <div class="modal fade" id="modalgroupeditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= simple_form_for [@group] do |f| %>
-  <%= f.input :name, placeholder: "Type your new group name"%>
-  <%= f.submit "confirm", class: "btn btn-primary" %>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@group], class: "mt-4 w-40" do |f| %>
+        <%= f.input :name, placeholder: "Type your new group name"%>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "confirm", class: "btn btn-primary" %>
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
   <% end %>
 </div>
+
+
+

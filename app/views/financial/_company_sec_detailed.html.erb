@@ -1,62 +1,86 @@
-  <% if financials == ""  %>
-    <div>
-      <h2>
-        There are no available SEC data for this company
-      </h2>
-    </div>
-  <% else %>
-   <h3 class="mb-3">Statement of Operations</h3>
-    <div class="row mb-3 company-data">
-      <div class="col-6">
-        <ul>
-          <li><span class="data-title"></span> (in millions of USD)</li>
-          <li><span class="data-title">Net sales</span> $<%= number_with_delimiter(financials["Revenue"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Cost of sales</span> $<%= number_with_delimiter(financials["Cost of Revenue"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Gross Margin</span> $<%= number_with_delimiter(financials["Gross Profit"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <br>
-          <li><span class="data-title">Research and development</span> $<%= number_with_delimiter(financials["R&D Expenses"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Selling, general and administrative</span> $<%= number_with_delimiter(financials["SG&A Expense"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Total operating expenses</span> $<%= number_with_delimiter(financials["Operating Expenses"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <br>
-          <li><span class="data-title">EBITDA</span> $<%= number_with_delimiter(financials["EBITDA"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">EBIT</span> $<%= number_with_delimiter(financials["EBIT"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Operating Income</span> $<%= number_with_delimiter(financials["Operating Income"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Other Income(expense), net</span> $<%= number_with_delimiter(financials["Interest Expense"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <br>
-          <li><span class="data-title">Income before provision for income taxes</span> $<%= number_with_delimiter(financials["Earnings before Tax"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Net income from non-controlling int)</span> $<%= number_with_delimiter(financials["Net Income - Non-Controlling int"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Net income from discontinued ops)</span> $<%= number_with_delimiter(financials["Net Income - Discontinued ops"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Net income</span> $<%= number_with_delimiter(financials["Net Income"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Net income com</span> $<%= number_with_delimiter(financials["Net Income Com"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-          <li><span class="data-title">Consolidated income</span> $<%= number_with_delimiter(financials["Consolidated Income"].to_f.round(0)/1000000, :delimiter => ',') %></li>
-        </ul>
-      </div>
-      <div class="col-6">
-        <ul>
-          <li><span class="data-title">Earnings per share:</span></li>
-          <li><span class="data-title">Basic</span> $<%= number_with_delimiter(financials["EPS"], :delimiter => ',') %></li>
-          <li><span class="data-title">Diluted</span> $<%= number_with_delimiter(financials["EPS Diluted"], :delimiter => ',') %></li>
-          <br>
-          <li><span class="data-title">Shares used in computing earnings per share:</span></li>
-          <li><span class="data-title">Basic</span> <%= number_with_delimiter(financials["Weighted Average Shs Out"].to_f.round(0), :delimiter => ',') %></li>
-          <li><span class="data-title">Diluted</span> <%= number_with_delimiter(financials["Weighted Average Shs Out (Dil)"].to_f.round(0), :delimiter => ',') %></li>
-          <br>
-          <li><span class="data-title">Preferred dividends</span> $<%= number_with_delimiter(financials["Preferred Dividends"].to_f.round(2), :delimiter => ',') %></li>
-          <li><span class="data-title">Dividend per share</span> $<%= number_with_delimiter(financials["Dividend per Share"].to_f.round(2), :delimiter => ',') %></li>
-          <br>
-          <li><span class="data-title">Metrics</span></li>
-          <li><span class="data-title">Revenue growth</span> <%= (financials["Revenue Growth"].to_f*100).round(2) %>%</li>
-          <li><span class="data-title">Gross margin</span> <%= (financials["Gross Margin"].to_f*100).round(2) %>%</li>
-          <li><span class="data-title">EBITDA margin</span> <%= (financials["EBITDA Margin"].to_f*100).round(2) %>%</li>
-          <li><span class="data-title">EBIT margin</span> <%= (financials["EBIT Margin"].to_f*100).round(2) %>%</li>
-          <li><span class="data-title">Profit margin</span> <%= (financials["Profit Margin"].to_f*100).round(2) %>%</li>
-          <li><span class="data-title">Free cash flow margin</span> <%= (financials["Free Cash Flow margin"].to_f*100).round(2) %>%</li>
-          <li><span class="data-title">Earnings before tax margin</span> <%= (financials["Earnings Before Tax Margin"].to_f*100).round(2) %>%</li>
-          <li><span class="data-title">Net profit margin</span> <%= (financials["Net Profit Margin"].to_f*100).round(2) %>%</li>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+
+<% if financials == ""  %>
+  <div>
+    <h2>
+      There is no available SEC data for this company
+    </h2>
+  </div>
+<% else %>
+  <table class="sec-detailed">
+    <thead>
+      <th>Financials (in millions of USD)</th>
+      <% financials.each do |year_financial|%>
+        <th>FY End <%= year_financial["date"] %> </th>
+      <% end %>
+    </thead>
+    <tbody>
+      <% Company::FINANCIAL_DEFINITION.each do |group_name, group_fields| %>
+        <th class="group-header">
+          <%= "#{group_name}:" %>
+        </th>
+        <% group_fields.each do |label, _value| %>
+          <tr>
+            <th><%= group_fields[label] %></th>
+            <% financials.each do |year_financial| %>
+              <% field_value = year_financial[label.to_s] %>
+              <% if field_value.to_f.negative? %>
+                <td class="field_data">(<%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, -field_value.to_f), delimiter: ',') %>)</td>
+                <% else %>
+                <td class="field_data"><%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, field_value), delimiter: ',') %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+    <!-- <h3>CONSOLIDATED STATEMENT OF OPERATIONS</h3>
+    <ul>
+      <li><span class="data-title">Fiscal Year End<%#= financials[0]["date"] %></span> (in millions of USD)</li>
+      <li><span class="data-title">Net sales</span> $<%#= number_with_delimiter(financials[0]["Revenue"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Cost of sales</span> $<%#= number_with_delimiter(financials[0]["Cost of Revenue"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Gross Margin</span> $<%#= number_with_delimiter(financials[0]["Gross Profit"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <br>
+      <li><span class="data-title">Research and development</span> $<%#= number_with_delimiter(financials[0]["R&D Expenses"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Selling, general and administrative</span> $<%#= number_with_delimiter(financials[0]["SG&A Expense"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Total operating expenses</span> $<%#= number_with_delimiter(financials[0]["Operating Expenses"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <br>
+      <li><span class="data-title">EBITDA</span> $<%#= number_with_delimiter(financials[0]["EBITDA"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">EBIT</span> $<%#= number_with_delimiter(financials[0]["EBIT"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Operating Income</span> $<%#= number_with_delimiter(financials[0]["Operating Income"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Other Income(expense), net</span> $<%#= number_with_delimiter(financials[0]["Interest Expense"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <br>
+      <li><span class="data-title">Income before provision for income taxes</span> $<%#= number_with_delimiter(financials[0]["Earnings before Tax"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Net income from non-controlling int)</span> $<%#= number_with_delimiter(financials[0]["Net Income - Non-Controlling int"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Net income from discontinued ops)</span> $<%#= number_with_delimiter(financials[0]["Net Income - Discontinued ops"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Net income</span> $<%#= number_with_delimiter(financials[0]["Net Income"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Net income com</span> $<%#= number_with_delimiter(financials[0]["Net Income Com"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <li><span class="data-title">Consolidated income</span> $<%#= number_with_delimiter(financials[0]["Consolidated Income"].to_f.round(0)/1000000, :delimiter => ',') %></li>
+      <br>
+      <li><span class="data-title">Earnings per share:</span></li>
+      <li><span class="data-title">Basic</span> $<%#= number_with_delimiter(financials[0]["EPS"], :delimiter => ',') %></li>
+      <li><span class="data-title">Diluted</span> $<%#= number_with_delimiter(financials[0]["EPS Diluted"], :delimiter => ',') %></li>
+      <br>
+      <li><span class="data-title">Shares used in computing earnings per share:</span></li>
+      <li><span class="data-title">Basic</span> <%#= number_with_delimiter(financials[0]["Weighted Average Shs Out"].to_f.round(0), :delimiter => ',') %></li>
+      <li><span class="data-title">Diluted</span> <%#= number_with_delimiter(financials[0]["Weighted Average Shs Out (Dil)"].to_f.round(0), :delimiter => ',') %></li>
+      <br>
+      <li><span class="data-title">Preferred dividends</span> $<%#= number_with_delimiter(financials[0]["Preferred Dividends"].to_f.round(2), :delimiter => ',') %></li>
+      <li><span class="data-title">Dividend per share</span> $<%#= number_with_delimiter(financials[0]["Dividend per Share"].to_f.round(2), :delimiter => ',') %></li>
+      <br>
+      <li><span class="data-title">Metrics</span></li>
+      <li><span class="data-title">Revenue growth</span> <%#= (financials[0]["Revenue Growth"].to_f*100).round(2) %>%</li>
+      <li><span class="data-title">Gross margin</span> <%#= (financials[0]["Gross Margin"].to_f*100).round(2) %>%</li>
+      <li><span class="data-title">EBITDA margin</span> <%#= (financials[0]["EBITDA Margin"].to_f*100).round(2) %>%</li>
+      <li><span class="data-title">EBIT margin</span> <%#= (financials[0]["EBIT Margin"].to_f*100).round(2) %>%</li>
+      <li><span class="data-title">Profit margin</span> <%#= (financials[0]["Profit Margin"].to_f*100).round(2) %>%</li>
+      <li><span class="data-title">Free cash flow margin</span> <%#= (financials[0]["Free Cash Flow margin"].to_f*100).round(2) %>%</li>
+      <li><span class="data-title">Earnings before tax margin</span> <%#= (financials[0]["Earnings Before Tax Margin"].to_f*100).round(2) %>%</li>
+      <li><span class="data-title">Net profit margin</span> <%#= (financials[0]["Net Profit Margin"].to_f*100).round(2) %>%</li>
+    </ul> -->
+
+<% end %>
 <!-- Revenue
 Cost of Sales
 Gross Profit

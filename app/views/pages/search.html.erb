@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h1>Search Results</h1>
-  <ul class="search-result">
+  <ul class="search-result w-100">
     <% @search_company_result_array.each do |company| %>
       <%=render 'search_result', company: company %>
     <% end %>

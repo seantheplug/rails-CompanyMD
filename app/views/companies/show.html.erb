@@ -3,45 +3,117 @@
 <div class="content-container col-10">
   <div class="row">
     <div class="col-6">
-      <%#= render 'shared/company_description' %>
+      <%= render 'shared/company_description' %>
     </div>
     <div class="col-6 d-flex">
-      <%#= render 'shared/company_data', company_data: @company_data, dividend_yield: @dividend_yield, pe_ratio: @pe_ratio %>
+      <%= render 'shared/company_data', company_data: @company_data, dividend_yield: @dividend_yield, pe_ratio: @pe_ratio %>
     </div>
   </div>
 
   <div class="row mb-3">
     <div class="col-12">
       <div class="show-graph">
-      <h3 class="graph-label text-center">
-        Last 4 months
-        <%= link_to company_path(@company, format: :xlsx), class: 'text-decoration-none', title: 'Download data as excel' do %>
-          <i class="fas fa-file-excel ml-2 download"></i>
-        <% end %>
-      </h3>
-      <%= line_chart company_charts_show_daily_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"] %>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-1day-tab" data-toggle="pill" href="#pills-1day" role="tab" aria-controls="pills-1day" aria-selected="true">1 Day</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-1month-tab" data-toggle="pill" href="#pills-1month" role="tab" aria-controls="pills-1month" aria-selected="false">1 Month</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-6month-tab" data-toggle="pill" href="#pills-6month" role="tab" aria-controls="pills-6month" aria-selected="false">6 Months</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-1year-tab" data-toggle="pill" href="#pills-1year" role="tab" aria-controls="pills-1year" aria-selected="false">1 Year</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-5year-tab" data-toggle="pill" href="#pills-5year" role="tab" aria-controls="pills-5year" aria-selected="false">5 Years</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-1day" role="tabpanel" aria-labelledby="pills-1day-tab">
+            <div id="daily-graph">
+              <h3 class="graph-label text-center">
+                1 Day
+              </h3>
+              <%= line_chart company_charts_show_intraday_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"], library: {scales: {
+                    xAxes: [{
+                      type: 'time',
+                      tick: {
+                        source: 'auto'
+                      }
+                    }]
+                }} %>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-1month" role="tabpanel" aria-labelledby="pills-1month-tab">
+            <div id="daily-graph">
+              <h3 class="graph-label text-center">
+                1 Month
+                <%= link_to company_path(@company, format: :xlsx), class: 'text-decoration-none', title: 'Download data as excel' do %>
+                  <i class="fas fa-file-excel ml-2 download"></i>
+                <% end %>
+              </h3>
+              <%= line_chart company_charts_show_daily_one_month_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"], library: {scales: {
+                    xAxes: [{
+                      type: 'time',
+                      time: {
+                          unit: 'day'
+                      }
+                    }]
+                }}%>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-6month" role="tabpanel" aria-labelledby="pills-6month-tab">
+            <div id="daily-graph">
+              <h3 class="graph-label text-center">
+                6 Months
+              </h3>
+              <%= line_chart company_charts_show_daily_six_month_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"], library: {scales: {
+                    xAxes: [{
+                      type: 'time',
+                      time: {
+                          unit: 'week'
+                      }
+                    }]
+                }}%>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-1year" role="tabpanel" aria-labelledby="pills-1year-tab">
+            <div id="daily-graph">
+              <h3 class="graph-label text-center">
+                1 year
+              </h3>
+              <%= line_chart company_charts_show_daily_one_year_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"], library: {scales: {
+                    xAxes: [{
+                      type: 'time',
+                      time: {
+                          unit: 'week'
+                      }
+                    }]
+                }}  %>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-5year" role="tabpanel" aria-labelledby="pills-5year-tab">
+            <div id="daily-graph">
+              <h3 class="graph-label text-center">
+                5 year
+              </h3>
+              <%= line_chart company_charts_show_weekly_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"], library: {scales: {
+                    xAxes: [{
+                      type: 'time',
+                      time: {
+                          unit: 'month'
+                      }
+                    }]
+                }} %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
-  <div class="row">
-    <div class="col-12">
-      <div class="info-tabs mt-3">
-        <%= link_to "Fetch SEC Financial Data for #{@company.ticker}", company_financial_path(@company), remote: true, id: "financials" %>
-        <%= link_to "Fetch news about #{@company.ticker}", company_news_index_path(@company), remote: true, id: "news" %>
-        <%= link_to "Fetch SEC Reports for #{@company.ticker}", company_sec_data_fetches_path(@company), remote: true, id: "reports" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <div id="financials-content" style="display: none" data-loaded="false"></div>
-      <div id="news-content" style="display: none" data-loaded="false"></div>
-      <div id="reports-content" style="display: none" data-loaded="false"></div>
-    </div>
-  </div>
+  <%= render 'shared/company_tab_display', company: @company %>
 
 </div>
-
 

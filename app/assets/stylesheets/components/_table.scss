@@ -1,0 +1,12 @@
+.sec-detailed {
+    margin: 0 auto;
+
+    thead {
+        background: darken($light-gray, 3%);
+        padding: 5px 0;
+    }
+
+    tr:hover {
+        background: $light-gray;
+    }
+}
