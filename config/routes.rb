@@ -19,9 +19,11 @@ Rails.application.routes.draw do
     resources :news, only: [:index]
     resources :financial, only: [:show]
     resources :sec_data_fetches, only: [:index]
-    get 'charts/show/daily', to: 'charts#completed_company_show_daily_tasks'
+    get 'charts/show/intraday', to: 'charts#completed_company_show_intraday_tasks'
+    get 'charts/show/daily/one_month', to: 'charts#completed_company_show_daily_one_month_tasks'
+    get 'charts/show/daily/six_month', to: 'charts#completed_company_show_daily_six_month_tasks'
+    get 'charts/show/daily/one_year', to: 'charts#completed_company_show_daily_one_year_tasks'
     get 'charts/show/weekly', to: 'charts#completed_company_show_weekly_tasks'
-    get 'charts/show/monthly', to: 'charts#completed_company_show_monthly_tasks'
     get 'charts/index', to: 'charts#completed_company_index_tasks'
   end
 

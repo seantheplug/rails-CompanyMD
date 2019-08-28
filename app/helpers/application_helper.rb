@@ -37,8 +37,10 @@ module ApplicationHelper
   end
 
   def create_stock_price_chart_show(company, time_series, outputsize = nil)
-    if outputsize.nil?
+    if outputsize.nil? and time_series != "INTRADAY"
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+    elsif time_series == "INTRADAY"
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&interval=5min&outputsize=compact&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     else
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     end
@@ -49,6 +51,11 @@ module ApplicationHelper
     close_price = []
     if time_series == "DAILY"
       price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
+        time << key
+        close_price << value["4. close"].to_f
+      end
+    elsif time_series == "INTRADAY"
+      price_info["Time Series (5min)"].each do |key, value|
         time << key
         close_price << value["4. close"].to_f
       end
