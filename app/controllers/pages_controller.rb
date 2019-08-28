@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   include TenkHelper
   def home
     resource = User.new
+    @disable_nav = true
   end
 
   def uikit
@@ -24,5 +25,11 @@ class PagesController < ApplicationController
         end
       end
     end
+
+    respond_to do |format|
+      format.html { render 'pages/search' }
+      format.js 
+    end
+
   end
 end

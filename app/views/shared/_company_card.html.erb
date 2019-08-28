@@ -1,28 +1,8 @@
 <div class="col-4">
-  <div class="row card-company">
-    <div class="col-6 card-company-content">
-      <h3>
-        <%= link_to company_path(company) do %>
-          <%= get_company_name(company.ticker) %>
-        <% end %>
-      </h3>
-      <p>
-        <% if signed_in? %>
-          <%= link_to new_company_companies_pointer_path(company) do %>
-            <i class="fas fa-plus-circle mr-1"></i>
-          <% end %>
-        <% else %>
-          <%= link_to 'Sign In', data: {toggle: "modal", target: "#modalLRForm"} do %>
-          <i class="fas fa-plus-circle mr-1"></i>
-          <% end %>
-        <% end %>
-        <%= company.ticker %>
-      </p>
-      <h3><i class="fas fa-arrow-up mr-2 arrow"></i><span class="stock-price"><%= (quote_endpoint(company.ticker)[:price]).to_f.round(2) %></span></h3>
-    </div>
+  <div class="row card-company flex-row-reverse">
     <div class="col-6 card-company-graph">
-      <%= line_chart @companies_chart_array[index],
-          min: @min_price[index]*0.9,
+      <%= line_chart company_charts_index_path(company),
+          min: nil,
           defer: true,
           colors: ["#75E6DA"],
           points: false,
@@ -35,6 +15,33 @@
             }
           }
       %>
+    </div>
+    <div class="col-6 card-company-content">
+      <h3>
+        <%= link_to company_path(company) do %>
+          <%= get_company_name(company.ticker) %>
+        <% end %>
+      </h3>
+      <p>
+        <% if signed_in? %>
+          <%= link_to new_company_companies_pointer_path(company), title: 'Add to group', class: 'text-decoration-none' do %>
+            <i class="fas fa-plus-circle mr-1"></i>
+          <% end %>
+        <% else %>
+          <%= link_to 'Sign In', data: {toggle: "modal", target: "#modalLRForm"} do %>
+          <i class="fas fa-plus-circle mr-1"></i>
+          <% end %>
+        <% end %>
+        <%= company.ticker %>
+      </p>
+      <h3>
+        <%if (company.prices[-1] - company.prices[-2]) >= 0 %>
+          <i class="fas fa-arrow-up mr-2 arrow"></i>
+        <%else %>
+          <i class="fas fa-arrow-up mr-2 arrow down"></i>
+        <%end %>
+        <span class="stock-price"><%= (quote_endpoint(company.ticker)[:price]).to_f.round(2) %></span>
+      </h3>
     </div>
   </div>
 </div>

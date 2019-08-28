@@ -17,3 +17,13 @@ $nav-height: 80px;
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+nav.landing-nav {
+  height: $nav-height;
+  width: 100%;
+  display: block;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -27,7 +27,7 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price << close_price.min
+    # @min_price << close_price.min
     company.update!(times: time, prices: close_price)
     price_data_array = []
     close_price.each_with_index do |price, index|
@@ -52,7 +52,7 @@ module ApplicationHelper
       time << key
       close_price << value["4. close"].to_f
     end
-    @min_price << close_price.min
+    # @min_price << close_price.min
     # company.update!(times: time, prices: close_price)
     price_data_array = []
     close_price.each_with_index do |price, index|
@@ -60,7 +60,6 @@ module ApplicationHelper
     end
     return price_data_array.reverse!
   end
-
 
   def quote_endpoint(ticker)
     url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=#{ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
@@ -174,6 +173,25 @@ module ApplicationHelper
       json = open(url).read
       JSON.parse(json)
     end
+  end
+
+  def financial(ticker, year)
+    url = "https://financialmodelingprep.com/api/v3/financials/income-statement/#{ticker}"
+    json = open(url).read
+    report_collection = JSON.parse(json)
+
+     annual_reports = report_collection["financials"]
+
+     if !annual_reports.nil?
+      annual_reports.each_with_index do |item, index|
+        if item["date"][0..3] == year
+          @annual_report = annual_reports[index]
+        else
+          next
+        end
+      end
+    end
+    @annual_report
   end
 end
 

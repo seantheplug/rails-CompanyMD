@@ -3,14 +3,37 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CompanyMD</title>
-    <link rel="shortcut icon" type="image/png" href=<%= image_path 'favicon.png' %>/>
+    <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:title" content="<%= meta_title %>">
+    <meta name="twitter:description" content="<%= meta_description %>">
+    <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:image:src" content="<%= meta_image %>">
   </head>
   <body>
+    <% if @disable_nav %>
+      <nav class="landing-nav">
+        <%= image_tag 'logo-white.png', width: '40px' %>
+      </nav>
+      <%= yield %>
+      <%= render 'shared/sign_in_modal' %>
+    <% else %>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= javascript_pack_tag 'chart' %>
@@ -22,6 +45,7 @@
         <%= render 'shared/sign_in_modal' %>
       </div>
     </div>
+    <% end %>
     <footer>
       <p>© <%= Date.today.year %> CompanyMD</p>
     </footer>

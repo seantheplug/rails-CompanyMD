@@ -1,9 +1,11 @@
 <div class="company-data">
   <ul>
-    <li><span class="data-title">Open:</span> $<%= quote_endpoint(@company.ticker)[:open] %></li>
-    <li><span class="data-title">High:</span> $<%= quote_endpoint(@company.ticker)[:high] %></li>
-    <li><span class="data-title">Low:</span> $<%= quote_endpoint(@company.ticker)[:low] %></li>
-    <li><span class="data-title">Volume:</span> <%= quote_endpoint(@company.ticker)[:volume] %></li>
-    <li><span class="data-title">Change:</span> <%= quote_endpoint(@company.ticker)[:change_percent] %>%</li>
+    <li><span class="data-title">Open:</span> $<%= number_with_delimiter(company_data[:open], :delimiter => ',') %></li>
+    <li><span class="data-title">High:</span> $<%= number_with_delimiter(company_data[:high], :delimiter => ',') %></li>
+    <li><span class="data-title">Low:</span> $<%= number_with_delimiter(company_data[:low], :delimiter => ',') %></li>
+    <li><span class="data-title">Volume:</span> <%= number_with_delimiter(company_data[:volume], :delimiter => ',') %></li>
+    <li><span class="data-title">Change:</span> <%= company_data[:change_percent] %>%</li>
+    <li><span class="data-title">P/E:</span> <%= pe_ratio %></li>
+    <li><span class="data-title">Dividend Yield:</span> <%= dividend_yield %>%</li>
   </ul>
 </div>

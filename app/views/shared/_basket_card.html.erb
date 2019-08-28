@@ -1,8 +1,12 @@
 
-<%= link_to group_path(group) do %>
+<%= link_to group_path(group), title: "Go to #{group.name}", class: 'text-decoration-none' do %>
   <div class="basket-card">
-    <p><%=group.name%></p>
+    <p class="text-truncate"><%=group.name%></p>
+    <p>(<%= group.companies.count %>)</p>
     <i class="fas fa-eye"></i>
   </div>
 <% end %>
 
+<%= link_to group_path(group), method: :delete do %>
+    <i class="fas fa-minus-circle"></i>
+<% end %>
