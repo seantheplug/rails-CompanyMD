@@ -32,6 +32,7 @@
         <div class="report-item">
           <%= link_to report[:link], target: '_blank' do %>
             <i class="far fa-file-alt mr-2"></i>Report filed on <%= report[:date] %>
+          <%= link_to report[]  %>
           <% end %>
         </div>
         <% end %>
@@ -42,7 +43,7 @@
   <div class="row mb-3 company-data">
       <%= render 'shared/company_detailed_data' %>
   </div>
-  
+
   <div id="financials">
     <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
     <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-outline-primary" %>
