@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
       if key_stat(company.ticker, "peRatio").nil?
         @pe_ratio << "-"
       else
-       p "ratio", @pe_ratio << key_stat(company.ticker, "peRatio")
+        p "ratio", @pe_ratio << key_stat(company.ticker, "peRatio")
       end
       if company.prices.empty? || company.times.empty? || (company.updated_at + 12.hours) < Time.now.utc
         puts "one api call"
