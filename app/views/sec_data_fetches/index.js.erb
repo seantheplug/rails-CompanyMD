@@ -1,0 +1,4 @@
+if (document.querySelector('#reports-content').dataset.loaded == "false") {
+  document.querySelector("#reports-content").innerHTML = `<%= render 'index', sec_data: @sec_data %>`;
+  document.querySelector('#reports-content').dataset.loaded = "true";
+}

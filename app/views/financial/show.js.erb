@@ -1,7 +1,4 @@
-var content = `<%= render 'company_sec_detailed', financials: @financials %>`
-var displayFinancialsOnClick = (content) => {
-  const financialsDiv = document.querySelector("#financials")
-  financialsDiv.innerHTML = content
-};
-
-displayFinancialsOnClick(content)
+if (document.querySelector('#financials-content').dataset.loaded == "false") {
+  document.querySelector("#financials-content").innerHTML = `<%= render 'company_sec_detailed', financials: @financials %>`;
+  document.querySelector('#financials-content').dataset.loaded = "true";
+}

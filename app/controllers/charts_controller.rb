@@ -10,7 +10,7 @@ class ChartsController < ApplicationController
 
   def completed_company_index_tasks
     @company = Company.find(params[:company_id])
-    if @company.prices.empty? || @company.times.empty? || (@company.updated_at + 12.hours) < Time.now.utc
+    if @company.prices.empty? || @company.times.empty? || (@company.updated_at + 4.hours) < Time.now.utc
       puts "one api call"
       @price_data_array = create_stock_price_chart_index(@company, "DAILY")
     else

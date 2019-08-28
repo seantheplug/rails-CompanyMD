@@ -1,11 +1,10 @@
 const toggler = () => {
     const reports = document.querySelector('#reports');
-    const reportsContent = document.querySelector('.reports');
-    const statement = document.querySelector('#statement');
-    const statementContent = document.querySelector('#financials');
+    const reportsContent = document.querySelector('#reports-content');
+    const statement = document.querySelector('#financials');
+    const statementContent = document.querySelector('#financials-content');
     const news = document.querySelector('#news');
-    const newsContent = document.querySelector('#news-container');
-    const buttons = [reports, statement, news];
+    const newsContent = document.querySelector('#news-content');
 
     reports.addEventListener("click", () => {
         reportsContent.style.display = "block";
