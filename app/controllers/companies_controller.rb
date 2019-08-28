@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
   # TenkHelper - helper tha generates [{link: "www", date: "xxxx-xx-xx"}]
-  include TenkHelper
+  include SecHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @companies = policy_scope(Company).first(5)
@@ -19,9 +19,9 @@ class CompaniesController < ApplicationController
       if market_index.price.nil? || (market_index.updated_at + 30.minutes) < Time.now.utc
         puts "one api call get market_index"
         market_index_quote_endpoint(market_index)
+      end
     end
   end
-end
 
   def show
     authorize @company
@@ -63,3 +63,4 @@ end
     @company = Company.find(params[:id])
   end
 end
+
