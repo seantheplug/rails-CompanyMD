@@ -12,7 +12,7 @@
       <thead>
         <th>Financials (in millions of USD)</th>
         <% financials.each do |year_financial|%>
-          <th>Fiscal Year End <%= year_financial["date"] %> </th>
+          <th>FY End <%= year_financial["date"] %> </th>
         <% end %>
       </thead>
       <tbody>
@@ -25,7 +25,11 @@
               <th><%= group_fields[label] %></th>
               <% financials.each do |year_financial| %>
                 <% field_value = year_financial[label.to_s] %>
-                <td><%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, field_value), delimiter: ',') %></td>
+                <% if field_value.to_f.negative? %>
+                  <td class="field_data">(<%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, -field_value.to_f), delimiter: ',') %>)</td>
+                  <% else %>
+                  <td class="field_data"><%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, field_value), delimiter: ',') %></td>
+                <% end %>
               <% end %>
             </tr>
           <% end %>
