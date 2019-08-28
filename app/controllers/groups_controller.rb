@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   include ApplicationHelper
-  include TenkHelper
+  include SecHelper
   def index
     @groups = policy_scope(Group)
   end
