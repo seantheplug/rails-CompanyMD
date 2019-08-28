@@ -23,27 +23,24 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  
   <div class="row">
-    <div>
-      <%= link_to "Recent SEC Financial Data for #{@company.ticker}", company_financial_path(@company), remote: true, id: "financials" %>
+    <div class="col-12">
+      <div class="info-tabs mt-3">
+        <%= link_to "Fetch SEC Financial Data for #{@company.ticker}", company_financial_path(@company), remote: true, id: "financials" %>
+        <%= link_to "Fetch news about #{@company.ticker}", company_news_index_path(@company), remote: true, id: "news" %>
+        <%= link_to "Fetch SEC Reports for #{@company.ticker}", company_sec_data_fetches_path(@company), remote: true, id: "reports" %>
+      </div>
     </div>
-    <div>
-      <%= form_tag company_news_index_path(@company), method: :get, remote: true, id: "news" do %>
-      <%= submit_tag "Fetch news about #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
-      <% end %>
-    </div>
-    <div>
-      <%= form_tag company_sec_data_fetches_path(@company), method: :get, remote: true, id: "reports" do %>
-      <%= submit_tag "Fetch SEC Report links for #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
-      <% end %>
-    </div>
-  </div>
   </div>
 
-  <div id="financials-content" style="display: none" data-loaded="false"></div>
-  <div id="news-content" style="display: none" data-loaded="false"></div>
-  <div id="reports-content" style="display: none" data-loaded="false"></div>
+  <div class="row">
+    <div class="col-12">
+      <div id="financials-content" style="display: none" data-loaded="false"></div>
+      <div id="news-content" style="display: none" data-loaded="false"></div>
+      <div id="reports-content" style="display: none" data-loaded="false"></div>
+    </div>
+  </div>
 
 </div>
 
