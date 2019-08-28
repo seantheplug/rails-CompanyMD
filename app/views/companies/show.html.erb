@@ -23,15 +23,23 @@
       </div>
     </div>
   </div>
-  <div>
-    <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
-    <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
-    <% end %>
-  </div>
-  <div>
-    <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
-    <%= submit_tag "Fetch news about #{@company.ticker}", class: "nav-link" %>
-    <% end %>
+  <div class="container">
+  <div class="row">
+    <div>
+      <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
+      <% end %>
+    </div>
+    <div>
+      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Fetch news about #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
+      <% end %>
+    </div>
+    <div>
+      <%= form_tag  company_sec_data_fetches_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Fetch SEC Report links for #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
+      <% end %>
+    </div>
   </div>
 
   <div id="content-space"></div>
