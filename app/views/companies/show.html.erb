@@ -3,10 +3,10 @@
 <div class="content-container col-10">
   <div class="row">
     <div class="col-6">
-      <%= render 'shared/company_description' %>
+      <%#= render 'shared/company_description' %>
     </div>
     <div class="col-6 d-flex">
-      <%= render 'shared/company_data', company_data: @company_data, dividend_yield: @dividend_yield, pe_ratio: @pe_ratio %>
+      <%#= render 'shared/company_data', company_data: @company_data, dividend_yield: @dividend_yield, pe_ratio: @pe_ratio %>
     </div>
   </div>
 
@@ -23,47 +23,27 @@
       </div>
     </div>
   </div>
-
-  <div class="row mb-3">
-    <div class="col-12">
-      <h3 class="mb-3">10-K & Q Reports</h3>
-      <div class="reports">
-        <div class="report-item">
-          <%= link_to @sec_data.second[:index_10k], target: '_blank' do %>
-            <i class="far fa-folder-open mr-2"></i>10-K Reports Index
-          <% end %>
-        </div>
-        <div class="report-item">
-          <%= link_to @sec_data.third[:index_10q], target: '_blank' do %>
-            <i class="far fa-folder-open mr-2"></i>10-Q Reports Index
-          <% end %>
-        </div>
-        <% @sec_data.first.each do |report| %>
-        <div class="report-item">
-          <%= link_to report[:link], target: '_blank' do %>
-            <i class="far fa-file-alt mr-2"></i>Report filed on <%= report[:date] %>
-          <% end %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div id="financials">
-    <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
-    <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-outline-primary" %>
-    <% end %>
-  </div>
-
+  <div class="container">
   <div class="row">
-    <div class="col-12">
-      <div id="news-container">
-      <%= form_tag company_news_index_path(@company), method: :get, remote: true, class: 'text-center' do %>
+    <div>
+      <%= form_tag company_financial_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Recent SEC Financial Data for #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
+      <% end %>
+    </div>
+    <div>
+      <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
       <%= submit_tag "Fetch news about #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
       <% end %>
-        <!-- API CALL for news will fill this div -->
-      </div>
+    </div>
+    <div>
+      <%= form_tag  company_sec_data_fetches_path(@company), method: :get, remote: true do %>
+      <%= submit_tag "Fetch SEC Report links for #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
+      <% end %>
     </div>
   </div>
+
+  <div id="content-space"></div>
+
 </div>
+
 
