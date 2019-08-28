@@ -56,7 +56,7 @@
     <div id="financials"></div>
   </div>
   <div>
-    <%= form_tag company_news_index_path(@company), method: :get, remote: true, class: 'text-center' do %>
+    <%= form_tag company_news_index_path(@company), method: :get, remote: true do %>
     <%= submit_tag "Fetch news about #{@company.ticker}", class: "btn btn-lg btn-outline-primary mt-3" %>
     <% end %>
     <div id="news-container">
