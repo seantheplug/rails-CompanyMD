@@ -32,6 +32,8 @@ const toggler = () => {
         statement.classList.remove("active");
         news.classList.add("active");
     });
+
+    statement.click();
 }
 
 export { toggler };
