@@ -3,7 +3,10 @@
 
     thead {
         background: darken($light-gray, 3%);
-        padding: 5px 0;
+        
+        th {
+            padding: 10px 0;
+        }
     }
 
     tr:hover {
