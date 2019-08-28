@@ -29,12 +29,12 @@
       <h3 class="mb-3">10-K & Q Reports</h3>
       <div class="reports">
         <div class="report-item">
-          <%= link_to @sec_data.second[:index_10k] do %>
+          <%= link_to @sec_data.second[:index_10k], target: '_blank' do %>
             <i class="far fa-folder-open mr-2"></i>10-K Reports Index
           <% end %>
         </div>
         <div class="report-item">
-          <%= link_to @sec_data.third[:index_10q] do %>
+          <%= link_to @sec_data.third[:index_10q], target: '_blank' do %>
             <i class="far fa-folder-open mr-2"></i>10-Q Reports Index
           <% end %>
         </div>
