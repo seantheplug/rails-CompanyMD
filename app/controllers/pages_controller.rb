@@ -2,7 +2,6 @@ require 'open-uri'
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :uikit]
   include ApplicationHelper
-  include TenkHelper
   def home
     resource = User.new
     @disable_nav = true
@@ -28,7 +27,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html { render 'pages/search' }
-      format.js 
+      format.js
     end
 
   end
