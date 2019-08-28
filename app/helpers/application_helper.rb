@@ -181,23 +181,32 @@ module ApplicationHelper
     end
   end
 
-  def financial(ticker, year)
+  def financial(ticker)
     url = "https://financialmodelingprep.com/api/v3/financials/income-statement/#{ticker}"
     json = open(url).read
     report_collection = JSON.parse(json)
 
      annual_reports = report_collection["financials"]
 
-     if !annual_reports.nil?
-      annual_reports.each_with_index do |item, index|
-        if item["date"][0..3] == year
-          @annual_report = annual_reports[index]
-        else
-          next
-        end
-      end
-    end
-    @annual_report
+     @last_three_years = annual_reports[0..2].compact
+
+  #    if !last_three_years.nil?
+  #     last_three_years.compact
+
+  #     last_three_years.each_with_index do |item, index|
+  #       if item.nil?
+  #         last_three_years.drop[index..-1]
+  #         break
+  #       else
+
+  #       if item["date"][0..3] == year
+  #         @annual_report = annual_reports[index]
+  #       else
+  #         next
+  #       end
+  #     end
+  #   end
+  #   @annual_report
   end
 end
 
