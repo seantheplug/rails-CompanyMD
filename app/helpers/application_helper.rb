@@ -42,15 +42,21 @@ module ApplicationHelper
     else
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
     end
-
     demo_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
     json = open(url).read
     price_info = JSON.parse(json)
     time = []
     close_price = []
-    price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
-      time << key
-      close_price << value["4. close"].to_f
+    if time_series == "DAILY"
+      price_info["Time Series (#{time_series.capitalize})"].each do |key, value|
+        time << key
+        close_price << value["4. close"].to_f
+      end
+    else
+      price_info["#{time_series.capitalize} Time Series"].each do |key, value|
+        time << key
+        close_price << value["4. close"].to_f
+      end
     end
     # @min_price << close_price.min
     # company.update!(times: time, prices: close_price)
