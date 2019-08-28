@@ -6,6 +6,32 @@
   </div>
 <% else %>
   <div class="company-data">
+
+    <table>
+      <thead>
+        <th>Financials (in millions of USD)</th>
+        <% financials.each do |year_financial|%>
+          <th>Fiscal Year End <%= year_financial["date"] %> </th>
+        <% end %>
+      </thead>
+      <tbody>
+        <% Company::FINANCIAL_DEFINITION.each do |group_name, group_fields| %>
+          <th class="group-header">
+            <%= "#{group_name}:" %>
+          </th>
+          <% group_fields.each do |label, _value| %>
+            <tr>
+              <th><%= group_fields[label] %></th>
+              <% financials.each do |year_financial| %>
+                <% field_value = year_financial[label.to_s] %>
+                <td><%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, field_value), delimiter: ',') %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
     <h3>CONSOLIDATED STATEMENT OF OPERATIONS</h3>
     <ul>
       <li><span class="data-title">Fiscal Year End<%= financials[0]["date"] %></span> (in millions of USD)</li>
