@@ -5,7 +5,6 @@ require "net/http"
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :destroy]
   include ApplicationHelper
-  # TenkHelper - helper tha generates [{link: "www", date: "xxxx-xx-xx"}]
   include SecHelper
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
@@ -40,11 +39,9 @@ class CompaniesController < ApplicationController
     else
       @pe_ratio = key_stat(@company.ticker, "peRatio")
     end
-    # ----- excel generator -----
     respond_to do |format|
       format.html
       format.xlsx
-    # ----- excel generator -----
     end
   end
 
