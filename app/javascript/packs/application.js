@@ -1,5 +1,5 @@
 import "bootstrap";
 import "components/group_add_listener";
-import { toggler } from "../components/toggler";
+// import { toggler } from "../components/toggler";
 
-toggler();
+// toggler();

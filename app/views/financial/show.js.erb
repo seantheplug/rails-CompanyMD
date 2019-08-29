@@ -1,4 +1,39 @@
-if (document.querySelector('#financials-content').dataset.loaded == "false") {
-  document.querySelector("#financials-content").innerHTML = `<%= render 'company_sec_detailed', financials: @financials %>`;
-  document.querySelector('#financials-content').dataset.loaded = "true";
+console.log("I am in show.js");
+console.log('<%=@company.ticker%>');
+
+if (document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded == "false") {
+  console.log('show check');
+  document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').innerHTML = `<%= render 'company_sec_detailed', financials: @financials %>`;
+  document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded = "true";
+  document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+  document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+    document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+    document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    console.log('report click');
+  });
+
+  document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+    document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+    document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+    document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    console.log('statement click');
+  });
+
+  document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+    document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+    document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+    console.log('news click');
+  });
+  document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').click();
 }
+
