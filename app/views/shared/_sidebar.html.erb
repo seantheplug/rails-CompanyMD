@@ -2,11 +2,7 @@
   <div class="basket-container">
     <h3 class="mb-3 d-flex justify-content-between">Portfolio
       <% if signed_in? %>
-      <!-- PLUS BUTTON BELOW -->
-        <%#= link_to new_group_path, title: 'Create a new portfolio' do %>
           <i class="fas fa-plus-circle add-group" id="add-group" data-token="<%= form_authenticity_token %>"></i>
-        <%#end%>
-        <!-- PLUS BUTTON ABOVE -->
       <% else %>
         <%= link_to "value", data: {toggle: "modal", target: "#modalLRForm"} do %>
           <i class="fas fa-plus-circle add-group"></i>
