@@ -1,7 +1,7 @@
 .sidebar {
   position: sticky;
   top: $nav-height;
-  padding: 80px 40px;
+  padding: 80px 30px;
   height: calc(100vh - #{$nav-height});
   display: flex;
   justify-content: space-between;
@@ -37,9 +37,13 @@
       &:hover { opacity: 1; }
     }
     .basket-cards {
-      max-height: 200px;
+      height: 100%;
       overflow-y: scroll;
       overflow-x: hidden;
+
+      div {
+        width: 100%;
+      }
     }
   }
 }
