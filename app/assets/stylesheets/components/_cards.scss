@@ -4,6 +4,18 @@
   box-shadow: $box-shadow;
   border-radius: $border-radius-lg;
   margin: 10px 0;
+  position: relative;
+  .delete {
+    width: 10px;
+    height: 10px;
+    opacity: 0.2;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 
   .card-company-content {
     h3 {
