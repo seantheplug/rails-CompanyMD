@@ -1,4 +1,5 @@
 class CompaniesPointersController < ApplicationController
+  include ApplicationHelper
   def new
     @company = Company.find(params[:company_id])
     @groups = current_user.groups.includes(:companies_pointers)
@@ -10,10 +11,15 @@ class CompaniesPointersController < ApplicationController
   def create
     @companiespointer = CompaniesPointer.new(companiespointer_params)
     @company = Company.find(params[:company_id])
+    create_stock_price_chart_index(@company, "DAILY", outputsize = nil)
     @companiespointer.company = @company
     authorize @companiespointer
     if @companiespointer.save
-      redirect_to root_path
+      if @companiespointer.group.name == "Dashboard"
+        redirect_to companies_path
+      else
+        redirect_to group_path(@companiespointer.group)
+      end
     else
       render :new
     end
@@ -23,7 +29,11 @@ class CompaniesPointersController < ApplicationController
     @companiespointer = CompaniesPointer.find(params[:id])
     authorize @companiespointer
     @companiespointer.destroy
-    redirect_to group_path(@companiespointer.group)
+    if @companiespointer.group.name == "Dashboard"
+      redirect_to companies_path
+    else
+      redirect_to group_path(@companiespointer.group)
+    end
   end
 
   private

@@ -14,10 +14,12 @@ module ApplicationHelper
   def create_stock_price_chart_index(company, time_series, outputsize = nil)
     if outputsize.nil?
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+      puts url
     else
       url = "https://www.alphavantage.co/query?function=TIME_SERIES_#{time_series.upcase}&symbol=#{company.ticker}&outputsize=#{outputsize}&apikey=#{ENV['ALPHA_VANTAGE_KEY']}"
+      puts url
     end
-
+    puts url
     demo_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
     json = open(url).read
     price_info = JSON.parse(json)
