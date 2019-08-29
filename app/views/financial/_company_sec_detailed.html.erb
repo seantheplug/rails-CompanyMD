@@ -6,36 +6,34 @@
     </h2>
   </div>
 <% else %>
-  <div class="company-data">
-
-    <table>
-      <thead>
-        <th>Financials (in millions of USD)</th>
-        <% financials.each do |year_financial|%>
-          <th>FY End <%= year_financial["date"] %> </th>
-        <% end %>
-      </thead>
-      <tbody>
-        <% Company::FINANCIAL_DEFINITION.each do |group_name, group_fields| %>
-          <th class="group-header">
-            <%= "#{group_name}:" %>
-          </th>
-          <% group_fields.each do |label, _value| %>
-            <tr>
-              <th><%= group_fields[label] %></th>
-              <% financials.each do |year_financial| %>
-                <% field_value = year_financial[label.to_s] %>
-                <% if field_value.to_f.negative? %>
-                  <td class="field_data">(<%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, -field_value.to_f), delimiter: ',') %>)</td>
-                  <% else %>
-                  <td class="field_data"><%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, field_value), delimiter: ',') %></td>
-                <% end %>
+  <table class="sec-detailed">
+    <thead>
+      <th>Financials (in millions of USD)</th>
+      <% financials.each do |year_financial|%>
+        <th>FY End <%= year_financial["date"] %> </th>
+      <% end %>
+    </thead>
+    <tbody>
+      <% Company::FINANCIAL_DEFINITION.each do |group_name, group_fields| %>
+        <th class="group-header">
+          <%= "#{group_name}:" %>
+        </th>
+        <% group_fields.each do |label, _value| %>
+          <tr>
+            <th><%= group_fields[label] %></th>
+            <% financials.each do |year_financial| %>
+              <% field_value = year_financial[label.to_s] %>
+              <% if field_value.to_f.negative? %>
+                <td class="field_data">(<%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, -field_value.to_f), delimiter: ',') %>)</td>
+                <% else %>
+                <td class="field_data"><%= number_with_delimiter(Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, field_value), delimiter: ',') %></td>
               <% end %>
-            </tr>
-          <% end %>
+            <% end %>
+          </tr>
         <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
 
     <!-- <h3>CONSOLIDATED STATEMENT OF OPERATIONS</h3>
     <ul>
@@ -81,7 +79,7 @@
       <li><span class="data-title">Earnings before tax margin</span> <%#= (financials[0]["Earnings Before Tax Margin"].to_f*100).round(2) %>%</li>
       <li><span class="data-title">Net profit margin</span> <%#= (financials[0]["Net Profit Margin"].to_f*100).round(2) %>%</li>
     </ul> -->
-  </div>
+
 <% end %>
 <!-- Revenue
 Cost of Sales
