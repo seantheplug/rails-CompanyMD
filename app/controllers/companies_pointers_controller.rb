@@ -1,4 +1,5 @@
 class CompaniesPointersController < ApplicationController
+  include ApplicationHelper
   def new
     @company = Company.find(params[:company_id])
     @groups = current_user.groups.includes(:companies_pointers)
@@ -10,6 +11,7 @@ class CompaniesPointersController < ApplicationController
   def create
     @companiespointer = CompaniesPointer.new(companiespointer_params)
     @company = Company.find(params[:company_id])
+    create_stock_price_chart_index(@company, "DAILY", outputsize = nil)
     @companiespointer.company = @company
     authorize @companiespointer
     if @companiespointer.save
