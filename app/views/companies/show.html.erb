@@ -1,6 +1,11 @@
 <%= render 'shared/sidebar' %>
 
 <div class="content-container col-10">
+  <div class="spreadsheet-link w-100 d-flex justify-content-end">
+    <%= link_to company_path(@company, format: :xlsx), class: 'text-decoration-none', title: 'Download data as excel', target: "_blank" do %>
+      <i class="fas fa-file-excel ml-2 download"></i> Download data as excel
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-6">
       <%= render 'shared/company_description' %>
@@ -50,9 +55,6 @@
             <div id="daily-graph">
               <h3 class="graph-label text-center">
                 1 Month
-                <%= link_to company_path(@company, format: :xlsx), class: 'text-decoration-none', title: 'Download data as excel' do %>
-                  <i class="fas fa-file-excel ml-2 download"></i>
-                <% end %>
               </h3>
               <%= line_chart company_charts_show_daily_one_month_path(@company), min: nil, width: "100%", height: "500px", points: false, colors: ["#75E6DA"], library: {scales: {
                     xAxes: [{
