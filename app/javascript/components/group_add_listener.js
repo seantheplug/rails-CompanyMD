@@ -7,7 +7,9 @@ let newPortfolioContent =
         <p>0</p>
       </div>
     </a>
-    <i class="fas fa-pencil-alt edit nameToAdd" style="background-color: pink">
+    <div class="item-control">
+      <i class="fas fa-pencil-alt edit nameToAdd" style="background-color: pink">
+    </div>
   </div>`;
 
 var addNewPortfolio = (content) => {
