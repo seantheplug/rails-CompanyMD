@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
     @group.user = current_user
     authorize @group
     if @group.save
-      redirect_to group_path(@group)
+      redirect_to root_path
     else
       render :index
     end
