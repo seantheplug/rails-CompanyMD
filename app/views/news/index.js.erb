@@ -1,17 +1,45 @@
 console.log("I am in new.js");
-const news = document.querySelector('#news[data-ticker="<%@company.ticker%>"]');
-const newsContent = document.querySelector('#news-content[data-ticker="<%@company.ticker%>"]');
+console.log('<%=@company.ticker%>');
+// var reports = document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]');
+// var reportsContent = document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]');
+// var news = document.querySelector('#news[data-ticker="<%=@company.ticker%>"]');
+// var newsContent = document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]');
+// var statement = document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]');
+// var statementContent = document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]');
 
-if (newsContent.dataset.loaded == "false") {
-  newsContent.innerHTML = `<%= render 'index', news_array: @news_array %>`;
-  newsContent.dataset.loaded = "true";
+if (document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded == "false") {
+  console.log('news check');
+  document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').innerHTML = `<%= render 'index', news_array: @news_array %>`;
+  document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded = "true";
+  document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+    document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+    document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+    document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    console.log('report click');
+  });
+
+  document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+      document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+      document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+      document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+      document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+      document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+      document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+      console.log('statement click');
+  });
+
+  document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+      document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+      document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+      document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+      document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+      document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+      document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+      console.log('news click');
+  });
+  document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').click();
 }
 
-news.addEventListener("click", () => {
-    newsContent.style.display = "block";
-    reportsContent.style.display = "none";
-    statementContent.style.display = "none";
-    reports.classList.remove("active");
-    statement.classList.remove("active");
-    news.classList.add("active");
-});

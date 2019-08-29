@@ -1,20 +1,74 @@
 console.log("I am in show.js");
-console.log('${<%company.ticker%>}');
-const statement = document.querySelector('#financials[data-ticker="${<%@company.ticker%>}"]');
-const statementContent = document.querySelector('#financials-content[data-ticker="${<%@company.ticker%>}"]');
+console.log('<%=@company.ticker%>');
+// let reports = document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]');
+// let reportsContent = document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]');
+// let news = document.querySelector('#news[data-ticker="<%=@company.ticker%>"]');
+// let newsContent = document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]');
+// let statement = document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]');
+// let statementContent = document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]');
 
-if (statementContent.dataset.loaded == "false") {
-  statementContent.innerHTML = `<%= render 'company_sec_detailed', financials: @financials %>`;
-  statementContent.dataset.loaded = "true";
+if (document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded == "false") {
+  console.log('show check');
+  document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').innerHTML = `<%= render 'company_sec_detailed', financials: @financials %>`;
+  document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded = "true";
+  document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+  document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+    document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+    document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    console.log('report click');
+  });
+
+  document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+    document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+    document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+    document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    console.log('statement click');
+  });
+
+  document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').addEventListener("click", () => {
+    document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').style.display = "block";
+    document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]').style.display = "none";
+    document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').classList.remove("active");
+    document.querySelector('#news[data-ticker="<%=@company.ticker%>"]').classList.add("active");
+    console.log('news click');
+  });
+  document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]').click();
 }
 
-statement.addEventListener("click", () => {
-    statementContent.style.display = "block";
-    reportsContent.style.display = "none";
-    newsContent.style.display = "none";
-    reports.classList.remove("active");
-    statement.classList.add("active");
-    news.classList.remove("active");
-});
+// reports.addEventListener("click", () => {
+//     reportsContent.style.display = "block";
+//     newsContent.style.display = "none";
+//     statementContent.style.display = "none";
+//     reports.classList.add("active");
+//     statement.classList.remove("active");
+//     news.classList.remove("active");
+//     console.log('report click');
+//   });
 
-statement.click();
+//   statement.addEventListener("click", () => {
+//     statementContent.style.display = "block";
+//     reportsContent.style.display = "none";
+//     newsContent.style.display = "none";
+//     reports.classList.remove("active");
+//     statement.classList.add("active");
+//     news.classList.remove("active");
+//     console.log('statement click');
+//   });
+
+//   news.addEventListener("click", () => {
+//     newsContent.style.display = "block";
+//     reportsContent.style.display = "none";
+//     statementContent.style.display = "none";
+//     reports.classList.remove("active");
+//     statement.classList.remove("active");
+//     news.classList.add("active");
+//     console.log('news click');
+//   });

@@ -1,4 +1,4 @@
 import "bootstrap";
-import { toggler } from "../components/toggler";
+// import { toggler } from "../components/toggler";
 
-toggler();
+// toggler();
