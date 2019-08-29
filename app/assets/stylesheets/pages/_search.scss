@@ -1,14 +1,14 @@
 .search-result {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  width: 100%;
+  box-shadow: $box-shadow;
 
   li {
     position: relative;
     font-size: 1.2rem;
     background: white;
-    padding: 15px;
-    margin: 10px 0;
+    padding: 10px;
+    &:hover { background: $light-gray; }
 
     p {
       margin: 0;

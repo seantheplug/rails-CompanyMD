@@ -1,7 +1,4 @@
-var content = `<%= render 'index', news_array: @news_array %>`
-var dispalyNewsOnClick = (content) => {
-  const newsDiv = document.querySelector("#content-space")
-  newsDiv.innerHTML = content
-};
-
-dispalyNewsOnClick(content)
+if (document.querySelector('#news-content').dataset.loaded == "false") {
+  document.querySelector("#news-content").innerHTML = `<%= render 'index', news_array: @news_array %>`;
+  document.querySelector('#news-content').dataset.loaded = "true";
+}

@@ -1,7 +1,4 @@
-var content = `<%= render 'index', sec_data: @sec_data %>`
-var dispalySECOnClick = (content) => {
-  const linkSpace = document.querySelector("#content-space")
-  linkSpace.innerHTML = content
-};
-
-dispalySECOnClick(content)
+if (document.querySelector('#reports-content').dataset.loaded == "false") {
+  document.querySelector("#reports-content").innerHTML = `<%= render 'index', sec_data: @sec_data %>`;
+  document.querySelector('#reports-content').dataset.loaded = "true";
+}

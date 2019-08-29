@@ -1,0 +1,20 @@
+.sec-detailed {
+    width: 100%;
+    margin: 0 auto;
+
+    thead {
+        background: darken($light-gray, 5%);
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .group-header {
+        background: darken($light-gray, 3%);
+    }
+
+    tr:hover {
+        background: $light-gray;
+    }
+}
