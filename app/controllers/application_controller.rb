@@ -19,7 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    root_path
+    companies_path
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    companies_path
   end
 
   private
