@@ -4,9 +4,9 @@ var content =
 
   `<a href="#">
     <div class="basket-card">
-      <p class="text-truncate nameToChange">2click to edit</p>
+      <p class="text-truncate">2click to edit</p>
       <p>0</p>
-      <i class="fas fa-eye"></i>
+      <i class="fas fa-pencil-alt edit nameToChange">
     </div>
   </a>`
 
@@ -34,7 +34,7 @@ let callMeBitch = () => {
   };
   let nameSpace = document.querySelector(".nameToChange");
   console.log(nameSpace)
-  nameSpace.addEventListener("dblclick", (event) => {changeGroupName(nameContent) });
+  nameSpace.addEventListener("click", (event) => {changeGroupName(nameContent) });
 }
 
 callMeBitch()
