@@ -4,7 +4,7 @@
       <% if signed_in? %>
       <!-- PLUS BUTTON BELOW -->
         <%#= link_to new_group_path, title: 'Create a new portfolio' do %>
-          <i class="fas fa-plus-circle add-group", id="add-group"></i>
+          <i class="fas fa-plus-circle add-group" id="add-group" data-token="<%= form_authenticity_token %>"></i>
         <%#end%>
         <!-- PLUS BUTTON ABOVE -->
       <% else %>
