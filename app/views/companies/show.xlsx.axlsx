@@ -25,3 +25,4 @@ wb.add_worksheet(name: "Companies comprehensive data") do |sheet|
     end
   end
 end
+
