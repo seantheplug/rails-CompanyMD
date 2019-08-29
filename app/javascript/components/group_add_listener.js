@@ -1,20 +1,21 @@
 let newPortfolioContent =
 
   `<div style="display: inline-block">
-    <a href="#">
+    <a href="#" class="text-decoration-none">
       <div class="basket-card">
         <p class="text-truncate nameToChangeField">New Portfolio</p>
-        <p>0</p>
       </div>
     </a>
     <div class="item-control">
-      <i class="fas fa-pencil-alt edit nameToAdd" style="background-color: pink">
+      <p>0 items</p>
+      <i class="fas fa-pencil-alt edit nameToAdd mr-1"></i>
+      <i class="fas fa-minus-circle"></i>
     </div>
   </div>`;
 
 var addNewPortfolio = (content) => {
   var sideBar = document.querySelector(".basket-cards");
-  sideBar.insertAdjacentHTML('beforeend', content);
+  sideBar.insertAdjacentHTML('afterbegin', content);
   callMeBitch()
 };
 const plusSign = document.getElementById("add-group");
