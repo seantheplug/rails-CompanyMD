@@ -1,11 +1,5 @@
 console.log("I am in report.js");
 console.log('<%=@company.ticker%>');
-// let reports = document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]');
-// let reportsContent = document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]');
-// let news = document.querySelector('#news[data-ticker="<%=@company.ticker%>"]');
-// let newsContent = document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]');
-// let statement = document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]');
-// let statementContent = document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]');
 
 if (document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded == "false") {
   console.log('sec check');

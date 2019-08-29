@@ -1,11 +1,5 @@
 console.log("I am in new.js");
 console.log('<%=@company.ticker%>');
-// var reports = document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]');
-// var reportsContent = document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]');
-// var news = document.querySelector('#news[data-ticker="<%=@company.ticker%>"]');
-// var newsContent = document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]');
-// var statement = document.querySelector('#financials[data-ticker="<%=@company.ticker%>"]');
-// var statementContent = document.querySelector('#financials-content[data-ticker="<%=@company.ticker%>"]');
 
 if (document.querySelector('#news-content[data-ticker="<%=@company.ticker%>"]').dataset.loaded == "false") {
   console.log('news check');
