@@ -13,7 +13,11 @@ class CompaniesPointersController < ApplicationController
     @companiespointer.company = @company
     authorize @companiespointer
     if @companiespointer.save
-      redirect_to root_path
+      if @companiespointer.group.name == "Dashboard"
+        redirect_to companies_path
+      else
+        redirect_to group_path(@companiespointer.group)
+      end
     else
       render :new
     end
@@ -23,7 +27,11 @@ class CompaniesPointersController < ApplicationController
     @companiespointer = CompaniesPointer.find(params[:id])
     authorize @companiespointer
     @companiespointer.destroy
-    redirect_to group_path(@companiespointer.group)
+    if @companiespointer.group.name == "Dashboard"
+      redirect_to companies_path
+    else
+      redirect_to group_path(@companiespointer.group)
+    end
   end
 
   private
