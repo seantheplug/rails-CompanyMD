@@ -13,12 +13,11 @@ class CompaniesPointersController < ApplicationController
     @companiespointer.company = @company
     authorize @companiespointer
     if @companiespointer.save
-      redirect_to group_path(params["companies_pointer"]["group_id"])
+      redirect_to root_path
     else
       render :new
     end
   end
-
 
   def destroy
     @companiespointer = CompaniesPointer.find(params[:id])
