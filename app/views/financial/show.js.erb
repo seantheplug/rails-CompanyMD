@@ -1,4 +1,20 @@
-if (document.querySelector('#financials-content').dataset.loaded == "false") {
-  document.querySelector("#financials-content").innerHTML = `<%= render 'company_sec_detailed', financials: @financials %>`;
-  document.querySelector('#financials-content').dataset.loaded = "true";
+console.log("I am in show.js");
+console.log('${<%company.ticker%>}');
+const statement = document.querySelector('#financials[data-ticker="${<%@company.ticker%>}"]');
+const statementContent = document.querySelector('#financials-content[data-ticker="${<%@company.ticker%>}"]');
+
+if (statementContent.dataset.loaded == "false") {
+  statementContent.innerHTML = `<%= render 'company_sec_detailed', financials: @financials %>`;
+  statementContent.dataset.loaded = "true";
 }
+
+statement.addEventListener("click", () => {
+    statementContent.style.display = "block";
+    reportsContent.style.display = "none";
+    newsContent.style.display = "none";
+    reports.classList.remove("active");
+    statement.classList.add("active");
+    news.classList.remove("active");
+});
+
+statement.click();

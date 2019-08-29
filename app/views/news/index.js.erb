@@ -1,4 +1,17 @@
-if (document.querySelector('#news-content').dataset.loaded == "false") {
-  document.querySelector("#news-content").innerHTML = `<%= render 'index', news_array: @news_array %>`;
-  document.querySelector('#news-content').dataset.loaded = "true";
+console.log("I am in new.js");
+const news = document.querySelector('#news[data-ticker="<%@company.ticker%>"]');
+const newsContent = document.querySelector('#news-content[data-ticker="<%@company.ticker%>"]');
+
+if (newsContent.dataset.loaded == "false") {
+  newsContent.innerHTML = `<%= render 'index', news_array: @news_array %>`;
+  newsContent.dataset.loaded = "true";
 }
+
+news.addEventListener("click", () => {
+    newsContent.style.display = "block";
+    reportsContent.style.display = "none";
+    statementContent.style.display = "none";
+    reports.classList.remove("active");
+    statement.classList.remove("active");
+    news.classList.add("active");
+});
