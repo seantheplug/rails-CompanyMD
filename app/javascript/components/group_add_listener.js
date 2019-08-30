@@ -9,7 +9,6 @@ let newPortfolioContent =
     <div class="item-control">
       <p>0 items</p>
       <i class="fas fa-pencil-alt edit nameToAdd mr-1"></i>
-      <i class="fas fa-minus-circle"></i>
     </div>
   </div>`;
 
