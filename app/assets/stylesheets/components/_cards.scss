@@ -4,6 +4,18 @@
   box-shadow: $box-shadow;
   border-radius: $border-radius-lg;
   margin: 10px 0;
+  position: relative;
+  .delete {
+    width: 10px;
+    height: 10px;
+    opacity: 0.2;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 
   .card-company-content {
     h3 {
@@ -42,15 +54,12 @@
   align-items: center;
   margin: 5px 0;
   color: white;
-  background: darken($navy, 3%);
-  padding: 10px 15px;
-  font-weight: bold;
+  padding: 5px;
   justify-content: space-between;
-  border-radius: $border-radius;
-  transition: $transition-in;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
   &:hover {
+    background: darken($navy, 2%);
     opacity: 0.9;
-    transform: scale(1.01);
   }
   a:hover {
     text-decoration: none;
@@ -60,6 +69,30 @@
     color: white;
     margin: 0;
     &:hover { text-decoration: none; }
+  }
+}
+
+.item-control {
+  display: flex;
+  align-items: center;
+  p {
+    color: white;
+    margin: 0 auto 0 0;
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+  i {
+    padding: 0 3px;
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+
+  input#group_name {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: $border-radius;
   }
 }
 

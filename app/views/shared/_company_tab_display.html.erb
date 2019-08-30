@@ -2,7 +2,7 @@
     <div class="col-12">
       <div class="info-tabs mt-3">
         <%= link_to "SEC Financial Data for #{@company.ticker}", company_financial_path(@company), remote: true, id: "financials" %>
-        <%= link_to "news about #{@company.ticker}", company_news_index_path(@company), remote: true, id: "news" %>
+        <%= link_to "News about #{@company.ticker}", company_news_index_path(@company), remote: true, id: "news" %>
         <%= link_to "SEC Reports for #{@company.ticker}", company_sec_data_fetches_path(@company), remote: true, id: "reports" %>
       </div>
     </div>
@@ -10,8 +10,8 @@
 
   <div class="row">
     <div class="col-12">
-      <div id="financials-content" style="display: none" data-loaded="false"></div>
-      <div id="news-content" style="display: none" data-loaded="false"></div>
-      <div id="reports-content" style="display: none" data-loaded="false"></div>
+      <div id="financials-content" style="display: none" data-loaded="false", data-ticker=<%=company.ticker%>></div>
+      <div id="news-content" style="display: none" data-loaded="false", data-ticker=<%=company.ticker%>></div>
+      <div id="reports-content" style="display: none" data-loaded="false", data-ticker=<%=company.ticker%>></div>
     </div>
   </div>

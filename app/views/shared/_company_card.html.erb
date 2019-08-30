@@ -1,5 +1,10 @@
 <div class="col-4">
   <div class="row card-company flex-row-reverse">
+    <% if signed_in? %>
+      <%= link_to group_companies_pointer_path(current_user.groups.first, company), method: :delete, data:{confirm: "Are you sure you want to remove from your Dashboard?"}, title: 'Remove from Dashboard', class: "delete" do %>
+        <i class="fas fa-times"></i>
+      <% end %>
+    <% end %>
     <div class="col-6 card-company-graph">
       <%= line_chart company_charts_index_path(company),
           min: nil,

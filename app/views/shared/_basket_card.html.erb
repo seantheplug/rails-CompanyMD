@@ -1,12 +1,14 @@
-
-<%= link_to group_path(group), title: "Go to #{group.name}", class: 'text-decoration-none' do %>
-  <div class="basket-card">
-    <p class="text-truncate"><%=group.name%></p>
-    <p>(<%= group.companies.count %>)</p>
-    <i class="fas fa-eye"></i>
-  </div>
-<% end %>
-
-<%= link_to group_path(group), method: :delete do %>
+<div>
+  <%= link_to group_path(group), title: "Go to #{group.name}", class: 'text-decoration-none' do %>
+    <div class="basket-card">
+      <p class="text-truncate nameToChangeField"><%=group.name%></p>
+    </div>
+  <% end %>
+  <div class="item-control">
+    <p><%= group.companies.count %> items</p>
+    <i class="fas fa-pencil-alt edit nameToChange mr-1" data-group="<%= group.id %>"></i>
+    <%= link_to group_path(group.id), method: :delete do %>
     <i class="fas fa-minus-circle"></i>
-<% end %>
+    <% end %>
+  </div>
+</div>
