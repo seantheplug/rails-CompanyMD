@@ -2,9 +2,7 @@
 
 <div class="content-container col-10">
   <div class="spreadsheet-link w-100 d-flex justify-content-end">
-    <%= link_to company_path(@company, format: :xlsx), class: 'text-decoration-none', title: 'Download data as excel', target: "_blank" do %>
-      <i class="fas fa-file-excel ml-2 download"></i> Download data as excel
-    <% end %>
+    <%= link_to "Download Excel File", company_path(@company, format: :xlsx), class: 'text-decoration-none', target: "_blank" %>
   </div>
   <div class="row">
     <div class="col-6">
