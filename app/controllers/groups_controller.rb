@@ -14,6 +14,15 @@ class GroupsController < ApplicationController
     @company_data = []
     @dividend_yield = []
     @pe_ratio = []
+    # excel api call on click
+    if request.format.xlsx?
+      @financials_array = []
+      @companies.each do |company|
+        financial_return = financial(company.ticker)
+        @financials_array << financial_return
+      end
+    end
+
     @companies.each do |company|
       @company_data << quote_endpoint(company.ticker)
       if key_stat(company.ticker, "dividendYield").nil?

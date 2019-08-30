@@ -1,7 +1,28 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Companies") do |sheet|
-  sheet.add_row [@company.ticker, "Date", @company.times]
-  sheet.add_row [@company.ticker, "Date", @company.prices]
-
+wb.add_worksheet(name: "Companies data") do |sheet|
+  sheet.add_row(["Company", "Date", "Value"])
+  @company.times.each_with_index do |time, index|
+    sheet.add_row [@company.ticker, time, @company.prices[index]]
+  end
 end
+
+wb.add_worksheet(name: "Companies comprehensive data") do |sheet|
+  # Sub headaers (group names) currently missing
+  row = ["(in millions of USD)"]
+  @financials.each do |year_financial|
+    row << "FY End #{year_financial["date"]}"
+  end
+  sheet.add_row(row)
+  Company::FINANCIAL_DEFINITION.each do |group_name, group_fields|
+    group_fields.each do |label, _value|
+      row = [group_fields[label]]
+      @financials.each do |year_financial|
+        field_value = year_financial[label.to_s]
+        row << Company.send(Company::GROUP_NUMBER_FORMAT[group_name.to_sym].to_sym, field_value)
+      end
+      sheet.add_row(row)
+    end
+  end
+end
+
