@@ -24,7 +24,10 @@ class CompaniesController < ApplicationController
   def show
     authorize @company
     @company_data = quote_endpoint(@company.ticker)
+    if request.format.xlsx?
+      @financials = financial(@company.ticker)
     puts "one api call"
+    end
     # @price_data_array = create_stock_price_chart_show(@company, "DAILY", "full")
     # @indicator_data_array = roc_chart(@company.ticker, "daily", 10, "close")
     @sec_data = pull_sec_data(@company.ticker)
