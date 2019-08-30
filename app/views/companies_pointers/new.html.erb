@@ -5,8 +5,8 @@
       <%= simple_form_for [@company, @companiespointer] do |f| %>
         <%= f.association :group, label: "Portfolio",collection: @groups_wanted, class:'genForm_dropBox'%>
         <div class="d-flex justify-content-between m-2 mt-4">
-          <%= link_to "Cancel", root_path, class:"btn btn-outline-primary" %>
-          <%= f.button :submit, "Add to a porfolio", class:"btn btn-primary"%>
+          <%= link_to "Cancel", companies_path, class:"btn btn-outline-primary" %>
+          <%= f.button :submit, "Add to porfolio", class:"btn btn-primary"%>
         </div>
       <% end %>
     </div>
