@@ -3,16 +3,14 @@
 <div class="content-container col-10">
   <div class="row">
     <div class="col-12 group-name">
-      <h1 class="mb-3">
+      <h1 class="mb-1">
       <%= @group.name.capitalize %>
       <%= link_to "#", data: {toggle: "modal", target: "#modalgroupeditForm"}, title: 'Edit portfolio name' do %>
         <i class="fas fa-pencil-alt edit"></i>
       <% end %>
-      <%= link_to group_path(@group, format: :xlsx), class: 'text-decoration-none ml-2', title: 'Download data as excel', target: '_blank' do %>
-        <i class="fas fa-file-excel download"></i>
-      <% end %>
       </h1>
     </div>
+    <%= link_to "Download Excel File", group_path(@group, format: :xlsx), class: 'text-decoration-none mb-2 ml-3', title: 'Download data as excel', target: '_blank', style: "font-size: 16px" %>
   </div>
   <div class="scrollable">
     <%@group.companies.each_with_index do |company, index|%>
