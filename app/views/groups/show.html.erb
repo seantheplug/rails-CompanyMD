@@ -17,7 +17,7 @@
   <div class="scrollable">
     <%@group.companies.each_with_index do |company, index|%>
       <div class="group-item">
-        <%= link_to group_companies_pointer_path(@group, company), method: :delete, data:{confirm: "Are you sure you want to remove from this portfolio?"}, title: 'Remove from portfolio' do %>
+        <%= link_to group_companies_pointer_path(@group, @group.companies_pointers[index]), method: :delete, data:{confirm: "Are you sure you want to remove from this portfolio?"}, title: 'Remove from portfolio' do %>
           <i class="fas fa-times-circle delete"></i>
         <% end %>
         <%= render 'shared/group_item', company: company, index: index %>

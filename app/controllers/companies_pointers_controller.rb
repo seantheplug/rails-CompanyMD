@@ -27,18 +27,23 @@ class CompaniesPointersController < ApplicationController
       else
         redirect_to group_path(@companiespointer.group)
       end
+      puts "companies_pointer created"
+      puts @companiespointer
     else
       render :new
     end
   end
 
   def destroy
+    puts "start deleting company from group"
     @companiespointer = CompaniesPointer.find(params[:id])
     authorize @companiespointer
     @companiespointer.destroy
     if @companiespointer.group.name == "Dashboard"
+      puts "delete from dashboard"
       redirect_to companies_path
     else
+      puts "delete from groups #{@companiespointer.group.name}"
       redirect_to group_path(@companiespointer.group)
     end
   end
