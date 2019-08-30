@@ -44,6 +44,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
+  def after_sign_in_path_for(resource)
+  stored_location_for(resource) || companies_path
+end
+
+
   def default_url_options
     { host: ENV["DOMAIN"] || "localhost:3000" }
   end

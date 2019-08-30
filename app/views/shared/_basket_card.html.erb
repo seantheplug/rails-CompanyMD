@@ -1,4 +1,4 @@
-<div style="display: inline-block">
+<div>
   <%= link_to group_path(group), title: "Go to #{group.name}", class: 'text-decoration-none' do %>
     <div class="basket-card">
       <p class="text-truncate nameToChangeField"><%=group.name%></p>
@@ -7,6 +7,8 @@
   <div class="item-control">
     <p><%= group.companies.count %> items</p>
     <i class="fas fa-pencil-alt edit nameToChange mr-1" data-group="<%= group.id %>"></i>
+    <%= link_to group_path(group.id), method: :delete do %>
     <i class="fas fa-minus-circle"></i>
+    <% end %>
   </div>
 </div>
