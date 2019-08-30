@@ -1,11 +1,11 @@
 .info-tabs {
     width: 100%;
+    display: flex;
 
     a {
         padding: 16px 24px;
         border-radius: 6px 6px 0 0;
         background: darken($light-gray, 3%);
-        margin: 3px 0;
         opacity: 0.7;
         &.active {
             opacity: 1;
@@ -20,6 +20,5 @@
 
 #financials-content, #news-content, #reports-content {
     background: white;
-    margin-top: 10px;
     padding: 30px;
 }

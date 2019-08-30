@@ -81,11 +81,13 @@
     opacity: 0.7;
     font-size: 0.8rem;
   }
-  i {
+  i, a {
+    color: white;
     padding: 0 3px;
     cursor: pointer;
     opacity: 0.7;
     font-size: 0.8rem;
+    &:hover { opacity: 0.9 }
   }
 
   input#group_name {
@@ -226,6 +228,7 @@
     margin-top: 8px;
   }
   .news-card-infos {
+    height: 120px;
     padding: 0 24px;
   }
 }
