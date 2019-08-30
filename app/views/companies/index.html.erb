@@ -18,7 +18,7 @@
   <% end %>
   <h2>Market Index</h2>
 
-  <div class="row">
+  <div class="row mb-5">
     <%@market_index_array.each_with_index do |market_index, index|%>
       <%= render 'shared/market_card', market_index: market_index  %>
     <%end%>
