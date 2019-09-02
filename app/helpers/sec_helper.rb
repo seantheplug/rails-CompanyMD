@@ -3,26 +3,26 @@ module SecHelper
   require 'nokogiri'
   require 'open-uri'
   def pull_sec_data(ticker)
-    tenk = []
-    sec_filings = []
-    url = 'https://api.sec-api.io'
-    body = { "query": {
-              "query_string": { "query": "ticker: #{ticker} AND formType:\"10-K\"" } },
-              "from": "0",
-              "size": "10",
-              "sort": [{ "filedAt": { "order": "desc" } }] }
+  #   tenk = []
+  #   sec_filings = []
+  #   url = 'https://api.sec-api.io'
+  #   body = { "query": {
+  #             "query_string": { "query": "ticker: #{ticker} AND formType:\"10-K\"" } },
+  #             "from": "0",
+  #             "size": "10",
+  #             "sort": [{ "filedAt": { "order": "desc" } }] }
 
-    json_body = body.to_json
-
-    res = RestClient.post url, json_body, {content_type: :json, accept: :json}
-    data = JSON.parse(res.body)
-    data["filings"].each do |package|
-      tenk << { link: package["linkToHtml"], date: package["filedAt"] }
-    end
-  sec_filings << scrape_to_file(tenk)
-  sec_filings << pull_10k_index(ticker)
-  sec_filings << pull_10q_index(ticker)
-  sec_filings
+  #   json_body = body.to_json
+  #   res = RestClient.post url, json_body, {content_type: :json, accept: :json}
+  #   raise
+  #   data = JSON.parse(res.body)
+  #   data["filings"].each do |package|
+  #     tenk << { link: package["linkToHtml"], date: package["filedAt"] }
+  #   end
+  # sec_filings << scrape_to_file(tenk)
+  # sec_filings << pull_10k_index(ticker)
+  # sec_filings << pull_10q_index(ticker)
+  # sec_filings
   end
 
   private

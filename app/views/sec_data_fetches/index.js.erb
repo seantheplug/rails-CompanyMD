@@ -37,4 +37,7 @@ if (document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]
   });
   document.querySelector('#reports[data-ticker="<%=@company.ticker%>"]').click();
 }
+else{
+  document.querySelector('#reports-content[data-ticker="<%=@company.ticker%>"]').innerHTML = `<%= render 'index'%>`;
+}
 
