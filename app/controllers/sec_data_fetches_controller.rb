@@ -5,6 +5,6 @@ class SecDataFetchesController < ApplicationController
 
   def index
     @company = Company.find(params[:company_id])
-    @sec_data = pull_sec_data(@company.ticker)
+    # @sec_data = pull_sec_data(@company.ticker)
   end
 end
