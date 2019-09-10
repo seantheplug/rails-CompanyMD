@@ -1,1 +1,1 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+CompanyMD is a web platform that aggregates a wide variety of financial data from market indices & individual stocks to yearly SEC report filings all in an user friendly format. It enables everyone from amateur to expert analyst to make informed choices regarding their investments. The entire site was developed, outlined, and programmed in merely two weeks by a teams of 4.
