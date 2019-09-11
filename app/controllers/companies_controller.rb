@@ -14,9 +14,11 @@ class CompaniesController < ApplicationController
       @hidden_group = current_user.groups.first.companies
     end
     @market_index_array.each do |market_index|
-      if market_index.price.nil? || (market_index.updated_at + 30.minutes) < Time.now.utc
-        puts "one api call get market_index"
-        market_index_quote_endpoint(market_index)
+      if market_index.name != "NASDAQ"
+        if market_index.price.nil? || (market_index.updated_at + 30.minutes) < Time.now.utc
+          puts "one api call get market_index"
+          market_index_quote_endpoint(market_index)
+        end
       end
     end
   end
