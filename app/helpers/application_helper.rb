@@ -198,24 +198,6 @@ module ApplicationHelper
      annual_reports = report_collection["financials"]
 
      @last_three_years = annual_reports[0..2].compact
-
-  #    if !last_three_years.nil?
-  #     last_three_years.compact
-
-  #     last_three_years.each_with_index do |item, index|
-  #       if item.nil?
-  #         last_three_years.drop[index..-1]
-  #         break
-  #       else
-
-  #       if item["date"][0..3] == year
-  #         @annual_report = annual_reports[index]
-  #       else
-  #         next
-  #       end
-  #     end
-  #   end
-  #   @annual_report
   end
 end
 
