@@ -51,6 +51,6 @@ end
 # end
 
 MarketIndex.create!(name: "S&P 500 Index", ticker: ".INX")
-MarketIndex.create!(name: "NASDAQ", ticker: "NASDAQ:^IXIC")
+MarketIndex.create!(name: "New York Stock Exchange", ticker: "NYA")
 MarketIndex.create!(name: "DOW JONES", ticker: ".DJI")
 puts "created sample"
